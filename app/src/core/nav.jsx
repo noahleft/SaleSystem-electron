@@ -200,36 +200,9 @@ class Nav extends React.Component {
 
             <a
               className="navbar-item"
-              onClick={() => this.navigate(ROUTES.ABOUT)}>
-              About
+              onClick={() => this.navigate(ROUTES.COMPANYLIST)}>
+              CompanyList
             </a>
-
-            <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">Sample pages</a>
-
-              <div className="navbar-dropdown">
-                <a
-                  className="navbar-item"
-                  onClick={() => this.navigate(ROUTES.MOTD)}>
-                  Using the Electron store
-                </a>
-                <a
-                  className="navbar-item"
-                  onClick={() => this.navigate(ROUTES.LOCALIZATION)}>
-                  Changing locales
-                </a>
-                <a
-                  className="navbar-item"
-                  onClick={() => this.navigate(ROUTES.UNDOREDO)}>
-                  Undo/redoing actions
-                </a>
-                <a
-                  className="navbar-item"
-                  onClick={() => this.navigate(ROUTES.CONTEXTMENU)}>
-                  Custom context menu
-                </a>
-              </div>
-            </div>
           </div>
           {this.renderLicenseModal()}
           <div className="navbar-end">
