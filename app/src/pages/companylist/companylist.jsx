@@ -3,6 +3,8 @@ import React from "react";
 class CompanyList extends React.Component {
   constructor(props) {
     super(props);
+
+    myAPI.listCompany();
   }
 
   render() {
