@@ -1,11 +1,12 @@
 const Sqlite3 = require('better-sqlite3');
 
 class DbManager {
-    open() {
-        console.log("open db");
+    constructor() {
+        this.db = Sqlite3("sample.db");
     }
-    close() {
-        console.log("close db");
+    listCompany() {
+        const row = this.db.prepare('SELECT * FROM company').all();
+        return row;
     }
 }
 

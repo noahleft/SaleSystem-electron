@@ -19,5 +19,5 @@ contextBridge.exposeInMainWorld("api", {
 });
 
 contextBridge.exposeInMainWorld("myAPI", {
-  listCompany: manager.open
+  listCompany: () => manager.listCompany()
 });
