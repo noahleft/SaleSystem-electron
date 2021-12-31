@@ -8,6 +8,10 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM company').all();
         return row;
     }
+    listProduct() {
+        const row = this.db.prepare('SELECT * FROM product').all();
+        return row;
+    }
 }
 
 const manager = new DbManager();
