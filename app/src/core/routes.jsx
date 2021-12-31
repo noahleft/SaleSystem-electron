@@ -16,6 +16,9 @@ const CompanyList = loadable(() =>
 const ProductList = loadable(() =>
   import(/* webpackChunkName: "ProductListChunk" */ "Pages/productlist/productlist")
 );
+const PriceList = loadable(() =>
+  import(/* webpackChunkName: "PriceListChunk" */ "Pages/pricelist/pricelist")
+);
 
 class Routes extends React.Component {
   render() {
@@ -25,6 +28,7 @@ class Routes extends React.Component {
         <Route path={ROUTES.ABOUT} component={About}></Route>
         <Route path={ROUTES.COMPANYLIST} component={CompanyList}></Route>
         <Route path={ROUTES.PRODUCTLIST} component={ProductList}></Route>
+        <Route path={ROUTES.PRICELIST} component={PriceList}></Route>
       </Switch>
     );
   }

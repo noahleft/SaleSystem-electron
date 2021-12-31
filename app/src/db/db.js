@@ -8,8 +8,20 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM company').all();
         return row;
     }
+    getCompany(id) {
+        const row = this.db.prepare('SELECT * FROM company WHERE id = ?').get(id);
+        return row;
+    }
     listProduct() {
         const row = this.db.prepare('SELECT * FROM product').all();
+        return row;
+    }
+    getProduct(id) {
+        const row = this.db.prepare('SELECT * FROM product WHERE id = ?').get(id);
+        return row;
+    }
+    listPrice() {
+        const row = this.db.prepare('SELECT * FROM unitprice').all();
         return row;
     }
 }

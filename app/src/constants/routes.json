@@ -2,5 +2,6 @@
   "WELCOME": "/",
   "ABOUT": "/about",
   "COMPANYLIST": "/companylist",
-  "PRODUCTLIST": "/productlist"
+  "PRODUCTLIST": "/productlist",
+  "PRICELIST": "/pricelist"
 }

@@ -208,6 +208,11 @@ class Nav extends React.Component {
               onClick={() => this.navigate(ROUTES.PRODUCTLIST)}>
               ProductList
             </a>
+            <a
+              className="navbar-item"
+              onClick={() => this.navigate(ROUTES.PRICELIST)}>
+              Unit Price List
+            </a>
           </div>
           {this.renderLicenseModal()}
           <div className="navbar-end">
