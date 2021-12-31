@@ -24,6 +24,10 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM unitprice').all();
         return row;
     }
+    listForm() {
+        const row = this.db.prepare('SELECT * FROM form').all();
+        return row;
+    }
 }
 
 const manager = new DbManager();

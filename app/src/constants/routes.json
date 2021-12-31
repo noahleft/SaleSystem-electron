@@ -3,5 +3,6 @@
   "ABOUT": "/about",
   "COMPANYLIST": "/companylist",
   "PRODUCTLIST": "/productlist",
-  "PRICELIST": "/pricelist"
+  "PRICELIST": "/pricelist",
+  "FORMLIST": "/formlist"
 }
