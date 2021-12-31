@@ -6,10 +6,10 @@ class CompanyList extends React.Component {
     super(props);
   }
   render() {
-    let lists = [];
+    let content = [];
     let companyList = myAPI.listCompany();
     for(let i=0; i<=companyList.length-1; i++) {
-      lists.push(<tr key={companyList[i].ID}>
+      content.push(<tr key={companyList[i].ID}>
         <th scope="row">{companyList[i].ID}</th>
         <td>{companyList[i].NAME}</td>
         </tr>)
@@ -28,7 +28,7 @@ class CompanyList extends React.Component {
             </tr>
           </thead>
           <tbody>
-          {lists}
+          {content}
           </tbody>
           </table>
       </section>
