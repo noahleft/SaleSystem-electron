@@ -1,6 +1,7 @@
 import React from "react";
 import ROUTES from "Constants/routes";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { writeConfigRequest } from "secure-electron-store";
 
 class FormList extends React.Component {
   constructor(props) {
@@ -28,7 +29,10 @@ class FormList extends React.Component {
         <td>{formList[i].NAME}</td>
         <td>
         <a
-          onClick={() => this.navigate(ROUTES.RECORDLIST)}>
+          onClick={() => {
+            api.store.send(writeConfigRequest, "formID", formList[i].ID);
+            this.navigate(ROUTES.RECORDLIST);
+          }}>
           OpenIt!
         </a></td>
         </tr>)

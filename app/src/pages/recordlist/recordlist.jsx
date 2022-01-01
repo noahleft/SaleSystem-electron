@@ -1,11 +1,19 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { readConfigRequest, readConfigResponse } from "secure-electron-store";
 
 class RecordList extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
+    api.store.onReceive(readConfigResponse, function(args){
+      if (args.success) {
+        console.log(`Received '${args.key}:${args.value}' from file.`);
+      }
+    });
+    api.store.send(readConfigRequest, "formID");
+
     let content = [];
     let recordList = myAPI.listRecord();
     for(let i=0; i<=recordList.length-1; i++) {
