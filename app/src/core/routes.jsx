@@ -22,6 +22,9 @@ const PriceList = loadable(() =>
 const FormList = loadable(() =>
   import(/* webpackChunkName: "FormListChunk" */ "Pages/formlist/formlist")
 );
+const RecordList = loadable(() =>
+  import(/* webpackChunkName: "RecordListChunk" */ "Pages/recordlist/recordlist")
+);
 
 class Routes extends React.Component {
   render() {
@@ -33,6 +36,7 @@ class Routes extends React.Component {
         <Route path={ROUTES.PRODUCTLIST} component={ProductList}></Route>
         <Route path={ROUTES.PRICELIST} component={PriceList}></Route>
         <Route path={ROUTES.FORMLIST} component={FormList}></Route>
+        <Route path={ROUTES.RECORDLIST} component={RecordList}></Route>
       </Switch>
     );
   }

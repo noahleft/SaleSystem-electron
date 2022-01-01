@@ -4,5 +4,6 @@
   "COMPANYLIST": "/companylist",
   "PRODUCTLIST": "/productlist",
   "PRICELIST": "/pricelist",
-  "FORMLIST": "/formlist"
+  "FORMLIST": "/formlist",
+  "RECORDLIST": "/recordlist"
 }

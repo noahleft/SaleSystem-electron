@@ -1,7 +1,24 @@
 import React from "react";
+import ROUTES from "Constants/routes";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class FormList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.history = props.history;
+  }
+
+  navigate(url) {
+    this.setState(
+      {
+        mobileMenuActive: false,
+      },
+      function () {
+        this.history.push(url);
+      }
+    );
+  }
+
   render() {
     let content = [];
     let formList = myAPI.listForm();
@@ -9,6 +26,11 @@ class FormList extends React.Component {
       content.push(<tr key={formList[i].ID}>
         <th scope="row">{formList[i].ID}</th>
         <td>{formList[i].NAME}</td>
+        <td>
+        <a
+          onClick={() => this.navigate(ROUTES.RECORDLIST)}>
+          OpenIt!
+        </a></td>
         </tr>)
     }
 
@@ -22,6 +44,7 @@ class FormList extends React.Component {
             <tr>
               <th scope="col">#</th>
               <th scope="col">Form Name</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>

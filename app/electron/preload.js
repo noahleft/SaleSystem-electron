@@ -24,5 +24,6 @@ contextBridge.exposeInMainWorld("myAPI", {
   listProduct: () => manager.listProduct(),
   getProduct: (id) => manager.getProduct(id),
   listPrice: () => manager.listPrice(),
-  listForm: () => manager.listForm()
+  listForm: () => manager.listForm(),
+  listRecord: () => manager.listRecord()
 });

@@ -28,6 +28,10 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM form').all();
         return row;
     }
+    listRecord() {
+        const row = this.db.prepare('SELECT * FROM record').all();
+        return row;
+    }
 }
 
 const manager = new DbManager();
