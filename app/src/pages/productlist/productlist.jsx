@@ -2,9 +2,6 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class ProductList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     let content = [];
     let productList = myAPI.listProduct();
@@ -14,7 +11,6 @@ class ProductList extends React.Component {
         <td>{productList[i].NAME}</td>
         </tr>)
     }
-
     return (
       <section className="section">
           <div className="container">

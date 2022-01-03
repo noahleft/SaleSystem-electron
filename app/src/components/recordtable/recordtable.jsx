@@ -3,10 +3,6 @@ import { readConfigRequest, readConfigResponse } from "secure-electron-store";
 import { connect } from "react-redux";
 
 class RecordTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillUnmount() {
     // Clear any existing bindings;
     // important on mac-os if the app is suspended
@@ -14,15 +10,7 @@ class RecordTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
-  componentDidMount() {
-    api.store.onReceive(readConfigResponse, function(args){
-      if(args.success) {
-      }
-    });
-  }
-
   render() {
-    console.log(`${this.props.home.selectedFormID}`);
     let content = [];
     let recordList = myAPI.listRecord(this.props.home.selectedFormID);
     for(let i=0; i<=recordList.length-1; i++) {
@@ -49,7 +37,6 @@ class RecordTable extends React.Component {
     {content}
     </tbody>
     </table>
-
     );
   }
 }

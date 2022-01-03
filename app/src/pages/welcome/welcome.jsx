@@ -1,6 +1,4 @@
 import React from "react";
-import ROUTES from "Constants/routes";
-import { Link } from "react-router-dom";
 
 class Welcome extends React.Component {
   render() {

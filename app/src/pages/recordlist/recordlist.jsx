@@ -1,14 +1,9 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { readConfigRequest, readConfigResponse, useConfigInMainRequest } from "secure-electron-store";
 import { connect } from "react-redux";
 import RecordTable from "Components/recordtable/recordtable";
 
 class RecordList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <section className="section">
