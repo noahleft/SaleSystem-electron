@@ -1,53 +1,40 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { readConfigRequest, readConfigResponse } from "secure-electron-store";
+import { readConfigRequest, readConfigResponse, useConfigInMainRequest } from "secure-electron-store";
+import { connect } from "react-redux";
+import RecordTable from "Components/recordtable/recordtable";
 
 class RecordList extends React.Component {
   constructor(props) {
     super(props);
   }
-  render() {
+
+  componentDidMount() {
+    api.store.send(useConfigInMainRequest);
+
     api.store.onReceive(readConfigResponse, function(args){
       if (args.success) {
-        console.log(`Received '${args.key}:${args.value}' from file.`);
+        console.log('')
       }
     });
-    api.store.send(readConfigRequest, "formID");
+    api.store.send(readConfigRequest, "selectedFormID");
+  }
 
-    let content = [];
-    let recordList = myAPI.listRecord();
-    for(let i=0; i<=recordList.length-1; i++) {
-      content.push(<tr key={recordList[i].ID}>
-        <th scope="row">{recordList[i].ID}</th>
-        <td>{myAPI.getCompany(recordList[i].COMP_ID).NAME}</td>
-        <td>{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
-        <td>{recordList[i].UNIT_PRICE}</td>
-        <td>{recordList[i].QUANTITY}</td>
-        </tr>)
-    }
-
+  render() {
     return (
       <section className="section">
           <div className="container">
-              <h1 className="title is-1">Record</h1>
+              <h1 id="title" className="title is-1">{this.props.home.message}</h1>
           </div>
-          <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Company Name</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Unit Price</th>
-              <th scope="col">Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-          {content}
-          </tbody>
-          </table>
+          <RecordTable></RecordTable>
       </section>
     );
   }
 }
 
-export default RecordList;
+const mapStateToProps = (state, props) => ({
+  home: state.home
+});
+const mapDispatch = { };
+
+export default connect(mapStateToProps, mapDispatch)(RecordList);

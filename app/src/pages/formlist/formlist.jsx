@@ -2,6 +2,8 @@ import React from "react";
 import ROUTES from "Constants/routes";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { writeConfigRequest } from "secure-electron-store";
+import { connect } from "react-redux";
+import { changeMessage } from "Redux/components/home/homeSlice";
 
 class FormList extends React.Component {
   constructor(props) {
@@ -30,7 +32,8 @@ class FormList extends React.Component {
         <td>
         <a
           onClick={() => {
-            api.store.send(writeConfigRequest, "formID", formList[i].ID);
+            this.props.changeMessage(formList[i].NAME);
+            api.store.send(writeConfigRequest, "selectedFormID", formList[i].ID);
             this.navigate(ROUTES.RECORDLIST);
           }}>
           OpenIt!
@@ -60,4 +63,9 @@ class FormList extends React.Component {
   }
 }
 
-export default FormList;
+const mapStateToProps = (state, props) => ({
+  home: state.home,
+});
+const mapDispatch = { changeMessage };
+
+export default connect(mapStateToProps, mapDispatch)(FormList);
