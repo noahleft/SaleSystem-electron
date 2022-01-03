@@ -30,14 +30,14 @@ class FormList extends React.Component {
         <th scope="row">{formList[i].ID}</th>
         <td>{formList[i].NAME}</td>
         <td>
-        <a
+        <button type="button" className="btn btn-primary btn-sm"
           onClick={() => {
             this.props.changeMessage(formList[i].NAME);
             this.props.changeSelectedFormID(formList[i].ID);
             this.navigate(ROUTES.RECORDLIST);
           }}>
           OpenIt!
-        </a></td>
+        </button></td>
         </tr>)
     }
 
