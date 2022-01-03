@@ -3,7 +3,7 @@ import ROUTES from "Constants/routes";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { writeConfigRequest } from "secure-electron-store";
 import { connect } from "react-redux";
-import { changeMessage } from "Redux/components/home/homeSlice";
+import { changeMessage, changeSelectedFormID } from "Redux/components/home/homeSlice";
 
 class FormList extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class FormList extends React.Component {
         <a
           onClick={() => {
             this.props.changeMessage(formList[i].NAME);
-            api.store.send(writeConfigRequest, "selectedFormID", formList[i].ID);
+            this.props.changeSelectedFormID(formList[i].ID);
             this.navigate(ROUTES.RECORDLIST);
           }}>
           OpenIt!
@@ -66,6 +66,6 @@ class FormList extends React.Component {
 const mapStateToProps = (state, props) => ({
   home: state.home,
 });
-const mapDispatch = { changeMessage };
+const mapDispatch = { changeMessage, changeSelectedFormID };
 
 export default connect(mapStateToProps, mapDispatch)(FormList);

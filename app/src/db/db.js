@@ -32,8 +32,8 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM form WHERE id = ?').get(id);
         return row;
     }
-    listRecord() {
-        const row = this.db.prepare('SELECT * FROM record').all();
+    listRecord(formId) {
+        const row = this.db.prepare('SELECT * FROM record WHERE form_id = ?').all(formId);
         return row;
     }
 }

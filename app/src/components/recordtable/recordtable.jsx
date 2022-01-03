@@ -1,5 +1,6 @@
 import React from "react";
 import { readConfigRequest, readConfigResponse } from "secure-electron-store";
+import { connect } from "react-redux";
 
 class RecordTable extends React.Component {
   constructor(props) {
@@ -21,8 +22,9 @@ class RecordTable extends React.Component {
   }
 
   render() {
+    console.log(`${this.props.home.selectedFormID}`);
     let content = [];
-    let recordList = myAPI.listRecord();
+    let recordList = myAPI.listRecord(this.props.home.selectedFormID);
     for(let i=0; i<=recordList.length-1; i++) {
       content.push(<tr key={recordList[i].ID}>
         <th scope="row">{recordList[i].ID}</th>
@@ -52,4 +54,9 @@ class RecordTable extends React.Component {
   }
 }
 
-export default RecordTable;
+const mapStateToProps = (state, props) => ({
+  home: state.home
+});
+const mapDispatch = { };
+
+export default connect(mapStateToProps, mapDispatch)(RecordTable);

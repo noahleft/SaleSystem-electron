@@ -9,17 +9,6 @@ class RecordList extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    api.store.send(useConfigInMainRequest);
-
-    api.store.onReceive(readConfigResponse, function(args){
-      if (args.success) {
-        console.log('')
-      }
-    });
-    api.store.send(readConfigRequest, "selectedFormID");
-  }
-
   render() {
     return (
       <section className="section">
