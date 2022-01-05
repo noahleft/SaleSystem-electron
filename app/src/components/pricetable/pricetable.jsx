@@ -11,7 +11,7 @@ class PriceTable extends React.Component {
 
   render() {
     let content = [];
-    let recordList = myAPI.listPrice(this.props.home.selectedCompID);
+    let recordList = myAPI.listPrice(this.props.home.selectedCompID, this.props.home.selectedProdID);
     for(let i=0; i<=recordList.length-1; i++) {
       content.push(<tr key={recordList[i].ID}>
         <th scope="row">{recordList[i].ID}</th>

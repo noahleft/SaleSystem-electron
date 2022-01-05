@@ -1,5 +1,4 @@
 import React from "react";
-import { readConfigRequest, readConfigResponse } from "secure-electron-store";
 import { connect } from "react-redux";
 
 class RecordTable extends React.Component {

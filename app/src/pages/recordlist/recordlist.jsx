@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import RecordTable from "Components/recordtable/recordtable";
 
 class RecordList extends React.Component {
+
   render() {
+    let message = myAPI.getForm(this.props.home.selectedFormID).NAME;
     return (
       <section className="section">
           <div className="container">
-              <h1 id="title" className="title is-1">{this.props.home.message}</h1>
+              <h1 id="title" className="title is-1">{message}</h1>
           </div>
           <RecordTable></RecordTable>
       </section>

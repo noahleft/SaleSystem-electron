@@ -1,8 +1,7 @@
 import React from "react";
 import ROUTES from "Constants/routes";
-import { writeConfigRequest } from "secure-electron-store";
 import { connect } from "react-redux";
-import { changeMessage, changeSelectedFormID } from "Redux/components/home/homeSlice";
+import { changeSelectedFormID } from "Redux/components/home/homeSlice";
 
 class FormList extends React.Component {
   constructor(props) {
@@ -31,7 +30,6 @@ class FormList extends React.Component {
         <td>
         <button type="button" className="btn btn-primary btn-sm"
           onClick={() => {
-            this.props.changeMessage(formList[i].NAME);
             this.props.changeSelectedFormID(formList[i].ID);
             this.navigate(ROUTES.RECORDLIST);
           }}>
@@ -65,6 +63,6 @@ class FormList extends React.Component {
 const mapStateToProps = (state, props) => ({
   home: state.home,
 });
-const mapDispatch = { changeMessage, changeSelectedFormID };
+const mapDispatch = { changeSelectedFormID };
 
 export default connect(mapStateToProps, mapDispatch)(FormList);

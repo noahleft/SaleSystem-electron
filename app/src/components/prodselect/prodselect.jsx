@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Dropdown } from "react-bootstrap";
-import { changeSelectedCompID } from "Redux/components/home/homeSlice";
+import { changeSelectedProdID } from "Redux/components/home/homeSlice";
 
-class CompSelect extends React.Component {
+class ProdSelect extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -16,18 +16,18 @@ class CompSelect extends React.Component {
 
   render() {
     let content = [<Dropdown.Item key='0' eventKey='0'>All</Dropdown.Item>];
-    let companyList = myAPI.listCompany();
-    for(let i=0; i<=companyList.length-1; i++) {
+    let productList = myAPI.listProduct();
+    for(let i=0; i<=productList.length-1; i++) {
       content.push(
-        <Dropdown.Item key={companyList[i].ID} eventKey={companyList[i].ID}>
-        {companyList[i].NAME}
+        <Dropdown.Item key={productList[i].ID} eventKey={productList[i].ID}>
+        {productList[i].NAME}
         </Dropdown.Item>)
     }
     return (
         <Dropdown onSelect={(evt) => {
-            this.props.changeSelectedCompID(evt);}}>
+            this.props.changeSelectedProdID(evt);}}>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            Company
+            Product
           </Dropdown.Toggle>
           <Dropdown.Menu>
           {content}
@@ -40,6 +40,6 @@ class CompSelect extends React.Component {
 const mapStateToProps = (state, props) => ({
   home: state.home
 });
-const mapDispatch = { changeSelectedCompID };
+const mapDispatch = { changeSelectedProdID };
 
-export default connect(mapStateToProps, mapDispatch)(CompSelect);
+export default connect(mapStateToProps, mapDispatch)(ProdSelect);
