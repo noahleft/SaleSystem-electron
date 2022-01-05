@@ -20,8 +20,12 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM product WHERE id = ?').get(id);
         return row;
     }
-    listPrice() {
-        const row = this.db.prepare('SELECT * FROM unitprice').all();
+    listPrice(compId) {
+        if(compId == 0) {
+            const row = this.db.prepare('SELECT * FROM unitprice').all();
+            return row;
+        }
+        const row = this.db.prepare('SELECT * FROM unitprice WHERE COMP_ID = ?').all(compId);
         return row;
     }
     listForm() {
