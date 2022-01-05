@@ -4,7 +4,8 @@ const homeSlice = createSlice({
   name: "home",
   initialState: {
     message: "undefined",
-    selectedFormID: 0
+    selectedFormID: 0,
+    selectedCompID: 0,
   },
   reducers: {
     changeMessage(state, action) {
@@ -12,12 +13,15 @@ const homeSlice = createSlice({
     },
     changeSelectedFormID(state, action) {
       state.selectedFormID = action.payload;
+    },
+    changeSelectedCompID(state, action) {
+      state.selectedCompID = action.payload;
     }
   }
 });
 
 // Export actions
-export const { changeMessage, changeSelectedFormID } = homeSlice.actions;
+export const { changeMessage, changeSelectedFormID, changeSelectedCompID } = homeSlice.actions;
 
 // Export reducer
 export default homeSlice.reducer;

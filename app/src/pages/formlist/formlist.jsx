@@ -1,6 +1,5 @@
 import React from "react";
 import ROUTES from "Constants/routes";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { writeConfigRequest } from "secure-electron-store";
 import { connect } from "react-redux";
 import { changeMessage, changeSelectedFormID } from "Redux/components/home/homeSlice";

@@ -6,6 +6,7 @@ import Root from "Core/root";
 import store, { history } from "Redux/store/store";
 import "bulma/css/bulma.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap";
 
 ReactDOM.render(
   <I18nextProvider i18n={i18n}>

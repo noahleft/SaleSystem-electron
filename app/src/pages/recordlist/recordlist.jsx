@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
 import RecordTable from "Components/recordtable/recordtable";
 

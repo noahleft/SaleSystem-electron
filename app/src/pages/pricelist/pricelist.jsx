@@ -1,5 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import CompSelect from "Components/compselect/compselect";
 import PriceTable from "Components/pricetable/pricetable";
 
 class PriceList extends React.Component {
@@ -20,7 +20,7 @@ class PriceList extends React.Component {
           <div className="container">
               <h1 className="title is-1">Unit Price View</h1>
           </div>
-          
+          <CompSelect></CompSelect>
           <PriceTable></PriceTable>
       </section>
     );
