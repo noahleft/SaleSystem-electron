@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import PriceTable from "Components/pricetable/pricetable";
 
 class PriceList extends React.Component {
   render() {
@@ -19,19 +20,8 @@ class PriceList extends React.Component {
           <div className="container">
               <h1 className="title is-1">Unit Price View</h1>
           </div>
-          <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Company Name</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Unit Price</th>
-            </tr>
-          </thead>
-          <tbody>
-          {content}
-          </tbody>
-          </table>
+          
+          <PriceTable></PriceTable>
       </section>
     );
   }
