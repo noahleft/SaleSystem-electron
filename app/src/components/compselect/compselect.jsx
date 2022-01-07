@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Dropdown } from "react-bootstrap";
+import CompName from "Components/compname/compname";
 import { changeSelectedCompID } from "Redux/components/home/homeSlice";
 
 class CompSelect extends React.Component {
@@ -27,7 +28,7 @@ class CompSelect extends React.Component {
         <Dropdown onSelect={(evt) => {
             this.props.changeSelectedCompID(evt);}}>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            Company
+            <CompName></CompName>
           </Dropdown.Toggle>
           <Dropdown.Menu>
           {content}
