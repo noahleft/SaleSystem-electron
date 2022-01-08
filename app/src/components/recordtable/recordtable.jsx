@@ -19,6 +19,7 @@ class RecordTable extends React.Component {
         <td>{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
         <td>{recordList[i].UNIT_PRICE}</td>
         <td>{recordList[i].QUANTITY}</td>
+        <td>{recordList[i].DELIVER_DATE}</td>
         </tr>)
     }
 
@@ -30,6 +31,7 @@ class RecordTable extends React.Component {
         <th scope="col">Product Name</th>
         <th scope="col">Unit Price</th>
         <th scope="col">Quantity</th>
+        <th scope="col">Deliver_Date</th>
       </tr>
     </thead>
     <tbody> 

@@ -4,5 +4,6 @@
   "PRODUCTLIST": "/productlist",
   "PRICELIST": "/pricelist",
   "FORMLIST": "/formlist",
-  "RECORDLIST": "/recordlist"
+  "RECORDLIST": "/recordlist",
+  "RECORDEXPORT": "/recordexport"
 }
