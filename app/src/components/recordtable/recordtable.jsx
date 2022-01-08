@@ -27,7 +27,7 @@ class RecordTable extends React.Component {
     <Table striped bordered hover size="sm">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col" width="80px">#</th>
           <th scope="col">Company Name</th>
           <th scope="col">Product Name</th>
           <th scope="col">Unit Price</th>

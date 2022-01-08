@@ -19,7 +19,7 @@ class CompanyList extends React.Component {
               <Table striped bordered hover size="sm">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col" width="80px">#</th>
                   <th scope="col">Company Name</th>
                 </tr>
               </thead>
