@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import CompSelect from "Components/compselect/compselect";
 import ProdSelect from "Components/prodselect/prodselect";
 import ClearSelect from "Components/clearselect/clearselect";
@@ -8,13 +9,17 @@ class PriceList extends React.Component {
   render() {
     return (
       <section className="section">
-          <div className="container">
-              <h1 className="title is-1">Unit Price View</h1>
-          </div>
-          <CompSelect></CompSelect>
-          <ProdSelect></ProdSelect>
-          <ClearSelect></ClearSelect>
-          <PriceTable></PriceTable>
+        <Container fluid>
+          <Row className="title is-1">Unit Price View</Row>
+          <Row><Col>
+            <CompSelect></CompSelect>
+            <ProdSelect></ProdSelect>
+            <ClearSelect></ClearSelect>
+          </Col></Row>
+          <Row>
+            <PriceTable></PriceTable>
+          </Row>
+        </Container>
       </section>
     );
   }

@@ -2,6 +2,7 @@ import React from "react";
 import ROUTES from "Constants/routes";
 import { connect } from "react-redux";
 import { changeSelectedFormID } from "Redux/components/home/homeSlice";
+import { Container, Row, Table, Button } from "react-bootstrap";
 
 class FormList extends React.Component {
   constructor(props) {
@@ -28,33 +29,35 @@ class FormList extends React.Component {
         <th scope="row">{formList[i].ID}</th>
         <td>{formList[i].NAME}</td>
         <td>
-        <button type="button" className="btn btn-primary btn-sm"
+        <Button variant="primary" size="sm"
           onClick={() => {
             this.props.changeSelectedFormID(formList[i].ID);
             this.navigate(ROUTES.RECORDLIST);
           }}>
           OpenIt!
-        </button></td>
+        </Button></td>
         </tr>)
     }
 
     return (
       <section className="section">
-          <div className="container">
-              <h1 className="title is-1">Form View</h1>
-          </div>
-          <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Form Name</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-          {content}
-          </tbody>
-          </table>
+          <Container fluid>
+            <Row className="title is-1">Form View</Row>
+            <Row>
+              <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Form Name</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+              {content}
+              </tbody>
+              </Table>
+            </Row>
+          </Container>
       </section>
     );
   }

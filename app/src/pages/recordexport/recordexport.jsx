@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import RecordTable from "Components/recordtable/recordtable";
+import { Container, Row, Col } from "react-bootstrap";
 
 class RecordExport extends React.Component {
 
@@ -8,11 +9,13 @@ class RecordExport extends React.Component {
     let message = myAPI.getForm(this.props.home.selectedFormID).NAME;
     return (
       <section className="section">
-          <div className="container">
-              <h1 id="title" className="title is-1">{message}</h1>
-          </div>
+        <Container fluid>
+          <Row className="title is-1"><Col>
+            {message}
+          </Col></Row>
           <RecordTable></RecordTable>
           Total:
+        </Container>
       </section>
     );
   }

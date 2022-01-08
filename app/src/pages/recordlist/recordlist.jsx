@@ -2,6 +2,7 @@ import React from "react";
 import ROUTES from "Constants/routes";
 import { connect } from "react-redux";
 import RecordTable from "Components/recordtable/recordtable";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 class RecordList extends React.Component {
   constructor(props) {
@@ -24,17 +25,18 @@ class RecordList extends React.Component {
     let message = myAPI.getForm(this.props.home.selectedFormID).NAME;
     return (
       <section className="section">
-          <div className="container">
-              <h1 id="title" className="title is-1">{message}
-                <button type="button" className="btn btn-primary btn-sm"
-                  onClick={() => {
-                    this.navigate(ROUTES.RECORDEXPORT);
-                  }}>
-                  Export
-                </button>
-              </h1>
-          </div>
+        <Container fluid>
+          <Row className="title is-1"><Col>
+            {message}
+            <Button variant="primary"
+              onClick={() => {
+                this.navigate(ROUTES.RECORDEXPORT);
+              }}>
+              Export
+            </Button>
+          </Col></Row>
           <RecordTable></RecordTable>
+        </Container>
       </section>
     );
   }

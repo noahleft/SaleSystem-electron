@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Table } from "react-bootstrap";
 
 class RecordTable extends React.Component {
   componentWillUnmount() {
@@ -22,22 +23,22 @@ class RecordTable extends React.Component {
         <td>{recordList[i].DELIVER_DATE}</td>
         </tr>)
     }
-
-    return (<table className="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Company Name</th>
-        <th scope="col">Product Name</th>
-        <th scope="col">Unit Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Deliver_Date</th>
-      </tr>
-    </thead>
-    <tbody> 
-    {content}
-    </tbody>
-    </table>
+    return (
+    <Table striped bordered hover size="sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Unit Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Deliver_Date</th>
+        </tr>
+      </thead>
+      <tbody> 
+      {content}
+      </tbody>
+    </Table>
     );
   }
 }

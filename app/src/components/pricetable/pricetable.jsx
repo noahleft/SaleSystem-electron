@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Table } from "react-bootstrap";
 
 class PriceTable extends React.Component {
   componentWillUnmount() {
@@ -21,7 +22,7 @@ class PriceTable extends React.Component {
         </tr>)
     }
 
-    return (<table className="table">
+    return (<Table striped bordered hover size="sm">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -33,7 +34,7 @@ class PriceTable extends React.Component {
     <tbody> 
     {content}
     </tbody>
-    </table>
+    </Table>
     );
   }
 }

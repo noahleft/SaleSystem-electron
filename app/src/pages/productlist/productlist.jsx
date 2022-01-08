@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Row, Table } from "react-bootstrap";
 
 class ProductList extends React.Component {
   render() {
@@ -12,20 +13,22 @@ class ProductList extends React.Component {
     }
     return (
       <section className="section">
-          <div className="container">
-              <h1 className="title is-1">Product View</h1>
-          </div>
-          <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Product Name</th>
-            </tr>
-          </thead>
-          <tbody>
-          {content}
-          </tbody>
-          </table>
+        <Container fluid>
+          <Row className="title is-1">Product View</Row>
+          <Row>
+            <Table striped bordered hover size="sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+              </tr>
+            </thead>
+            <tbody>
+            {content}
+            </tbody>
+            </Table>
+          </Row>
+        </Container>
       </section>
     );
   }

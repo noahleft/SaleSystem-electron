@@ -1,9 +1,7 @@
 import React from "react";
+import { Container, Row, Table } from "react-bootstrap";
 
 class CompanyList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     let content = [];
     let companyList = myAPI.listCompany();
@@ -13,23 +11,24 @@ class CompanyList extends React.Component {
         <td>{companyList[i].NAME}</td>
         </tr>)
     }
-
     return (
       <section className="section">
-          <div className="container">
-              <h1 className="title is-1">Company View</h1>
-          </div>
-          <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Company Name</th>
-            </tr>
-          </thead>
-          <tbody>
-          {content}
-          </tbody>
-          </table>
+          <Container fluid>
+            <Row className="title is-1">Company View</Row>
+            <Row>
+              <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Company Name</th>
+                </tr>
+              </thead>
+              <tbody>
+              {content}
+              </tbody>
+              </Table>
+            </Row>
+          </Container>
       </section>
     );
   }
