@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import RecordTable from "Components/recordtable/recordtable";
+import ExportTable from "Components/exporttable/exporttable";
 import { Container, Row, Col } from "react-bootstrap";
 
 class RecordExport extends React.Component {
@@ -13,7 +13,7 @@ class RecordExport extends React.Component {
           <Row className="title is-1"><Col>
             {message}
           </Col></Row>
-          <RecordTable></RecordTable>
+          <ExportTable></ExportTable>
           Total:
         </Container>
       </section>
