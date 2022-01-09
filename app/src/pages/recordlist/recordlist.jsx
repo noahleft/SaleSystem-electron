@@ -1,7 +1,7 @@
 import React from "react";
 import ROUTES from "Constants/routes";
 import { connect } from "react-redux";
-import RecordTable from "Components/recordtable/recordtable";
+import RecordTable from "Components/tables/recordtable/recordtable";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 class RecordList extends React.Component {

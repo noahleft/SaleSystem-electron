@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import CompSelect from "Components/dropdowns/compselect/compselect";
 import ProdSelect from "Components/dropdowns/prodselect/prodselect";
 import ClearSelect from "Components/dropdowns/clearselect/clearselect";
-import PriceTable from "Components/pricetable/pricetable";
+import PriceTable from "Components/tables/pricetable/pricetable";
 
 class PriceList extends React.Component {
   render() {

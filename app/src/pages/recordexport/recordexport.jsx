@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import ExportTable from "Components/exporttable/exporttable";
+import ExportTable from "Components/tables/exporttable/exporttable";
 import { Container, Row, Col } from "react-bootstrap";
 
 class RecordExport extends React.Component {
