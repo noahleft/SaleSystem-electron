@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Stack } from "react-bootstrap";
+import { Container, Row, Stack } from "react-bootstrap";
 import CompSelect from "Components/dropdowns/compselect/compselect";
 import ProdSelect from "Components/dropdowns/prodselect/prodselect";
 import ClearSelect from "Components/dropdowns/clearselect/clearselect";
@@ -11,13 +11,13 @@ class PriceList extends React.Component {
       <section className="section">
         <Container fluid>
           <Row className="title is-1">Unit Price View</Row>
-          <Row><Col>
+          <Row>
             <Stack direction="horizontal" gap={2}>
-            <CompSelect></CompSelect>
-            <ProdSelect></ProdSelect>
-            <ClearSelect></ClearSelect>
+              <CompSelect></CompSelect>
+              <ProdSelect></ProdSelect>
+              <ClearSelect></ClearSelect>
             </Stack>
-          </Col></Row>
+          </Row>
           <Row>
             <PriceTable></PriceTable>
           </Row>

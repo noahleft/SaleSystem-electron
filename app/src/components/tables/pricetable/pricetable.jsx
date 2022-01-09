@@ -22,7 +22,9 @@ class PriceTable extends React.Component {
         </tr>)
     }
 
-    return (<Table striped bordered hover size="sm">
+    return (
+    <div className="scrollTable">
+    <Table striped bordered hover size="sm">
     <thead>
       <tr>
         <th scope="col" width="80px">#</th>
@@ -35,6 +37,7 @@ class PriceTable extends React.Component {
     {content}
     </tbody>
     </Table>
+    </div>
     );
   }
 }
