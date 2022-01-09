@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Table } from "react-bootstrap";
+import CompInfo from "Components/selection/compInfo";
 
 class CompanyList extends React.Component {
   render() {
@@ -29,6 +30,8 @@ class CompanyList extends React.Component {
               </tbody>
               </Table></div>
             </Row>
+            <Row><hr /></Row>
+            <Row><CompInfo></CompInfo></Row>
           </Container>
       </section>
     );
