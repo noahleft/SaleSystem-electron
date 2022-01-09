@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Dropdown } from "react-bootstrap";
-import ProdName from "Components/prodname/prodname";
+import ProdName from "Components/name/prodname/prodname";
 import { changeSelectedProdID } from "Redux/components/home/homeSlice";
 
 class ProdSelect extends React.Component {
