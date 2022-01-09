@@ -12,6 +12,13 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM company WHERE id = ?').get(id);
         return row;
     }
+    addCompany(compList) {
+        const insert = this.db.prepare('INSERT INTO company (name, hide) VALUES (@name, @hide);');
+        const insertMany = this.db.transaction((compList) => {
+            for (const comp of compList) insert.run(comp);
+          });
+        insertMany(compList);
+    }
     listProduct() {
         const row = this.db.prepare('SELECT * FROM product').all();
         return row;

@@ -21,6 +21,7 @@ contextBridge.exposeInMainWorld("api", {
 contextBridge.exposeInMainWorld("myAPI", {
   listCompany: () => manager.listCompany(),
   getCompany: (id) => manager.getCompany(id),
+  addCompany: (compList) => manager.addCompany(compList),
   listProduct: () => manager.listProduct(),
   getProduct: (id) => manager.getProduct(id),
   listPrice: (compId, prodId) => manager.listPrice(compId, prodId),
