@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Stack } from "react-bootstrap";
-import CompSelect from "Components/dropdowns/compselect/compselect";
-import ProdSelect from "Components/dropdowns/prodselect/prodselect";
-import ClearSelect from "Components/dropdowns/clearselect/clearselect";
+import CompSelect from "Components/dropdowns/compselect";
+import ProdSelect from "Components/dropdowns/prodselect";
+import ClearSelect from "Components/dropdowns/clearselect";
 import PriceTable from "Components/tables/pricetable/pricetable";
 
 class PriceList extends React.Component {
