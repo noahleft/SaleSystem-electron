@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Table } from "react-bootstrap";
+import ProdInfo from "Components/selection/prodInfo";
 
 class ProductList extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class ProductList extends React.Component {
         <Container fluid>
           <Row className="title is-1">Product View</Row>
           <Row>
+            <div className="scrollTable">
             <Table striped bordered hover size="sm">
             <thead>
               <tr>
@@ -26,8 +28,10 @@ class ProductList extends React.Component {
             <tbody>
             {content}
             </tbody>
-            </Table>
+            </Table></div>
           </Row>
+            <Row><hr /></Row>
+            <Row><ProdInfo></ProdInfo></Row>
         </Container>
       </section>
     );
