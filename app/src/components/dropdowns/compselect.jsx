@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Dropdown } from "react-bootstrap";
-import CompName from "Components/name/compname/compname";
+import CompName from "Components/name/compname";
 import { changeSelectedCompID } from "Redux/components/home/homeSlice";
 
 class CompSelect extends React.Component {
