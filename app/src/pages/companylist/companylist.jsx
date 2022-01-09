@@ -16,6 +16,7 @@ class CompanyList extends React.Component {
           <Container fluid>
             <Row className="title is-1">Company View</Row>
             <Row>
+              <div className="scrollTable">
               <Table striped bordered hover size="sm">
               <thead>
                 <tr>
@@ -26,7 +27,7 @@ class CompanyList extends React.Component {
               <tbody>
               {content}
               </tbody>
-              </Table>
+              </Table></div>
             </Row>
           </Container>
       </section>
