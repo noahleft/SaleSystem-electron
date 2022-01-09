@@ -1,7 +1,7 @@
 {
-  "name": "secure-electron-template",
+  "name": "Invoice",
   "version": "14.0.0",
-  "description": "The best way to build Electron apps with security in mind.",
+  "description": "Simple sale system to generate invoice.",
   "private": true,
   "main": "app/electron/main.js",
   "scripts": {
@@ -21,8 +21,8 @@
     "test": "mocha"
   },
   "build": {
-    "productName": "YourProductName",
-    "appId": "com.yourcompany|electron.yourproductname",
+    "productName": "Sale System",
+    "appId": "noahleft.SaleSystem",
     "directories": {
       "buildResources": "resources"
     },
