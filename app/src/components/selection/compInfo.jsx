@@ -16,7 +16,7 @@ class CompInfo extends React.Component {
           <Row>
             <Form.Label column lg={2}>ID:</Form.Label>
             <Col>
-              <Form.Control className="me-auto" placeholder="text..." readOnly />
+              <Form.Control className="me-auto" placeholder={this.props.companyManager.selectedCompID} readOnly />
             </Col>
           </Row>
           <Row>
@@ -33,7 +33,7 @@ class CompInfo extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  home: state.home
+  companyManager: state.companyManager
 });
 const mapDispatch = { };
 
