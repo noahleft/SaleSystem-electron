@@ -1,8 +1,7 @@
 import React from "react";
-import ROUTES from "Constants/routes";
 import { connect } from "react-redux";
-import { changeSelectedFormID } from "Redux/components/home/homeSlice";
-import { Container, Row, Table, Button } from "react-bootstrap";
+import FormTable from "Components/tables/formtable";
+import { Container, Row } from "react-bootstrap";
 
 class FormList extends React.Component {
   constructor(props) {
@@ -22,41 +21,11 @@ class FormList extends React.Component {
   }
 
   render() {
-    let content = [];
-    let formList = myAPI.listForm();
-    for(let i=0; i<=formList.length-1; i++) {
-      content.push(<tr key={formList[i].ID}>
-        <th scope="row">{formList[i].ID}</th>
-        <td>{formList[i].NAME}</td>
-        <td>
-        <Button variant="primary" size="sm"
-          onClick={() => {
-            this.props.changeSelectedFormID(formList[i].ID);
-            this.navigate(ROUTES.RECORDLIST);
-          }}>
-          OpenIt!
-        </Button></td>
-        </tr>)
-    }
-
     return (
       <section className="section">
           <Container fluid>
             <Row className="title is-1">Form View</Row>
-            <Row>
-              <Table striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th scope="col" width="80px">#</th>
-                  <th scope="col">Form Name</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-              {content}
-              </tbody>
-              </Table>
-            </Row>
+            <Row><FormTable onNavigate={(url) => {this.navigate(url)}}></FormTable></Row>
           </Container>
       </section>
     );
@@ -66,6 +35,6 @@ class FormList extends React.Component {
 const mapStateToProps = (state, props) => ({
   home: state.home,
 });
-const mapDispatch = { changeSelectedFormID };
+const mapDispatch = { };
 
 export default connect(mapStateToProps, mapDispatch)(FormList);
