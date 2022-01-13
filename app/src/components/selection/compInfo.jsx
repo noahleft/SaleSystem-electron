@@ -16,13 +16,13 @@ class CompInfo extends React.Component {
           <Row>
             <Form.Label column lg={2}>ID:</Form.Label>
             <Col>
-              <Form.Control className="me-auto" placeholder={this.props.companyManager.selectedCompID} readOnly />
+              <Form.Control className="me-auto" placeholder={this.props.companyManager.candidateCompID} readOnly />
             </Col>
           </Row>
           <Row>
             <Form.Label column lg={2}>Company Name:</Form.Label>
             <Col>
-              <Form.Control className="me-auto" placeholder="text..." />
+              <Form.Control className="me-auto" placeholder={myAPI.getCompany(this.props.companyManager.candidateCompID).NAME} />
             </Col>
           </Row>
         </Stack>

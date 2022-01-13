@@ -3,17 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const companyManagerSlice = createSlice({
   name: "companyManager",
   initialState: {
-    selectedCompID: 1,
+    candidateCompID: 1,
   },
   reducers: {
-    changeSelectedCompID(state, action) {
-      state.selectedCompID = action.payload;
+    changeCandidateCompID(state, action) {
+      state.candidateCompID = action.payload;
     },
   }
 });
 
 // Export actions
-export const { changeSelectedCompID } = companyManagerSlice.actions;
+export const { changeCandidateCompID } = companyManagerSlice.actions;
 
 // Export reducer
 export default companyManagerSlice.reducer;

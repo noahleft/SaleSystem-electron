@@ -1,8 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
+import { changeCandidateCompID } from "Redux/components/companyManager/companyManagerSlice";
 
 class CompanyTable extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentWillUnmount() {
     // Clear any existing bindings;
     // important on mac-os if the app is suspended
@@ -14,7 +19,9 @@ class CompanyTable extends React.Component {
     let content = [];
     let companyList = myAPI.listCompany();
     for(let i=0; i<=companyList.length-1; i++) {
-      content.push(<tr key={companyList[i].ID}>
+      content.push(<tr key={companyList[i].ID} onClick={()=>{
+          this.props.changeCandidateCompID(companyList[i].ID);
+          }}>
         <th scope="row">{companyList[i].ID}</th>
         <td>{companyList[i].NAME}</td>
         </tr>)
@@ -38,8 +45,8 @@ class CompanyTable extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  home: state.home
+  companyManager: state.companyManager
 });
-const mapDispatch = { };
+const mapDispatch = { changeCandidateCompID };
 
 export default connect(mapStateToProps, mapDispatch)(CompanyTable);
