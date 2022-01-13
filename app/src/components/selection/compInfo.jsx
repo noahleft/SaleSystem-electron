@@ -1,10 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Stack, Form, Row, Col } from "react-bootstrap";
+import { Card, Form, Row, Col, Button } from "react-bootstrap";
+import { addChangeRequest } from "Redux/components/companyManager/companyManagerSlice";
 
 class CompInfo extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {value: ''};
+
+    this.addChangeRequest = this.addChangeRequest.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  addChangeRequest(e) {
+    let CR = [e.target.formCompId.placeholder, this.state.value];
+    this.props.addChangeRequest(CR);
+    
+    // reset
+    this.state.value = '';
+  }
+
+  handleChange(e) {
+    this.setState({value: e.target.value});
   }
 
   render() {
@@ -12,20 +29,26 @@ class CompInfo extends React.Component {
     <Card>
       <Card.Title>Company Info</Card.Title>
       <Card.Body>
-        <Stack gap={2}>
-          <Row>
-            <Form.Label column lg={2}>ID:</Form.Label>
-            <Col>
-              <Form.Control className="me-auto" placeholder={this.props.companyManager.candidateCompID} readOnly />
+        <Form onSubmit={this.addChangeRequest}>
+          <Form.Group as={Row} className="mb-3" controlId="formCompId">
+            <Form.Label column sm={2}>ID:</Form.Label>
+            <Col sm={10}>
+            <Form.Control className="me-auto" placeholder={this.props.companyManager.candidateCompID} readOnly />
             </Col>
-          </Row>
-          <Row>
-            <Form.Label column lg={2}>Company Name:</Form.Label>
-            <Col>
-              <Form.Control className="me-auto" placeholder={myAPI.getCompany(this.props.companyManager.candidateCompID).NAME} />
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
+            <Form.Label column sm={2}>Company Name:</Form.Label>
+            <Col sm={10}>
+              <Form.Control className="me-auto" placeholder={myAPI.getCompany(this.props.companyManager.candidateCompID).NAME} 
+              type="text" value={this.state.value} onChange={this.handleChange} />
             </Col>
-          </Row>
-        </Stack>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Col sm={{span: 10, offset:2}}>
+              <Button type="submit">Submit</Button>
+            </Col>
+          </Form.Group>
+        </Form>
       </Card.Body>
     </Card>
     );
@@ -35,6 +58,6 @@ class CompInfo extends React.Component {
 const mapStateToProps = (state, props) => ({
   companyManager: state.companyManager
 });
-const mapDispatch = { };
+const mapDispatch = { addChangeRequest };
 
 export default connect(mapStateToProps, mapDispatch)(CompInfo);
