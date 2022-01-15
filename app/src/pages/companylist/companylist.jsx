@@ -1,10 +1,18 @@
 import React from "react";
-import { Container, Row, Table } from "react-bootstrap";
+import { connect } from "react-redux";
+import { Container, Row } from "react-bootstrap";
 import CompInfo from "Components/selection/compInfo";
 import CompanyTable from "Components/tables/companytable";
 import Footer from "Components/footer/footer";
+import { updateCompanyList } from "Redux/components/companyManager/companyManagerSlice";
 
 class CompanyList extends React.Component {
+
+  componentDidMount() {
+    let companylist = myAPI.listCompany();
+    this.props.updateCompanyList(companylist);
+  }
+
   render() {
     return (
       <section className="section">
@@ -19,4 +27,9 @@ class CompanyList extends React.Component {
   }
 }
 
-export default CompanyList;
+const mapStateToProps = (state, props) => ({
+  companyManager: state.companyManager
+});
+const mapDispatch = { updateCompanyList };
+
+export default connect(mapStateToProps, mapDispatch)(CompanyList);

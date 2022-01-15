@@ -17,7 +17,7 @@ class CompanyTable extends React.Component {
 
   render() {
     let content = [];
-    let companyList = myAPI.listCompany();
+    let companyList = this.props.companyManager.companyList;
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(<tr key={companyList[i].ID} onClick={()=>{
           this.props.changeCandidateCompID(companyList[i].ID);
