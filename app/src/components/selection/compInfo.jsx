@@ -8,14 +8,15 @@ class CompInfo extends React.Component {
     super(props);
     this.state = {value: ''};
 
-    this.addChangeRequest = this.addChangeRequest.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  addChangeRequest(e) {
-    let CR = [e.target.formCompId.placeholder, this.state.value];
-    this.props.addChangeRequest(CR);
-    
+  handleSubmit(e) {
+    if (this.state.value != '') {
+      let CR = [e.target.formCompId.placeholder, this.state.value];
+      this.props.addChangeRequest(CR);
+    }
     // reset
     this.state.value = '';
   }
@@ -29,7 +30,7 @@ class CompInfo extends React.Component {
     <Card>
       <Card.Title>Company Info</Card.Title>
       <Card.Body>
-        <Form onSubmit={this.addChangeRequest}>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formCompId">
             <Form.Label column sm={2}>ID:</Form.Label>
             <Col sm={10}>
