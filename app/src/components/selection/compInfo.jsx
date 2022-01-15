@@ -14,7 +14,8 @@ class CompInfo extends React.Component {
 
   handleSubmit(e) {
     if (this.state.value != '') {
-      let CR = [e.target.formCompId.placeholder, this.state.value];
+      let CR = {ID:   e.target.formCompId.placeholder,
+                NAME: this.state.value};
       this.props.addChangeRequest(CR);
     }
     // reset
@@ -26,6 +27,10 @@ class CompInfo extends React.Component {
   }
 
   render() {
+    let display = {
+      ID: this.props.companyManager.candidateCompID,
+      NAME: myAPI.getCompany(this.props.companyManager.candidateCompID).NAME,
+    }
     return (
     <Card>
       <Card.Title>Company Info</Card.Title>
@@ -34,13 +39,13 @@ class CompInfo extends React.Component {
           <Form.Group as={Row} className="mb-3" controlId="formCompId">
             <Form.Label column sm={2}>ID:</Form.Label>
             <Col sm={10}>
-            <Form.Control className="me-auto" placeholder={this.props.companyManager.candidateCompID} readOnly />
+            <Form.Control className="me-auto" placeholder={display.ID} readOnly />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
             <Form.Label column sm={2}>Company Name:</Form.Label>
             <Col sm={10}>
-              <Form.Control className="me-auto" placeholder={myAPI.getCompany(this.props.companyManager.candidateCompID).NAME} 
+              <Form.Control className="me-auto" placeholder={display.NAME} 
               type="text" value={this.state.value} onChange={this.handleChange} />
             </Col>
           </Form.Group>

@@ -15,7 +15,14 @@ const companyManagerSlice = createSlice({
       state.candidateCompID = action.payload;
     },
     addChangeRequest(state, action) {
-      state.changeRequests.push(action.payload);
+      let CR = action.payload;
+      state.changeRequests.push(CR);
+      state.companyList.forEach(function(obj) {
+        if(obj.ID == CR.ID) {
+          obj.NAME = CR.NAME;
+          obj.DIRTY = true;
+        }
+      });
     },
   }
 });

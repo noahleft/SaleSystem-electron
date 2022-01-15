@@ -3,6 +3,13 @@ import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import { changeCandidateCompID } from "Redux/components/companyManager/companyManagerSlice";
 
+function HighlightText(props) {
+  if(props.highlight)
+    return <span className="text-danger">{props.name}</span>;
+  else
+    return <span>{props.name}</span>;
+}
+
 class CompanyTable extends React.Component {
   constructor(props) {
     super(props);
@@ -20,11 +27,11 @@ class CompanyTable extends React.Component {
     let companyList = this.props.companyManager.companyList;
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(<tr key={companyList[i].ID} onClick={()=>{
-          this.props.changeCandidateCompID(companyList[i].ID);
-          }}>
-        <th scope="row">{companyList[i].ID}</th>
-        <td>{companyList[i].NAME}</td>
-        </tr>)
+        this.props.changeCandidateCompID(companyList[i].ID);
+        }}>
+      <th scope="row">{companyList[i].ID}</th>
+      <td><HighlightText name={companyList[i].NAME} highlight={companyList[i].DIRTY}></HighlightText></td>
+      </tr>)
     }
 
     return (

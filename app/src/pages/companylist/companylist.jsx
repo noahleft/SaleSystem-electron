@@ -9,7 +9,10 @@ import { updateCompanyList } from "Redux/components/companyManager/companyManage
 class CompanyList extends React.Component {
 
   componentDidMount() {
-    let companylist = myAPI.listCompany();
+    let companylist = myAPI.listCompany().map(function(obj){
+      obj.DIRTY = false;
+      return obj;
+    });
     this.props.updateCompanyList(companylist);
   }
 
