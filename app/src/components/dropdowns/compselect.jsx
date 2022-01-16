@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Dropdown } from "react-bootstrap";
-import CompName from "Components/name/compname";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import { changeSelectedCompID } from "Redux/components/priceManager/priceManagerSlice";
 
 class CompSelect extends React.Component {
@@ -13,24 +12,25 @@ class CompSelect extends React.Component {
   }
 
   render() {
-    let content = [<Dropdown.Item key='0' eventKey='0'>Select</Dropdown.Item>];
+    let content = [<Dropdown.Item key='0' onClick={()=>{this.props.changeSelectedCompID(0);}}>Select</Dropdown.Item>];
     const companyList = this.props.companyManager.companyList;
+    let title = "Select";
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(
-        <Dropdown.Item key={companyList[i].ID} eventKey={companyList[i].ID}>
+        <Dropdown.Item key={companyList[i].ID} onClick={()=>{
+          this.props.changeSelectedCompID(companyList[i].ID);
+        }}>
         {companyList[i].NAME}
         </Dropdown.Item>)
+      
+      if(companyList[i].ID == this.props.priceManager.selectedCompID) {
+        title = companyList[i].NAME;
+      }
     }
     return (
-        <Dropdown onSelect={(evt) => {
-            this.props.changeSelectedCompID(evt);}}>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            <CompName></CompName>
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-          {content}
-          </Dropdown.Menu>
-        </Dropdown>
+        <DropdownButton title={title} disabled={this.props.priceManager.changeRequests.length!=0}>
+        {content}
+        </DropdownButton>
     );
   }
 }
