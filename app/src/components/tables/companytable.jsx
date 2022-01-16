@@ -11,10 +11,6 @@ function HighlightText(props) {
 }
 
 class CompanyTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillUnmount() {
     // Clear any existing bindings;
     // important on mac-os if the app is suspended

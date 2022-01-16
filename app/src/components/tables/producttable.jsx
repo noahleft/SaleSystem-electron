@@ -1,6 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
+import { changeCandidateProdID } from "Redux/components/productManager/productManagerSlice";
+
+function HighlightText(props) {
+  if(props.highlight)
+    return <span className="text-danger">{props.name}</span>;
+  else
+    return <span>{props.name}</span>;
+}
 
 class ProductTable extends React.Component {
   componentWillUnmount() {
@@ -10,15 +18,39 @@ class ProductTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
+  genRow(obj) {
+    return (<tr key={obj.ID} onClick={()=>{
+      this.props.changeCandidateProdID(obj.ID);
+      }}>
+    <th scope="row">{obj.ID}</th>
+    <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
+    </tr>
+    );
+  }
+
+  genLastRow(productList) {
+    var obj = {};
+    if(productList.length == 0) {
+      obj.ID= 1 ;
+      obj.NAME = "";
+      obj.DIRTY = false;
+    }
+    else {
+      let lastItem = productList.slice(-1)[0];
+      obj.ID= lastItem.ID+1 ;
+      obj.NAME = "";
+      obj.DIRTY = false;
+    }
+    return this.genRow(obj);
+  }
+
   render() {
     let content = [];
-    let productList = myAPI.listProduct();
+    let productList = this.props.productManager.productList;
     for(let i=0; i<=productList.length-1; i++) {
-      content.push(<tr key={productList[i].ID}>
-        <th scope="row">{productList[i].ID}</th>
-        <td>{productList[i].NAME}</td>
-        </tr>)
+      content.push(this.genRow(productList[i]));
     }
+    content.push(this.genLastRow(productList));
 
     return (
     <div className="scrollTable">
@@ -38,8 +70,8 @@ class ProductTable extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  home: state.home
+  productManager: state.productManager
 });
-const mapDispatch = { };
+const mapDispatch = { changeCandidateProdID };
 
 export default connect(mapStateToProps, mapDispatch)(ProductTable);

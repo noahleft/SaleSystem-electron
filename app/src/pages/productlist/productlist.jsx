@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, Row, Table } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import ProdInfo from "Components/selection/prodInfo";
 import ProductTable from "Components/tables/producttable";
+import ProdFooter from "Components/footer/prodFooter";
 
 class ProductList extends React.Component {
   render() {
@@ -10,9 +11,9 @@ class ProductList extends React.Component {
         <Container fluid>
           <Row className="title is-1">Product View</Row>
           <Row><ProductTable></ProductTable></Row>
-          <Row><hr /></Row>
-          <Row><ProdInfo></ProdInfo></Row>
-        </Container>
+        </Container><hr />
+        <ProdInfo></ProdInfo>
+        <ProdFooter></ProdFooter>
       </section>
     );
   }

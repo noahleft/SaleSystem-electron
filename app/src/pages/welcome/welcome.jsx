@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { updateCompanyList } from "Redux/components/companyManager/companyManagerSlice";
+import { updateProductList } from "Redux/components/productManager/productManagerSlice";
 
 class Welcome extends React.Component {
   componentDidMount() {
@@ -9,6 +10,12 @@ class Welcome extends React.Component {
       return obj;
     });
     this.props.updateCompanyList(companylist);
+
+    let productlist = myAPI.listProduct().map(function(obj){
+      obj.DIRTY = false;
+      return obj;
+    });
+    this.props.updateProductList(productlist);
   }
 
   render() {
@@ -34,9 +41,10 @@ class Welcome extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  companyManager: state.companyManager
+  companyManager: state.companyManager,
+  productManager: state.productManager,
 });
-const mapDispatch = { updateCompanyList };
+const mapDispatch = { updateCompanyList, updateProductList };
 
 export default connect(mapStateToProps, mapDispatch)(Welcome);
 

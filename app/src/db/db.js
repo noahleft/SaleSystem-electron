@@ -29,7 +29,7 @@ class DbManager {
     handleCompanyChangeRequest(compList) {
         const DbCompList = this.listCompany();
         const insertList = compList.filter(function(obj){
-            if(DbCompList.length < obj.ID) return true;
+            if(DbCompList.length < obj.id) return true;
             return false;
         });
         this.addCompany(insertList);
@@ -42,6 +42,29 @@ class DbManager {
     getProduct(id) {
         const row = this.db.prepare('SELECT * FROM product WHERE id = ?').get(id);
         return row;
+    }
+    addProduct(prodList) {
+        const insert = this.db.prepare('INSERT INTO product (name, hide) VALUES (@name, @hide);');
+        const insertMany = this.db.transaction((prodList) => {
+            for (const prod of prodList) insert.run(prod);
+          });
+        insertMany(prodList);
+    }
+    updateProduct(prodList) {
+        const update = this.db.prepare('UPDATE product SET name = (@name) WHERE id = (@id);');
+        const updateMany = this.db.transaction((prodList) => {
+            for (const prod of prodList) update.run(prod);
+        });
+        updateMany(prodList);
+    }
+    handleProductChangeRequest(prodList) {
+        const DbProdList = this.listProduct();
+        const insertList = prodList.filter(function(obj){
+            if(DbProdList.length < obj.id) return true;
+            return false;
+        });
+        this.addProduct(insertList);
+        this.updateProduct(prodList);
     }
     listPrice(compId, prodId) {
         if(compId != 0 && prodId != 0) {
