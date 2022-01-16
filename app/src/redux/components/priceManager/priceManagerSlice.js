@@ -3,17 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 const priceManagerSlice = createSlice({
   name: "priceManager",
   initialState: {
-    candidatePriceID: 0,
+    priceList: [],
+    selectedCompID: 0,
+    changeRequests: [],
   },
   reducers: {
-    changeCandidatePriceID(state, action) {
-      state.candidatePriceID = action.payload;
+    updatePriceList(state, action) {
+      state.priceList = action.payload;
+      state.changeRequests = [];
     },
+    changeSelectedCompID(state, action) {
+      state.selectedCompID = action.payload;
+    },
+    addChangeRequest(state, action) {
+      let CR = action.payload;
+      state.changeRequests.push(CR);
+    }
   }
 });
 
 // Export actions
-export const { changeCandidatePriceID } = priceManagerSlice.actions;
+export const { updatePriceList, changeSelectedCompID, addChangeRequest } = priceManagerSlice.actions;
 
 // Export reducer
 export default priceManagerSlice.reducer;

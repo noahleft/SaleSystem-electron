@@ -10,16 +10,39 @@ class PriceTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
+  genRow(obj) {
+    return (<tr key={obj.ID}>
+    <th scope="row">{obj.ID}</th>
+    <td>{obj.NAME}</td>
+    <td>{obj.UNIT_PRICE}</td>
+    </tr>
+    );
+  }
+
+  getPrice(compId, prodId) {
+    let priceList = this.props.priceManager.priceList.filter(function(obj){
+      if(obj.COMP_ID == compId && obj.PROD_ID == prodId) return true;
+      return false;
+    });
+    if(priceList.length==0) return "";
+    return priceList[0].UNIT_PRICE;
+  }
+
   render() {
     let content = [];
-    let recordList = myAPI.listPrice(this.props.home.selectedCompID, this.props.home.selectedProdID);
-    for(let i=0; i<=recordList.length-1; i++) {
-      content.push(<tr key={recordList[i].ID}>
-        <th scope="row">{recordList[i].ID}</th>
-        <td>{myAPI.getCompany(recordList[i].COMP_ID).NAME}</td>
-        <td>{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
-        <td>{recordList[i].UNIT_PRICE}</td>
-        </tr>)
+    let compPriceList = this.props.productManager.productList.map(function(obj){
+      var rObj = {
+        ID: obj.ID,
+        NAME: obj.NAME,
+        UNIT_PRICE: "",
+      };
+      return rObj;
+    });
+    for(let i=0; i<compPriceList.length; i++) {
+      compPriceList[i].UNIT_PRICE = this.getPrice(this.props.priceManager.selectedCompID, compPriceList[i].ID);
+    }
+    for(let i=0; i< compPriceList.length; i++) {
+      content.push(this.genRow(compPriceList[i]));
     }
 
     return (
@@ -28,7 +51,6 @@ class PriceTable extends React.Component {
     <thead>
       <tr>
         <th scope="col" width="80px">#</th>
-        <th scope="col">Company Name</th>
         <th scope="col">Product Name</th>
         <th scope="col">Unit Price</th>
       </tr>
@@ -43,7 +65,9 @@ class PriceTable extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  home: state.home
+  companyManager: state.companyManager,
+  productManager: state.productManager,
+  priceManager: state.priceManager,
 });
 const mapDispatch = { };
 

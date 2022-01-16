@@ -66,19 +66,7 @@ class DbManager {
         this.addProduct(insertList);
         this.updateProduct(prodList);
     }
-    listPrice(compId, prodId) {
-        if(compId != 0 && prodId != 0) {
-            const row = this.db.prepare('SELECT * FROM unitprice WHERE COMP_ID = ? AND PROD_ID = ?').all(compId, prodId);
-            return row;
-        }
-        if(compId != 0) {
-            const row = this.db.prepare('SELECT * FROM unitprice WHERE COMP_ID = ? ').all(compId);
-            return row;
-        }
-        if(prodId != 0) {
-            const row = this.db.prepare('SELECT * FROM unitprice WHERE PROD_ID = ? ').all(prodId);
-            return row;
-        }
+    listPrice() {
         const row = this.db.prepare('SELECT * FROM unitprice').all();
         return row;
     }

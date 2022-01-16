@@ -2,12 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import CompName from "Components/name/compname";
-import { changeSelectedCompID } from "Redux/components/home/homeSlice";
+import { changeSelectedCompID } from "Redux/components/priceManager/priceManagerSlice";
 
 class CompSelect extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentWillUnmount() {
     // Clear any existing bindings;
     // important on mac-os if the app is suspended
@@ -16,8 +13,8 @@ class CompSelect extends React.Component {
   }
 
   render() {
-    let content = [<Dropdown.Item key='0' eventKey='0'>All</Dropdown.Item>];
-    let companyList = myAPI.listCompany();
+    let content = [<Dropdown.Item key='0' eventKey='0'>Select</Dropdown.Item>];
+    const companyList = this.props.companyManager.companyList;
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(
         <Dropdown.Item key={companyList[i].ID} eventKey={companyList[i].ID}>
@@ -39,7 +36,8 @@ class CompSelect extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  home: state.home
+  priceManager: state.priceManager,
+  companyManager: state.companyManager,
 });
 const mapDispatch = { changeSelectedCompID };
 

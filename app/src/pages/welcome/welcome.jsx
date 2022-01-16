@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { updateCompanyList } from "Redux/components/companyManager/companyManagerSlice";
 import { updateProductList } from "Redux/components/productManager/productManagerSlice";
+import { updatePriceList } from "Redux/components/priceManager/priceManagerSlice";
 
 class Welcome extends React.Component {
   componentDidMount() {
@@ -16,6 +17,12 @@ class Welcome extends React.Component {
       return obj;
     });
     this.props.updateProductList(productlist);
+
+    let pricelist = myAPI.listPrice().map(function(obj){
+      obj.DIRTY = false;
+      return obj;
+    });
+    this.props.updatePriceList(pricelist);
   }
 
   render() {
@@ -43,8 +50,9 @@ class Welcome extends React.Component {
 const mapStateToProps = (state, props) => ({
   companyManager: state.companyManager,
   productManager: state.productManager,
+  priceManager: state.priceManager,
 });
-const mapDispatch = { updateCompanyList, updateProductList };
+const mapDispatch = { updateCompanyList, updateProductList, updatePriceList };
 
 export default connect(mapStateToProps, mapDispatch)(Welcome);
 

@@ -2,21 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 
 class CompName extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    let companyNameList = myAPI.listCompany().map(function(d){return d.NAME;});
-    let selectList = ["Company", ...companyNameList];
+    let companyNameList = this.props.companyManager.companyList.map(function(d){return d.NAME;});
+    let selectList = ["Select", ...companyNameList];
     return (
-      <a>{selectList[this.props.home.selectedCompID]}</a>
+      <a>{selectList[this.props.priceManager.selectedCompID]}</a>
     );
   }
 }
 
 const mapStateToProps = (state, props) => ({
-  home: state.home
+  companyManager: state.companyManager,
+  priceManager: state.priceManager
 });
 const mapDispatch = { };
 
