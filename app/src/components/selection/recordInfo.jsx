@@ -14,7 +14,7 @@ import FormQuan from "Components/recordform/formQuan";
 
 function FormSubmit() {
   return (<Form.Group as={Row} className="mb-3">
-    <Col sm={{span: 10, offset:2}}>
+    <Col sm={{span: 8, offset:4}}>
       <Button type="submit">Submit</Button>
     </Col>
   </Form.Group>
@@ -53,27 +53,23 @@ class RecordInfo extends React.Component {
     <Card>
       <Card.Title>Record Info</Card.Title>
       <Card.Body>
-        <Form onSubmit={this.handleSubmit}>
-          <Container>
-            <Row>
-              <Col>
-                <FormID />
-              </Col>
-              <Col>Deliver Date:</Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormComp />
-                <FormProd />
-                <FormPrice />
-                <FormQuan />
-                <FormSubmit />
+        <Form as={Container} onSubmit={this.handleSubmit}>
+          <Row>
+            <Col><FormID /></Col>
+            <Col>Deliver Date:</Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormComp />
+              <FormProd />
+              <FormPrice />
+              <FormQuan />
+              <FormSubmit />
             </Col>
             <Col>
               <Row><Datetime locale="zh-tw" dateFormat="YYYY-MM-DD" timeFormat={false} input={false} /></Row>
             </Col>
-            </Row>
-          </Container>
+          </Row>
         </Form>
       </Card.Body>
     </Card>
