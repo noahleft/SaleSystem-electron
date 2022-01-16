@@ -1,6 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
+import { updateCompanyList } from "Redux/components/companyManager/companyManagerSlice";
 
 class Welcome extends React.Component {
+  componentDidMount() {
+    let companylist = myAPI.listCompany().map(function(obj){
+      obj.DIRTY = false;
+      return obj;
+    });
+    this.props.updateCompanyList(companylist);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -23,4 +33,10 @@ class Welcome extends React.Component {
   }
 }
 
-export default Welcome;
+const mapStateToProps = (state, props) => ({
+  companyManager: state.companyManager
+});
+const mapDispatch = { updateCompanyList };
+
+export default connect(mapStateToProps, mapDispatch)(Welcome);
+
