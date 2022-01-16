@@ -19,6 +19,22 @@ class DbManager {
           });
         insertMany(compList);
     }
+    updateCompany(compList) {
+        const update = this.db.prepare('UPDATE company SET name = (@name) WHERE id = (@id);');
+        const updateMany = this.db.transaction((compList) => {
+            for (const comp of compList) update.run(comp);
+        });
+        updateMany(compList);
+    }
+    handleCompanyChangeRequest(compList) {
+        const DbCompList = this.listCompany();
+        const insertList = compList.filter(function(obj){
+            if(DbCompList.length < obj.ID) return true;
+            return false;
+        });
+        this.addCompany(insertList);
+        this.updateCompany(compList);
+    }
     listProduct() {
         const row = this.db.prepare('SELECT * FROM product').all();
         return row;

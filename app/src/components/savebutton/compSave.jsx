@@ -11,14 +11,15 @@ class CompSave extends React.Component {
   }
 
   saveAction() {
-    let insertList = this.props.companyManager.changeRequests.map(function(obj){
+    let CRList = this.props.companyManager.changeRequests.map(function(obj){
       var rObj = {
+        id: obj.ID,
         name: obj.NAME,
         hide: "false",
       };
       return rObj;
     });
-    myAPI.addCompany(insertList);
+    myAPI.handleCompanyChangeRequest(CRList);
 
     let companylist = myAPI.listCompany().map(function(obj){
       obj.DIRTY = false;
