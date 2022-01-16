@@ -4,8 +4,14 @@ import { changeSelectedFormID } from "Redux/components/home/homeSlice";
 import { connect } from "react-redux";
 import { Table, Button } from "react-bootstrap";
 
-class FormTable extends React.Component {
+function HighlightText(props) {
+  if(props.highlight)
+    return <span className="text-danger">{props.name}</span>;
+  else
+    return <span>{props.name}</span>;
+}
 
+class FormTable extends React.Component {
   componentWillUnmount() {
     // Clear any existing bindings;
     // important on mac-os if the app is suspended
@@ -13,23 +19,48 @@ class FormTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
+  genRow(obj) {
+    return (<tr key={obj.ID}>
+    <th scope="row">{obj.ID}</th>
+    <td>{obj.NAME}</td>
+    <td>
+      <Button variant="primary" size="sm"
+        onClick={() => {
+          this.props.changeSelectedFormID(obj.ID);
+          this.props.onNavigate(ROUTES.RECORDLIST);
+        }} disabled={obj.DISABLE}>
+        OpenIt!
+      </Button>
+    </td>
+    </tr>
+    );
+  }
+
+  genLastRow(formList) {
+    var obj = {};
+    if(formList.length == 0) {
+      obj.ID= 1 ;
+      obj.NAME = "";
+      obj.DIRTY = false;
+      obj.DISABLE = true;
+    }
+    else {
+      let lastItem = formList.slice(-1)[0];
+      obj.ID= lastItem.ID+1 ;
+      obj.NAME = "";
+      obj.DIRTY = false;
+      obj.DISABLE = true;
+    }
+    return this.genRow(obj);
+  }
+
   render() {
     let content = [];
     let formList = myAPI.listForm();
     for(let i=0; i<=formList.length-1; i++) {
-      content.push(<tr key={formList[i].ID}>
-        <th scope="row">{formList[i].ID}</th>
-        <td>{formList[i].NAME}</td>
-        <td>
-        <Button variant="primary" size="sm"
-          onClick={() => {
-            this.props.changeSelectedFormID(formList[i].ID);
-            this.props.onNavigate(ROUTES.RECORDLIST);
-          }}>
-          OpenIt!
-        </Button></td>
-        </tr>)
+      content.push(this.genRow(formList[i]));
     }
+    content.push(this.genLastRow(formList));
 
     return (
     <div className="scrollTable">
