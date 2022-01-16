@@ -2,15 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button, Stack, Container } from "react-bootstrap";
 import { addChangeRequest } from "Redux/components/recordManager/recordManagerSlice";
-import Datetime from "react-datetime";
-import "react-datetime/css/react-datetime.css";
-import moment from 'moment';
-import 'moment/locale/zh-tw';
 import FormID from "Components/recordform/formID";
 import FormComp from "Components/recordform/formComp";
 import FormProd from "Components/recordform/formProd";
 import FormPrice from "Components/recordform/formPrice";
 import FormQuan from "Components/recordform/formQuan";
+import FormDate from "Components/recordform/formDate";
 
 function FormSubmit() {
   return (<Form.Group as={Row} className="mb-3">
@@ -67,7 +64,7 @@ class RecordInfo extends React.Component {
               <FormSubmit />
             </Col>
             <Col>
-              <Row><Datetime locale="zh-tw" dateFormat="YYYY-MM-DD" timeFormat={false} input={false} /></Row>
+              <Row><FormDate /></Row>
             </Col>
           </Row>
         </Form>
