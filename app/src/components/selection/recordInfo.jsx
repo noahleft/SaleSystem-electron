@@ -6,6 +6,20 @@ import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import moment from 'moment';
 import 'moment/locale/zh-tw';
+import FormID from "Components/recordform/formID";
+import FormComp from "Components/recordform/formComp";
+import FormProd from "Components/recordform/formProd";
+import FormPrice from "Components/recordform/formPrice";
+import FormQuan from "Components/recordform/formQuan";
+
+function FormSubmit() {
+  return (<Form.Group as={Row} className="mb-3">
+    <Col sm={{span: 10, offset:2}}>
+      <Button type="submit">Submit</Button>
+    </Col>
+  </Form.Group>
+  );
+}
 
 class RecordInfo extends React.Component {
   constructor(props) {
@@ -43,50 +57,17 @@ class RecordInfo extends React.Component {
           <Container>
             <Row>
               <Col>
-                <Form.Group as={Row} className="mb-3" controlId="formRecordId">
-                  <Form.Label column sm={4}>ID:</Form.Label>
-                  <Col sm={6}>
-                  <Form.Control className="me-auto" placeholder={display.ID} readOnly />
-                  </Col>
-                </Form.Group>
+                <FormID />
               </Col>
               <Col>Deliver Date:</Col>
             </Row>
             <Row>
               <Col>
-            <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
-              <Form.Label column sm={4}>Company:</Form.Label>
-              <Col sm={6}>
-                <Form.Control className="me-auto" placeholder={display.NAME} 
-                type="text" value={this.state.value} onChange={this.handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formProdName" ref="formProdName">
-              <Form.Label column sm={4}>Product:</Form.Label>
-              <Col sm={6}>
-                <Form.Control className="me-auto" placeholder={display.NAME} 
-                type="text" value={this.state.value} onChange={this.handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formUnitPrice" ref="formUnitPrice">
-              <Form.Label column sm={4}>Unit Price:</Form.Label>
-              <Col sm={6}>
-                <Form.Control className="me-auto" placeholder={display.NAME} 
-                type="text" value={this.state.value} onChange={this.handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formQuantity" ref="formQuantity">
-              <Form.Label column sm={4}>Quantity:</Form.Label>
-              <Col sm={6}>
-                <Form.Control className="me-auto" placeholder={display.NAME} 
-                type="text" value={this.state.value} onChange={this.handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3">
-              <Col sm={{span: 10, offset:2}}>
-                <Button type="submit">Submit</Button>
-              </Col>
-            </Form.Group>
+                <FormComp />
+                <FormProd />
+                <FormPrice />
+                <FormQuan />
+                <FormSubmit />
             </Col>
             <Col>
               <Row><Datetime locale="zh-tw" dateFormat="YYYY-MM-DD" timeFormat={false} input={false} /></Row>
