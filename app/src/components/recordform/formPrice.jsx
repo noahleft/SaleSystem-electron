@@ -25,10 +25,23 @@ class FormPrice extends React.Component {
     this.setState({value: e.target.value});
   }
 
+  getRecord() {
+    let id = this.props.recordManager.candidateRecordID;
+    let recordList = this.props.recordManager.recordList;
+    for(let i=0; i<recordList.length; i++) {
+      if(recordList[i].ID == id) return recordList[i];
+    }
+    var dummy = {
+      ID: id,
+      UNIT_PRICE: "",
+    };
+    return dummy;
+  }
+
   render() {
     let display = {
       ID: this.props.recordManager.candidateRecordID,
-      NAME: "",
+      NAME: this.getRecord().UNIT_PRICE,
     };
     return (
     <Form.Group as={Row} className="mb-3" controlId="formUnitPrice" ref="formUnitPrice">

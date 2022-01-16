@@ -25,10 +25,32 @@ class FormProd extends React.Component {
     this.setState({value: e.target.value});
   }
 
+  getRecord() {
+    let id = this.props.recordManager.candidateRecordID;
+    let recordList = this.props.recordManager.recordList;
+    for(let i=0; i<recordList.length; i++) {
+      if(recordList[i].ID == id) return recordList[i];
+    }
+    var dummy = {
+      ID: id,
+      PROD_ID: 0,
+    };
+    return dummy;
+  }
+
+  getProductName(id) {
+    if(id==0) return "";
+    let productList = this.props.productManager.productList;
+    for(let i=0; i<productList.length; i++) {
+      if(productList[i].ID == id) return productList[i].NAME;
+    }
+    return "";
+  }
+
   render() {
     let display = {
       ID: this.props.recordManager.candidateRecordID,
-      NAME: "",
+      NAME: this.getProductName(this.getRecord().PROD_ID),
     };
     return (
     <Form.Group as={Row} className="mb-3" controlId="formProdName" ref="formProdName">
@@ -43,6 +65,7 @@ class FormProd extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
+  productManager: state.productManager,
   recordManager: state.recordManager
 });
 const mapDispatch = { };

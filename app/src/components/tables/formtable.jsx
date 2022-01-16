@@ -1,6 +1,7 @@
 import React from "react";
 import ROUTES from "Constants/routes";
 import { changeCandidateFormID } from "Redux/components/formManager/formManagerSlice";
+import { updateRecordList } from "Redux/components/recordManager/recordManagerSlice";
 import { connect } from "react-redux";
 import { Table, Button } from "react-bootstrap";
 
@@ -19,6 +20,14 @@ class FormTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
+  updateRecord(formId) {
+    let recordlist = myAPI.listRecord(formId).map(function(obj){
+      obj.DIRTY = false;
+      return obj;
+    });
+    this.props.updateRecordList(recordlist);
+  }
+
   genRow(obj) {
     return (<tr key={obj.ID} onClick={()=>{
       this.props.changeCandidateFormID(obj.ID);
@@ -29,6 +38,7 @@ class FormTable extends React.Component {
       <Button variant="primary" size="sm"
         onClick={() => {
           this.props.changeCandidateFormID(obj.ID);
+          this.updateRecord(obj.ID);
           this.props.onNavigate(ROUTES.RECORDLIST);
         }} disabled={obj.DISABLE || this.props.formManager.changeRequests.length!=0}>
         OpenIt!
@@ -83,8 +93,9 @@ class FormTable extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  formManager: state.formManager
+  formManager: state.formManager,
+  recordManager: state.recordManager,
 });
-const mapDispatch = { changeCandidateFormID };
+const mapDispatch = { changeCandidateFormID, updateRecordList };
 
 export default connect(mapStateToProps, mapDispatch)(FormTable);

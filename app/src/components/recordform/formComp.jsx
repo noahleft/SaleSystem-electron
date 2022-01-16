@@ -25,10 +25,32 @@ class FormComp extends React.Component {
     this.setState({value: e.target.value});
   }
 
+  getRecord() {
+    let id = this.props.recordManager.candidateRecordID;
+    let recordList = this.props.recordManager.recordList;
+    for(let i=0; i<recordList.length; i++) {
+      if(recordList[i].ID == id) return recordList[i];
+    }
+    var dummy = {
+      ID: id,
+      COMP_ID: 0,
+    };
+    return dummy;
+  }
+
+  getCompanyName(id) {
+    if(id==0) return "";
+    let companyList = this.props.companyManager.companyList;
+    for(let i=0; i<companyList.length; i++) {
+      if(companyList[i].ID == id) return companyList[i].NAME;
+    }
+    return "";
+  }
+
   render() {
     let display = {
       ID: this.props.recordManager.candidateRecordID,
-      NAME: "",
+      NAME: this.getCompanyName(this.getRecord().COMP_ID),
     };
     return (
     <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
@@ -43,6 +65,7 @@ class FormComp extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
+  companyManager: state.companyManager,
   recordManager: state.recordManager
 });
 const mapDispatch = { };
