@@ -1,6 +1,6 @@
 import React from "react";
 import ROUTES from "Constants/routes";
-import { changeSelectedFormID } from "Redux/components/home/homeSlice";
+import { changeCandidateFormID } from "Redux/components/formManager/formManagerSlice";
 import { connect } from "react-redux";
 import { Table, Button } from "react-bootstrap";
 
@@ -20,15 +20,17 @@ class FormTable extends React.Component {
   }
 
   genRow(obj) {
-    return (<tr key={obj.ID}>
+    return (<tr key={obj.ID} onClick={()=>{
+      this.props.changeCandidateFormID(obj.ID);
+    }}>
     <th scope="row">{obj.ID}</th>
-    <td>{obj.NAME}</td>
+    <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
     <td>
       <Button variant="primary" size="sm"
         onClick={() => {
-          this.props.changeSelectedFormID(obj.ID);
+          this.props.changeCandidateFormID(obj.ID);
           this.props.onNavigate(ROUTES.RECORDLIST);
-        }} disabled={obj.DISABLE}>
+        }} disabled={obj.DISABLE || this.props.formManager.changeRequests.length!=0}>
         OpenIt!
       </Button>
     </td>
@@ -56,7 +58,7 @@ class FormTable extends React.Component {
 
   render() {
     let content = [];
-    let formList = myAPI.listForm();
+    let formList = this.props.formManager.formList;
     for(let i=0; i<=formList.length-1; i++) {
       content.push(this.genRow(formList[i]));
     }
@@ -81,8 +83,8 @@ class FormTable extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  home: state.home
+  formManager: state.formManager
 });
-const mapDispatch = { changeSelectedFormID };
+const mapDispatch = { changeCandidateFormID };
 
 export default connect(mapStateToProps, mapDispatch)(FormTable);

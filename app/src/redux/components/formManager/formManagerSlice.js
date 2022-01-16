@@ -23,6 +23,7 @@ const formManagerSlice = createSlice({
           ID: Number(CR.ID),
           NAME: CR.NAME,
           DIRTY: false,
+          DISABLE: true,
         }
         state.formList.push(formItem);
       }

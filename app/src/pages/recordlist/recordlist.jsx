@@ -22,7 +22,7 @@ class RecordList extends React.Component {
   }
   
   render() {
-    let message = myAPI.getForm(this.props.home.selectedFormID).NAME;
+    let message = myAPI.getForm(this.props.formManager.candidateFormID).NAME;
     return (
       <section className="section">
         <Container fluid>
@@ -43,7 +43,7 @@ class RecordList extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  home: state.home
+  formManager: state.formManager,
 });
 const mapDispatch = { };
 
