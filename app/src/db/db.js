@@ -70,6 +70,28 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM unitprice').all();
         return row;
     }
+    addPrice(priceList) {
+        const insert = this.db.prepare('INSERT INTO unitprice (comp_id, prod_id, unit_price) VALUES (@comp_id, @prod_id, @unit_price);');
+        const insertMany = this.db.transaction((priceList) => {
+            for (const price of priceList) insert.run(price);
+          });
+        insertMany(priceList);
+    }
+    updatePrice(priceList) {
+        const update = this.db.prepare('UPDATE unitprice SET unit_price = (@unit_price) WHERE comp_id = (@comp_id) AND prod_id = (@prod_id);');
+        const updateMany = this.db.transaction((priceList) => {
+            for (const price of priceList) update.run(price);
+        });
+        updateMany(priceList);
+    }
+    handlePriceChangeRequest(priceList) {
+        const insertList = priceList.filter(function(obj){
+            if(obj.id == 0) return true;
+            return false;
+        });
+        this.addPrice(insertList);
+        this.updatePrice(priceList);
+    }
     listForm() {
         const row = this.db.prepare('SELECT * FROM form').all();
         return row;

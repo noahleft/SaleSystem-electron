@@ -20,13 +20,11 @@ class PriceRow extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(e.target.formProd);
     if (this.state.value != '') {
       let CR = {COMP_ID: this.props.priceManager.selectedCompID,
-                PROD_ID: e.target.formProd.value,
-                UNIT_PRICE: e.target.formUnitPrice.value,
+                PROD_ID: Number(e.target.formProd.value),
+                UNIT_PRICE: Number(e.target.formUnitPrice.value),
             };
-      console.log(CR);
       this.props.addChangeRequest(CR);
     }
     // reset

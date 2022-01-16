@@ -13,10 +13,14 @@ class PriceSave extends React.Component {
   saveAction() {
     let CRList = this.props.priceManager.changeRequests.map(function(obj){
       var rObj = {
+        id: obj.ID,
+        comp_id: obj.COMP_ID,
+        prod_id: obj.PROD_ID,
+        unit_price: obj.UNIT_PRICE,
       };
       return rObj;
     });
-    // myAPI.handlePriceChangeRequest(CRList);
+    myAPI.handlePriceChangeRequest(CRList);
 
     let pricelist = myAPI.listPrice().map(function(obj){
       obj.DIRTY = false;
