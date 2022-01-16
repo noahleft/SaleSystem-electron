@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row } from "react-bootstrap";
 import CompInfo from "Components/selection/compInfo";
 import CompanyTable from "Components/tables/companytable";
-import Footer from "Components/footer/footer";
+import CompFooter from "Components/footer/compFooter";
 
 class CompanyList extends React.Component {
   render() {
@@ -13,7 +13,7 @@ class CompanyList extends React.Component {
             <Row><CompanyTable></CompanyTable></Row>
           </Container><hr />
           <CompInfo></CompInfo>
-          <Footer></Footer>
+          <CompFooter></CompFooter>
       </section>
     );
   }
