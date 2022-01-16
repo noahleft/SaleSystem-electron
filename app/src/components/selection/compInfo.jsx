@@ -28,7 +28,7 @@ class CompInfo extends React.Component {
 
   getCompanyName(id) {
     let companyList = this.props.companyManager.companyList;
-    for(let i=0; i<=companyList.length; i++) {
+    for(let i=0; i<companyList.length; i++) {
       if(companyList[i].ID == id) return companyList[i].NAME;
     }
     return "";
