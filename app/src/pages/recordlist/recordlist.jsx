@@ -1,7 +1,9 @@
 import React from "react";
 import ROUTES from "Constants/routes";
 import { connect } from "react-redux";
+import RecordInfo from "Components/selection/recordInfo";
 import RecordTable from "Components/tables/recordtable";
+import RecordFooter from "Components/footer/recordFooter";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 class RecordList extends React.Component {
@@ -37,6 +39,8 @@ class RecordList extends React.Component {
           </Col></Row>
           <RecordTable></RecordTable>
         </Container>
+        <RecordInfo></RecordInfo>
+        <RecordFooter></RecordFooter>
       </section>
     );
   }

@@ -5,6 +5,7 @@ import companyManagerReducer from "../components/companyManager/companyManagerSl
 import productManagerReducer from "../components/productManager/productManagerSlice";
 import priceManagerReducer from "../components/priceManager/priceManagerSlice";
 import formManagerReducer from "../components/formManager/formManagerSlice";
+import recordManagerReducer from "../components/recordManager/recordManagerSlice";
 
 const rootReducer = (history) =>
   combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = (history) =>
     productManager: productManagerReducer,
     priceManager: priceManagerReducer,
     formManager: formManagerReducer,
+    recordManager: recordManagerReducer,
   });
 
 export default rootReducer;
