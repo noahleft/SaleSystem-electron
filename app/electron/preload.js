@@ -29,5 +29,6 @@ contextBridge.exposeInMainWorld("myAPI", {
   handlePriceChangeRequest: (priceList) => manager.handlePriceChangeRequest(priceList),
   listForm: () => manager.listForm(),
   getForm: (id) => manager.getForm(id),
+  handleFormChangeRequest: (formList) => manager.handleFormChangeRequest(formList),
   listRecord: (formId) => manager.listRecord(formId)
 });

@@ -100,6 +100,29 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM form WHERE id = ?').get(id);
         return row;
     }
+    addForm(formList) {
+        const insert = this.db.prepare('INSERT INTO form (name, hide) VALUES (@name, @hide);');
+        const insertMany = this.db.transaction((formList) => {
+            for (const form of formList) insert.run(form);
+          });
+        insertMany(formList);
+    }
+    updateForm(formList) {
+        const update = this.db.prepare('UPDATE form SET name = (@name) WHERE id = (@id);');
+        const updateMany = this.db.transaction((formList) => {
+            for (const form of formList) update.run(form);
+        });
+        updateMany(formList);
+    }
+    handleFormChangeRequest(formList) {
+        const DbFormList = this.listForm();
+        const insertList = formList.filter(function(obj){
+            if(DbFormList.length < obj.id) return true;
+            return false;
+        });
+        this.addForm(insertList);
+        this.updateForm(formList);
+    }
     listRecord(formId) {
         const row = this.db.prepare('SELECT * FROM record WHERE form_id = ?').all(formId);
         return row;
