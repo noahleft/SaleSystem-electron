@@ -92,6 +92,12 @@ class Nav extends React.Component {
     if(this.props.companyManager.changeRequests.length!=0) {
       return true;
     }
+    if(this.props.productManager.changeRequests.length!=0) {
+      return true;
+    }
+    if(this.props.priceManager.changeRequests.length!=0) {
+      return true;
+    }
     return false;
   }
 
@@ -278,7 +284,9 @@ class Nav extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  companyManager: state.companyManager
+  companyManager: state.companyManager,
+  productManager: state.productManager,
+  priceManager: state.priceManager,
 });
 const mapDispatch = { };
 
