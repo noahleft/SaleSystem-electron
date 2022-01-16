@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
+import PriceRow from "Components/selection/priceRow";
 
 class PriceTable extends React.Component {
   componentWillUnmount() {
@@ -10,22 +11,15 @@ class PriceTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
-  genRow(obj) {
-    return (<tr key={obj.ID}>
-    <th scope="row">{obj.ID}</th>
-    <td>{obj.NAME}</td>
-    <td>{obj.UNIT_PRICE}</td>
-    </tr>
-    );
-  }
-
   getPrice(compId, prodId) {
     let priceList = this.props.priceManager.priceList.filter(function(obj){
       if(obj.COMP_ID == compId && obj.PROD_ID == prodId) return true;
       return false;
     });
-    if(priceList.length==0) return "";
-    return priceList[0].UNIT_PRICE;
+    if(priceList.length==0) {
+      return {UNIT_PRICE: "", DIRTY: false};
+    }
+    return priceList[0];
   }
 
   render() {
@@ -35,14 +29,19 @@ class PriceTable extends React.Component {
         ID: obj.ID,
         NAME: obj.NAME,
         UNIT_PRICE: "",
+        EDITABLE: false,
+        DIRTY: false,
       };
       return rObj;
     });
     for(let i=0; i<compPriceList.length; i++) {
-      compPriceList[i].UNIT_PRICE = this.getPrice(this.props.priceManager.selectedCompID, compPriceList[i].ID);
+      let priceItem = this.getPrice(this.props.priceManager.selectedCompID, compPriceList[i].ID);
+      compPriceList[i].UNIT_PRICE = priceItem.UNIT_PRICE;
+      compPriceList[i].DIRTY = priceItem.DIRTY;
+      compPriceList[i].EDITABLE = this.props.priceManager.selectedCompID!=0;
     }
     for(let i=0; i< compPriceList.length; i++) {
-      content.push(this.genRow(compPriceList[i]));
+      content.push(<PriceRow key={compPriceList[i].ID} compPrice={compPriceList[i]}></PriceRow>);
     }
 
     return (
@@ -53,6 +52,7 @@ class PriceTable extends React.Component {
         <th scope="col" width="80px">#</th>
         <th scope="col">Product Name</th>
         <th scope="col">Unit Price</th>
+        <th scope="col">Edit</th>
       </tr>
     </thead>
     <tbody> 
