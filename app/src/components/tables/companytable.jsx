@@ -22,17 +22,39 @@ class CompanyTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
+  genRow(obj) {
+    return (<tr key={obj.ID} onClick={()=>{
+      this.props.changeCandidateCompID(obj.ID);
+      }}>
+    <th scope="row">{obj.ID}</th>
+    <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
+    </tr>
+    );
+  }
+
+  genLastRow(companyList) {
+    var obj = {};
+    if(companyList.length == 0) {
+      obj.ID= 1 ;
+      obj.NAME = "";
+      obj.DIRTY = false;
+    }
+    else {
+      let lastItem = companyList.slice(-1)[0];
+      obj.ID= lastItem.ID+1 ;
+      obj.NAME = "";
+      obj.DIRTY = false;
+    }
+    return this.genRow(obj);
+  }
+
   render() {
     let content = [];
     let companyList = this.props.companyManager.companyList;
     for(let i=0; i<=companyList.length-1; i++) {
-      content.push(<tr key={companyList[i].ID} onClick={()=>{
-        this.props.changeCandidateCompID(companyList[i].ID);
-        }}>
-      <th scope="row">{companyList[i].ID}</th>
-      <td><HighlightText name={companyList[i].NAME} highlight={companyList[i].DIRTY}></HighlightText></td>
-      </tr>)
+      content.push(this.genRow(companyList[i]));
     }
+    content.push(this.genLastRow(companyList));
 
     return (
     <div className="scrollTable">
