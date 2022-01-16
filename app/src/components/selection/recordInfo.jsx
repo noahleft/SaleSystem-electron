@@ -8,10 +8,11 @@ import FormProd from "Components/recordform/formProd";
 import FormPrice from "Components/recordform/formPrice";
 import FormQuan from "Components/recordform/formQuan";
 import FormDate from "Components/recordform/formDate";
+import PriceCard from "Components/shortcut/priceCard";
 
 function FormSubmit() {
   return (<Form.Group as={Row} className="mb-3">
-    <Col sm={{span: 8, offset:4}}>
+    <Col sm={{span: 4, offset:8}}>
       <Button type="submit">Submit</Button>
     </Col>
   </Form.Group>
@@ -60,11 +61,24 @@ class RecordInfo extends React.Component {
               <FormComp />
               <FormProd />
               <FormPrice />
-              <FormQuan />
-              <FormSubmit />
             </Col>
             <Col>
               <Row><FormDate /></Row>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <PriceCard></PriceCard>
+            </Col>
+            <Col>
+              <FormQuan />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            </Col>
+            <Col>
+              <FormSubmit />
             </Col>
           </Row>
         </Form>
