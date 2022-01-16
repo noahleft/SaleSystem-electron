@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
+import FormInfo from "Components/selection/formInfo";
 import FormTable from "Components/tables/formtable";
 import FormFooter from "Components/footer/formFooter";
 
@@ -27,6 +28,7 @@ class FormList extends React.Component {
             <Row className="title is-1">Form View</Row>
             <Row><FormTable onNavigate={(url) => {this.navigate(url)}}></FormTable></Row>
           </Container>
+          <FormInfo></FormInfo>
           <FormFooter></FormFooter>
       </section>
     );
