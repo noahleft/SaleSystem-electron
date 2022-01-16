@@ -12,7 +12,7 @@ class ExportTable extends React.Component {
 
   render() {
     let content = [];
-    let recordList = myAPI.listRecord(this.props.home.selectedFormID);
+    let recordList = myAPI.listRecord(this.props.formManager.candidateFormID);
     for(let i=0; i<=recordList.length-1; i++) {
       content.push(<tr key={recordList[i].ID}>
         <th scope="row">{recordList[i].ID}</th>
@@ -44,7 +44,7 @@ class ExportTable extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  home: state.home
+  formManager: state.formManager,
 });
 const mapDispatch = { };
 
