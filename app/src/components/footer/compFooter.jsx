@@ -9,7 +9,7 @@ class CompFooter extends React.Component {
     return(
       <Navbar fixed="bottom" bg="dark">
         <Container>
-          <NavbarBrand>
+          <NavbarBrand className="ml-auto">
             <CompSave enable={enableSave}></CompSave>
           </NavbarBrand>
         </Container>

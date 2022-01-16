@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import ROUTES from "Constants/routes";
 import {
   validateLicenseRequest,
@@ -13,6 +14,7 @@ class Nav extends React.Component {
     this.state = {
       mobileMenuActive: false,
       licenseModalActive: false,
+      naviModalActive: false,
 
       // license-specific
       licenseValid: false,
@@ -24,6 +26,7 @@ class Nav extends React.Component {
 
     this.toggleMenu = this.toggleMenu.bind(this);
     this.toggleLicenseModal = this.toggleLicenseModal.bind(this);
+    this.toggleNaviModal = this.toggleNaviModal.bind(this);
     this.navigate = this.navigate.bind(this);
   }
 
@@ -79,18 +82,36 @@ class Nav extends React.Component {
     });
   }
 
+  toggleNaviModal(event) {
+    this.setState({
+      naviModalActive: !this.state.naviModalActive,
+    });
+  } 
+
+  hasUnsavedChangeRequest() {
+    if(this.props.companyManager.changeRequests.length!=0) {
+      return true;
+    }
+    return false;
+  }
+
   // Using a custom method to navigate because we
   // need to close the mobile menu if we navigate to
   // another page
   navigate(url) {
-    this.setState(
-      {
-        mobileMenuActive: false,
-      },
-      function () {
-        this.history.push(url);
-      }
-    );
+    if(this.hasUnsavedChangeRequest()) {
+      this.toggleNaviModal();
+    }
+    else {
+      this.setState(
+        {
+          mobileMenuActive: false,
+        },
+        function () {
+          this.history.push(url);
+        }
+      );
+    }
   }
 
   renderLicenseModal() {
@@ -165,6 +186,24 @@ class Nav extends React.Component {
     );
   }
 
+  renderNaviModal() {
+    return (
+      <div
+        className={`modal ${this.state.naviModalActive ? "is-active" : ""}`}>
+        <div className="modal-background"></div>
+        <div className="modal-content">
+        <div className="box">
+        <div>There are unsaved change request.</div>
+        </div>
+        </div>
+        <button
+          className="modal-close is-large"
+          aria-label="close"
+          onClick={this.toggleNaviModal}></button>
+      </div>
+    );
+  }
+
   render() {
     return (
       <nav
@@ -220,6 +259,7 @@ class Nav extends React.Component {
             </a>
           </div>
           {this.renderLicenseModal()}
+          {this.renderNaviModal()}
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
@@ -237,4 +277,9 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav;
+const mapStateToProps = (state, props) => ({
+  companyManager: state.companyManager
+});
+const mapDispatch = { };
+
+export default connect(mapStateToProps, mapDispatch)(Nav);
