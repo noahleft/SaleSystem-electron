@@ -22,36 +22,25 @@ function FormSubmit() {
 class RecordInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
 
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
-    // if (this.state.value != '') {
-    //   let CR = {ID:   e.target.formCompId.placeholder,
-    //             NAME: this.state.value};
-    //   this.props.addChangeRequest(CR);
-    // }
-    // // reset
-    // this.state.value = '';
-  }
-
-  handleChange(e) {
-    this.setState({value: e.target.value});
+    let CR = { 
+      ID: e.target.formRecordId.placeholder,
+      COMP_ID: e.target.formCompName.placeholder,
+      PROD_ID: e.target.formProdName.placeholder,
+    };
+    console.log(CR);
   }
 
   render() {
-    let display = {
-      ID: this.props.recordManager.candidateRecordID,
-      NAME: "",
-    };
     return (
     <Card>
       <Card.Title>Record Info</Card.Title>
       <Card.Body>
-        <Form as={Container} onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}><Container>
           <Row>
             <Col><FormID /></Col>
             <Col>Deliver Date:</Col>
@@ -68,7 +57,7 @@ class RecordInfo extends React.Component {
           </Row>
           <Row>
             <Col>
-              <PriceCard></PriceCard>
+              {/* <PriceCard></PriceCard> */}
             </Col>
             <Col>
               <FormQuan />
@@ -81,7 +70,7 @@ class RecordInfo extends React.Component {
               <FormSubmit />
             </Col>
           </Row>
-        </Form>
+          </Container></Form>
       </Card.Body>
     </Card>
     );

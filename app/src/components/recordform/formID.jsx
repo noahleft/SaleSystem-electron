@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Form, Row, Col, Button, Stack, Container } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 
 class FormID extends React.Component {
   constructor(props) {
@@ -8,15 +8,11 @@ class FormID extends React.Component {
   }
 
   render() {
-    let display = {
-      ID: this.props.recordManager.candidateRecordID,
-      NAME: "",
-    };
     return (
     <Form.Group as={Row} className="mb-3" controlId="formRecordId">
     <Form.Label column sm={4}>ID:</Form.Label>
     <Col sm={6}>
-    <Form.Control className="me-auto" placeholder={display.ID} readOnly />
+    <Form.Control className="me-auto" placeholder={this.props.recordManager.candidateRecordID} readOnly />
     </Col>
     </Form.Group>
     );
