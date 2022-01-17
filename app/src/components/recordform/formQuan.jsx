@@ -1,24 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Form, Row, Col, Button, Stack, Container } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 
 class FormQuan extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
 
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleSubmit(e) {
-    // if (this.state.value != '') {
-    //   let CR = {ID:   e.target.formCompId.placeholder,
-    //             NAME: this.state.value};
-    //   this.props.addChangeRequest(CR);
-    // }
-    // // reset
-    // this.state.value = '';
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {

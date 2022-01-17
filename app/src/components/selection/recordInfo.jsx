@@ -31,6 +31,9 @@ class RecordInfo extends React.Component {
       ID: e.target.formRecordId.placeholder,
       COMP_ID: e.target.formCompName.placeholder,
       PROD_ID: e.target.formProdName.placeholder,
+      UNIT_PRICE: e.target.formUnitPrice.placeholder,
+      DELIVER_DATE: "",
+      QUANTITY: e.target.formQuantity.placeholder,
     };
     console.log(CR);
   }
