@@ -26,7 +26,7 @@ class FormDate extends React.Component {
     }
     var dummy = {
       ID: id,
-      DELIVER_DATE: 0,
+      DELIVER_DATE: moment().format("YYYY-MM-DD"),
     };
     return dummy;
   }
