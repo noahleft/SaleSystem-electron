@@ -32,7 +32,7 @@ class RecordInfo extends React.Component {
       COMP_ID: e.target.formCompName.placeholder,
       PROD_ID: e.target.formProdName.placeholder,
       UNIT_PRICE: e.target.formUnitPrice.placeholder,
-      DELIVER_DATE: "",
+      DELIVER_DATE: e.target.formDeliverDate.placeholder,
       QUANTITY: e.target.formQuantity.placeholder,
     };
     console.log(CR);

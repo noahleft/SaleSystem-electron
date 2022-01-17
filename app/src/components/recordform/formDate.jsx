@@ -4,28 +4,18 @@ import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import moment from 'moment';
 import 'moment/locale/zh-tw';
+import { Form, Row, Col } from "react-bootstrap";
 
 class FormDate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
 
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleSubmit(e) {
-    // if (this.state.value != '') {
-    //   let CR = {ID:   e.target.formCompId.placeholder,
-    //             NAME: this.state.value};
-    //   this.props.addChangeRequest(CR);
-    // }
-    // // reset
-    // this.state.value = '';
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    this.setState({value: e.target.value});
+    this.setState({value: e.format("YYYY-MM-DD")});
   }
 
   getRecord() {
@@ -46,7 +36,12 @@ class FormDate extends React.Component {
       ID: this.props.recordManager.candidateRecordID,
       NAME: this.getRecord().DELIVER_DATE,
     };
-    return (<Datetime locale="zh-tw" dateFormat="YYYY-MM-DD" timeFormat={false} input={false} value={display.NAME} />
+    return (
+      <Form.Group as={Row} className="mb-3" controlId="formDeliverDate" ref="formDeliverDate">
+      <Form.Control className="me-auto" placeholder={display.NAME} type="text" value={this.state.value} readOnly/>
+      <Datetime locale="zh-tw" dateFormat="YYYY-MM-DD" timeFormat={false} input={false} value={display.NAME} 
+        onChange={this.handleChange} />
+      </Form.Group>
     );
   }
 }
