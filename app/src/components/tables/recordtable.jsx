@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
-import { changeCandidateRecordID } from "Redux/components/recordManager/recordManagerSlice";
+import { changeCandidateRecordListIdx } from "Redux/components/recordManager/recordManagerSlice";
 
 function HighlightText(props) {
   if(props.highlight)
@@ -19,6 +19,7 @@ class RecordTable extends React.Component {
   }
 
   getCompanyName(id) {
+    if(id==0) return "";
     let companyList = this.props.companyManager.companyList;
     for(let i=0; i<companyList.length; i++) {
       if(companyList[i].ID == id) return companyList[i].NAME;
@@ -27,6 +28,7 @@ class RecordTable extends React.Component {
   }
 
   getProductName(id) {
+    if(id==0) return "";
     let productList = this.props.productManager.productList;
     for(let i=0; i<productList.length; i++) {
       if(productList[i].ID == id) return productList[i].NAME;
@@ -34,9 +36,9 @@ class RecordTable extends React.Component {
     return "";
   }
 
-  genRow(obj) {
+  genRow(obj, idx) {
     return (<tr key={obj.ID} onClick={()=>{
-      this.props.changeCandidateRecordID(obj.ID);
+      this.props.changeCandidateRecordListIdx(idx);
       }}>
     <th scope="row">{obj.ID}</th>
     <td>{this.getCompanyName(obj.COMP_ID)}</td>
@@ -53,7 +55,7 @@ class RecordTable extends React.Component {
     let content = [];
     let recordList = myAPI.listRecord(this.props.formManager.candidateFormID);
     for(let i=0; i<=recordList.length-1; i++) {
-      content.push(this.genRow(recordList[i]));
+      content.push(this.genRow(recordList[i], i));
     }
     return (
     <div className="scrollTable">
@@ -83,6 +85,6 @@ const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
   recordManager: state.recordManager,
 });
-const mapDispatch = { changeCandidateRecordID };
+const mapDispatch = { changeCandidateRecordListIdx };
 
 export default connect(mapStateToProps, mapDispatch)(RecordTable);

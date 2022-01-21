@@ -16,8 +16,9 @@ class PriceCard extends React.Component {
   }
 
   render() {
+    const idx = this.props.recordManager.candidateRecordListIdx;
     let display = {
-      ID: this.props.recordManager.candidateRecordID,
+      ID: this.props.recordManager.recordList[idx].ID,
       NAME: "",
     };
     return (

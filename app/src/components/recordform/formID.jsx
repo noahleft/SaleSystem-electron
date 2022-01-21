@@ -8,11 +8,12 @@ class FormID extends React.Component {
   }
 
   render() {
+    const idx = this.props.recordManager.candidateRecordListIdx;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formRecordId">
     <Form.Label column sm={4}>ID:</Form.Label>
     <Col sm={6}>
-    <Form.Control className="me-auto" placeholder={this.props.recordManager.candidateRecordID} readOnly />
+    <Form.Control className="me-auto" placeholder={this.props.recordManager.recordList[idx].ID} readOnly />
     </Col>
     </Form.Group>
     );

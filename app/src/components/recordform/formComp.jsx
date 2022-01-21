@@ -15,7 +15,8 @@ class FormComp extends React.Component {
   }
 
   getRecord() {
-    let id = this.props.recordManager.candidateRecordID;
+    const idx = this.props.recordManager.candidateRecordListIdx;
+    let id = this.props.recordManager.recordList[idx].ID;
     let recordList = this.props.recordManager.recordList;
     for(let i=0; i<recordList.length; i++) {
       if(recordList[i].ID == id) return recordList[i];
@@ -37,8 +38,9 @@ class FormComp extends React.Component {
   }
 
   render() {
+    const idx = this.props.recordManager.candidateRecordListIdx;
     let display = {
-      ID: this.props.recordManager.candidateRecordID,
+      ID: this.props.recordManager.recordList[idx].ID,
       NAME: this.getCompanyName(this.getRecord().COMP_ID),
     };
     return (
