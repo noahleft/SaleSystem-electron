@@ -4,17 +4,24 @@ const recordManagerSlice = createSlice({
   name: "recordManager",
   initialState: {
     recordList: [],
+    originalList: [],
     candidateRecordListIdx: 0,
     changeRequests: [],
   },
   reducers: {
     updateRecordList(state, action) {
       state.recordList = action.payload;
+      state.originalList = action.payload;
       state.changeRequests = [];
     },
     changeCandidateRecordListIdx(state, action) {
-      const idx = action.payload;
-      state.candidateRecordListIdx = idx;
+      state.candidateRecordListIdx = action.payload;
+    },
+    changeCandidateRecordCompId(state, action) {
+      state.recordList[state.candidateRecordListIdx].COMP_ID = action.payload;
+    },
+    changeCandidateRecordProdId(state, action) {
+      state.recordList[state.candidateRecordListIdx].PROD_ID = action.payload;
     },
     addChangeRequest(state, action) {
       let CR = action.payload;
@@ -38,7 +45,8 @@ const recordManagerSlice = createSlice({
 });
 
 // Export actions
-export const { updateRecordList, changeCandidateRecordListIdx, addChangeRequest } = recordManagerSlice.actions;
+export const { updateRecordList, changeCandidateRecordListIdx, changeCandidateRecordCompId,
+  changeCandidateRecordProdId, addChangeRequest } = recordManagerSlice.actions;
 
 // Export reducer
 export default recordManagerSlice.reducer;

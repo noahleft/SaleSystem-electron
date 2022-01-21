@@ -36,13 +36,13 @@ class RecordTable extends React.Component {
     return "";
   }
 
-  genRow(obj, idx) {
+  genRow(idx, obj, ori) {
     return (<tr key={obj.ID} onClick={()=>{
       this.props.changeCandidateRecordListIdx(idx);
       }}>
     <th scope="row">{obj.ID}</th>
-    <td>{this.getCompanyName(obj.COMP_ID)}</td>
-    <td>{this.getProductName(obj.PROD_ID)}</td>
+    <td><HighlightText name={this.getCompanyName(obj.COMP_ID)} highlight={obj.COMP_ID!=ori.COMP_ID} /></td>
+    <td><HighlightText name={this.getProductName(obj.PROD_ID)} highlight={obj.PROD_ID!=ori.PROD_ID} /></td>
     <td>{obj.DELIVER_DATE}</td>
     <td>{obj.UNIT_PRICE}</td>
     <td>{obj.QUANTITY}</td>
@@ -53,9 +53,10 @@ class RecordTable extends React.Component {
 
   render() {
     let content = [];
-    let recordList = myAPI.listRecord(this.props.formManager.candidateFormID);
+    const recordList = this.props.recordManager.recordList;
+    const originalList = this.props.recordManager.originalList;
     for(let i=0; i<=recordList.length-1; i++) {
-      content.push(this.genRow(recordList[i], i));
+      content.push(this.genRow(i, recordList[i], originalList[i]));
     }
     return (
     <div className="scrollTable">

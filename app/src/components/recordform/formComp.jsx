@@ -1,31 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Form, Row, Col } from "react-bootstrap";
+import { changeCandidateRecordCompId } from "Redux/components/recordManager/recordManagerSlice";
 
 class FormComp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    this.setState({value: e.target.value});
-  }
-
-  getRecord() {
-    const idx = this.props.recordManager.candidateRecordListIdx;
-    let id = this.props.recordManager.recordList[idx].ID;
-    let recordList = this.props.recordManager.recordList;
-    for(let i=0; i<recordList.length; i++) {
-      if(recordList[i].ID == id) return recordList[i];
-    }
-    var dummy = {
-      ID: id,
-      COMP_ID: 0,
-    };
-    return dummy;
+    const comp_id = e.target.value;
+    this.props.changeCandidateRecordCompId(comp_id);
   }
 
   render() {
@@ -38,8 +25,8 @@ class FormComp extends React.Component {
     <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
     <Form.Label column sm={4}>Company:</Form.Label>
     <Col sm={6}>
-    <Form.Select aria-label="Select" value={comp_id} onChange={this.handleChange}>
-      <option key="0" value="0">Select</option>
+    <Form.Select value={comp_id} onChange={this.handleChange}>
+      <option key="0" value="0" disabled>Select</option>
       {content}
     </Form.Select>
     </Col>
@@ -52,6 +39,6 @@ const mapStateToProps = (state, props) => ({
   companyManager: state.companyManager,
   recordManager: state.recordManager
 });
-const mapDispatch = { };
+const mapDispatch = { changeCandidateRecordCompId };
 
 export default connect(mapStateToProps, mapDispatch)(FormComp);
