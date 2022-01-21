@@ -28,27 +28,20 @@ class FormComp extends React.Component {
     return dummy;
   }
 
-  getCompanyName(id) {
-    if(id==0) return "";
-    let companyList = this.props.companyManager.companyList;
-    for(let i=0; i<companyList.length; i++) {
-      if(companyList[i].ID == id) return companyList[i].NAME;
-    }
-    return "";
-  }
-
   render() {
+    const content = this.props.companyManager.companyList.map(function(obj){
+      return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
+    });
     const idx = this.props.recordManager.candidateRecordListIdx;
-    let display = {
-      ID: this.props.recordManager.recordList[idx].ID,
-      NAME: this.getCompanyName(this.getRecord().COMP_ID),
-    };
+    const comp_id = this.props.recordManager.recordList[idx].COMP_ID;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
     <Form.Label column sm={4}>Company:</Form.Label>
     <Col sm={6}>
-    <Form.Control className="me-auto" placeholder={display.NAME} 
-        type="text" value={this.state.value} onChange={this.handleChange} />
+    <Form.Select aria-label="Select" value={comp_id} onChange={this.handleChange}>
+      <option key="0" value="0">Select</option>
+      {content}
+    </Form.Select>
     </Col>
     </Form.Group>
     );

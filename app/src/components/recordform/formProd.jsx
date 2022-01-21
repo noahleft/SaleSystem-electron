@@ -38,17 +38,19 @@ class FormProd extends React.Component {
   }
 
   render() {
+    const content = this.props.productManager.productList.map(function(obj){
+      return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
+    });
     const idx = this.props.recordManager.candidateRecordListIdx;
-    let display = {
-      ID: this.props.recordManager.recordList[idx].ID,
-      NAME: this.getProductName(this.getRecord().PROD_ID),
-    };
+    const prod_id = this.props.recordManager.recordList[idx].PROD_ID;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formProdName" ref="formProdName">
     <Form.Label column sm={4}>Product:</Form.Label>
     <Col sm={6}>
-        <Form.Control className="me-auto" placeholder={display.NAME} 
-        type="text" value={this.state.value} onChange={this.handleChange} />
+    <Form.Select aria-label="Select" value={prod_id} onChange={this.handleChange}>
+      <option key="0" value="0">Select</option>
+      {content}
+    </Form.Select>
     </Col>
     </Form.Group>
     );
