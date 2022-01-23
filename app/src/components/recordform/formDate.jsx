@@ -15,8 +15,10 @@ class FormDate extends React.Component {
   }
 
   handleChange(e) {
-    const date = e.format("YYYY-MM-DD");
-    this.props.changeCandidateRecordDeliverDate(date);
+    if(this.props.recordManager.candidateRecordListIdx!=-1){
+      const date = e.format("YYYY-MM-DD");
+      this.props.changeCandidateRecordDeliverDate(date);
+    }
   }
 
   render() {
@@ -26,7 +28,7 @@ class FormDate extends React.Component {
       <Form.Group as={Row} className="mb-3" controlId="formDeliverDate" ref="formDeliverDate">
       <Form.Control className="me-auto" placeholder={deliver} type="text" value={deliver} readOnly/>
       <Datetime locale="zh-tw" dateFormat="YYYY-MM-DD" timeFormat={false} input={false} value={deliver} 
-        onChange={this.handleChange} />
+        onChange={this.handleChange}/>
       </Form.Group>
     );
   }

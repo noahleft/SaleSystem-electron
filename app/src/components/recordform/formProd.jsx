@@ -25,7 +25,7 @@ class FormProd extends React.Component {
     <Form.Group as={Row} className="mb-3" controlId="formProdName" ref="formProdName">
     <Form.Label column sm={4}>Product:</Form.Label>
     <Col sm={6}>
-    <Form.Select aria-label="Select" value={prod_id} onChange={this.handleChange}>
+    <Form.Select aria-label="Select" value={prod_id} onChange={this.handleChange} disabled={idx==-1}>
       <option key="0" value="0" disabled>Select</option>
       {content}
     </Form.Select>

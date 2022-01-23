@@ -22,7 +22,7 @@ class FormQuan extends React.Component {
     <Form.Group as={Row} className="mb-3" controlId="formQuantity" ref="formQuantity">
     <Form.Label column sm={4}>Quantity:</Form.Label>
     <Col sm={6}>
-        <Form.Control className="me-auto" placeholder={quantity} 
+        <Form.Control className="me-auto" placeholder={quantity} disabled={idx==-1}
         type="text" value={quantity} onChange={this.handleChange} />
     </Col>
     </Form.Group>
