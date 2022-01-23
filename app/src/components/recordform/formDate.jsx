@@ -21,14 +21,11 @@ class FormDate extends React.Component {
 
   render() {
     const idx = this.props.recordManager.candidateRecordListIdx;
-    let display = {
-      ID: this.props.recordManager.recordList[idx].ID,
-      NAME: this.props.recordManager.recordList[idx].DELIVER_DATE,
-    };
+    const deliver = (idx!=-1)?this.props.recordManager.recordList[idx].DELIVER_DATE:"";
     return (
       <Form.Group as={Row} className="mb-3" controlId="formDeliverDate" ref="formDeliverDate">
-      <Form.Control className="me-auto" placeholder={display.NAME} type="text" value={display.NAME} readOnly/>
-      <Datetime locale="zh-tw" dateFormat="YYYY-MM-DD" timeFormat={false} input={false} value={display.NAME} 
+      <Form.Control className="me-auto" placeholder={deliver} type="text" value={deliver} readOnly/>
+      <Datetime locale="zh-tw" dateFormat="YYYY-MM-DD" timeFormat={false} input={false} value={deliver} 
         onChange={this.handleChange} />
       </Form.Group>
     );

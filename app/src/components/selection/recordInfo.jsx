@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button, Stack, Container } from "react-bootstrap";
-import { addChangeRequest } from "Redux/components/recordManager/recordManagerSlice";
+import { addChangeRequest, addDummyRecord } from "Redux/components/recordManager/recordManagerSlice";
 import FormID from "Components/recordform/formID";
 import FormComp from "Components/recordform/formComp";
 import FormProd from "Components/recordform/formProd";
@@ -24,6 +24,7 @@ class RecordInfo extends React.Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNewRecord = this.handleNewRecord.bind(this);
   }
 
   handleSubmit(e) {
@@ -38,11 +39,26 @@ class RecordInfo extends React.Component {
     console.log(CR);
   }
 
+  handleNewRecord(e) {
+    const len = this.props.recordManager.recordList.length;
+    let dummy = {
+      ID: len+1,
+      COMP_ID: 0,
+      PROD_ID: 0,
+      UNIT_PRICE: "",
+      DELIVER_DATE: "",
+      QUANTITY: "",
+      DIRTY: false,
+    }
+    this.props.addDummyRecord(dummy);
+  }
+
   render() {
     return (
     <Card>
       <Card.Title>Record Info</Card.Title>
       <Card.Body>
+        <Button onClick={this.handleNewRecord}>New Record</Button>
         <Form onSubmit={this.handleSubmit}><Container>
           <Row>
             <Col><FormID /></Col>
@@ -83,6 +99,6 @@ class RecordInfo extends React.Component {
 const mapStateToProps = (state, props) => ({
   recordManager: state.recordManager
 });
-const mapDispatch = { addChangeRequest };
+const mapDispatch = { addChangeRequest, addDummyRecord };
 
 export default connect(mapStateToProps, mapDispatch)(RecordInfo);

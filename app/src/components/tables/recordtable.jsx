@@ -37,7 +37,7 @@ class RecordTable extends React.Component {
   }
 
   genRow(idx, obj, ori) {
-    return (<tr key={obj.ID} onClick={()=>{
+    return (<tr key={idx} onClick={()=>{
       this.props.changeCandidateRecordListIdx(idx);
       }}>
     <th scope="row">{obj.ID}</th>

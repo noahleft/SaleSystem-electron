@@ -20,7 +20,7 @@ class FormComp extends React.Component {
       return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
     });
     const idx = this.props.recordManager.candidateRecordListIdx;
-    const comp_id = this.props.recordManager.recordList[idx].COMP_ID;
+    const comp_id = (idx!=-1)?this.props.recordManager.recordList[idx].COMP_ID:0;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
     <Form.Label column sm={4}>Company:</Form.Label>

@@ -17,16 +17,13 @@ class FormQuan extends React.Component {
 
   render() {
     const idx = this.props.recordManager.candidateRecordListIdx;
-    let display = {
-      ID: this.props.recordManager.recordList[idx].ID,
-      NAME: this.props.recordManager.recordList[idx].QUANTITY,
-    };
+    const quantity = (idx!=-1)?this.props.recordManager.recordList[idx].QUANTITY:"";
     return (
     <Form.Group as={Row} className="mb-3" controlId="formQuantity" ref="formQuantity">
     <Form.Label column sm={4}>Quantity:</Form.Label>
     <Col sm={6}>
-        <Form.Control className="me-auto" placeholder={display.NAME} 
-        type="text" value={display.NAME} onChange={this.handleChange} />
+        <Form.Control className="me-auto" placeholder={quantity} 
+        type="text" value={quantity} onChange={this.handleChange} />
     </Col>
     </Form.Group>
     );

@@ -17,16 +17,13 @@ class FormPrice extends React.Component {
 
   render() {
     const idx = this.props.recordManager.candidateRecordListIdx;
-    let display = {
-      ID: this.props.recordManager.recordList[idx].ID,
-      NAME: this.props.recordManager.recordList[idx].UNIT_PRICE,
-    };
+    const price = (idx!=-1)?this.props.recordManager.recordList[idx].UNIT_PRICE:"";
     return (
     <Form.Group as={Row} className="mb-3" controlId="formUnitPrice" ref="formUnitPrice">
     <Form.Label column sm={4}>Unit Price:</Form.Label>
     <Col sm={6}>
-        <Form.Control className="me-auto" placeholder={display.NAME} 
-        type="text" value={display.NAME} onChange={this.handleChange} />
+        <Form.Control className="me-auto" placeholder={price} 
+        type="text" value={price} onChange={this.handleChange} />
     </Col>
     </Form.Group>
     );
