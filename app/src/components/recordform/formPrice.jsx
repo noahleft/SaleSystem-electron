@@ -1,45 +1,32 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Form, Row, Col } from "react-bootstrap";
+import { changeCandidateRecordUnitPrice } from "Redux/components/recordManager/recordManagerSlice";
 
 class FormPrice extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    this.setState({value: e.target.value});
-  }
-
-  getRecord() {
-    const idx = this.props.recordManager.candidateRecordListIdx;
-    let id = this.props.recordManager.recordList[idx].ID;
-    let recordList = this.props.recordManager.recordList;
-    for(let i=0; i<recordList.length; i++) {
-      if(recordList[i].ID == id) return recordList[i];
-    }
-    var dummy = {
-      ID: id,
-      UNIT_PRICE: "",
-    };
-    return dummy;
+    const price = e.target.value;
+    this.props.changeCandidateRecordUnitPrice(price);
   }
 
   render() {
     const idx = this.props.recordManager.candidateRecordListIdx;
     let display = {
       ID: this.props.recordManager.recordList[idx].ID,
-      NAME: this.getRecord().UNIT_PRICE,
+      NAME: this.props.recordManager.recordList[idx].UNIT_PRICE,
     };
     return (
     <Form.Group as={Row} className="mb-3" controlId="formUnitPrice" ref="formUnitPrice">
     <Form.Label column sm={4}>Unit Price:</Form.Label>
     <Col sm={6}>
         <Form.Control className="me-auto" placeholder={display.NAME} 
-        type="text" value={this.state.value} onChange={this.handleChange} />
+        type="text" value={display.NAME} onChange={this.handleChange} />
     </Col>
     </Form.Group>
     );
@@ -49,6 +36,6 @@ class FormPrice extends React.Component {
 const mapStateToProps = (state, props) => ({
   recordManager: state.recordManager
 });
-const mapDispatch = { };
+const mapDispatch = { changeCandidateRecordUnitPrice };
 
 export default connect(mapStateToProps, mapDispatch)(FormPrice);

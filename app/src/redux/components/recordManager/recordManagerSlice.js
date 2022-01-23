@@ -23,6 +23,15 @@ const recordManagerSlice = createSlice({
     changeCandidateRecordProdId(state, action) {
       state.recordList[state.candidateRecordListIdx].PROD_ID = action.payload;
     },
+    changeCandidateRecordDeliverDate(state, action) {
+      state.recordList[state.candidateRecordListIdx].DELIVER_DATE = action.payload;
+    },
+    changeCandidateRecordUnitPrice(state, action) {
+      state.recordList[state.candidateRecordListIdx].UNIT_PRICE = action.payload;
+    },
+    changeCandidateRecordQuantity(state, action) {
+      state.recordList[state.candidateRecordListIdx].QUANTITY = action.payload;
+    },
     addChangeRequest(state, action) {
       let CR = action.payload;
       state.changeRequests.push(CR);
@@ -46,7 +55,8 @@ const recordManagerSlice = createSlice({
 
 // Export actions
 export const { updateRecordList, changeCandidateRecordListIdx, changeCandidateRecordCompId,
-  changeCandidateRecordProdId, addChangeRequest } = recordManagerSlice.actions;
+  changeCandidateRecordProdId, changeCandidateRecordDeliverDate, changeCandidateRecordUnitPrice, 
+  changeCandidateRecordQuantity, addChangeRequest } = recordManagerSlice.actions;
 
 // Export reducer
 export default recordManagerSlice.reducer;

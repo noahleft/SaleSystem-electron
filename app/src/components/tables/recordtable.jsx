@@ -43,9 +43,9 @@ class RecordTable extends React.Component {
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={this.getCompanyName(obj.COMP_ID)} highlight={obj.COMP_ID!=ori.COMP_ID} /></td>
     <td><HighlightText name={this.getProductName(obj.PROD_ID)} highlight={obj.PROD_ID!=ori.PROD_ID} /></td>
-    <td>{obj.DELIVER_DATE}</td>
-    <td>{obj.UNIT_PRICE}</td>
-    <td>{obj.QUANTITY}</td>
+    <td><HighlightText name={obj.DELIVER_DATE} highlight={obj.DELIVER_DATE!=ori.DELIVER_DATE} /></td>
+    <td><HighlightText name={obj.UNIT_PRICE} highlight={obj.UNIT_PRICE!=ori.UNIT_PRICE} /></td>
+    <td><HighlightText name={obj.QUANTITY} highlight={obj.QUANTITY!=ori.QUANTITY} /></td>
     <td></td>
     </tr>
     );
