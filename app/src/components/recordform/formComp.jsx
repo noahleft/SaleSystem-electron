@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Form, Row, Col } from "react-bootstrap";
-import { changeCandidateRecordCompId } from "Redux/components/recordManager/recordManagerSlice";
+import { changeCandidateRecordCompId, changeCandidateRecordUnitPrice } from "Redux/components/recordManager/recordManagerSlice";
 
 class FormComp extends React.Component {
   constructor(props) {
@@ -13,6 +13,15 @@ class FormComp extends React.Component {
   handleChange(e) {
     const comp_id = e.target.value;
     this.props.changeCandidateRecordCompId(comp_id);
+
+    const record = this.props.recordManager.recordList[this.props.recordManager.candidateRecordListIdx];
+    if(record.INSERT && record.PROD_ID!=0) {
+      for(const obj of this.props.priceManager.priceList) {
+        if(obj.COMP_ID==comp_id && obj.PROD_ID==record.PROD_ID) {
+          this.props.changeCandidateRecordUnitPrice(obj.UNIT_PRICE);
+        }
+      }
+    }
   }
 
   render() {
@@ -37,8 +46,9 @@ class FormComp extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   companyManager: state.companyManager,
+  priceManager: state.priceManager,
   recordManager: state.recordManager
 });
-const mapDispatch = { changeCandidateRecordCompId };
+const mapDispatch = { changeCandidateRecordCompId, changeCandidateRecordUnitPrice };
 
 export default connect(mapStateToProps, mapDispatch)(FormComp);
