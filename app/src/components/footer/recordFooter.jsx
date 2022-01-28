@@ -5,7 +5,7 @@ import RecordSave from "Components/savebutton/recordSave";
 
 class RecordFooter extends React.Component {
   render() {
-    let enableSave = this.props.recordManager.changeRequests.length != 0;
+    let enableSave = this.props.recordManager.requireSaving;
     return(
       <Navbar fixed="bottom" bg="dark">
         <Container>

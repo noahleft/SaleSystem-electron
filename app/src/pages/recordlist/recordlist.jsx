@@ -25,6 +25,7 @@ class RecordList extends React.Component {
   
   render() {
     let message = myAPI.getForm(this.props.formManager.candidateFormID).NAME;
+    let disableExport = this.props.recordManager.requireSaving;
     return (
       <section className="section">
         <Container fluid>
@@ -33,7 +34,7 @@ class RecordList extends React.Component {
             <Button variant="primary"
               onClick={() => {
                 this.navigate(ROUTES.RECORDEXPORT);
-              }}>
+              }} disabled={disableExport}>
               Export
             </Button>
           </Col></Row>
@@ -48,6 +49,7 @@ class RecordList extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
+  recordManager: state.recordManager,
 });
 const mapDispatch = { };
 

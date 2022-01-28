@@ -11,17 +11,18 @@ class RecordSave extends React.Component {
   }
 
   saveAction() {
-    let CRList = this.props.recordManager.changeRequests.map(function(obj){
-      var rObj = {
-        id: obj.ID,
-        name: obj.NAME,
-        hide: "false",
-      };
-      return rObj;
-    });
+    // let CRList = this.props.recordManager.changeRequests.map(function(obj){
+    //   var rObj = {
+    //     id: obj.ID,
+    //     name: obj.NAME,
+    //     hide: "false",
+    //   };
+    //   return rObj;
+    // });
     // myAPI.handleCompanyChangeRequest(CRList);
 
-    let recordlist = myAPI.listRecord().map(function(obj){
+    let formId = this.props.formManager.candidateFormID;
+    let recordlist = myAPI.listRecord(formId).map(function(obj){
       obj.DIRTY = false;
       return obj;
     });
@@ -37,7 +38,8 @@ class RecordSave extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    recordManager: state.recordManager
+  formManager: state.formManager,
+  recordManager: state.recordManager
 });
 const mapDispatch = { updateRecordList };
 
