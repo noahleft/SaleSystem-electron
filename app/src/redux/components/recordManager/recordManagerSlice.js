@@ -25,41 +25,28 @@ const recordManagerSlice = createSlice({
     },
     changeCandidateRecordCompId(state, action) {
       state.recordList[state.candidateRecordListIdx].COMP_ID = action.payload;
+      state.recordList[state.candidateRecordListIdx].DIRTY = true;
       state.requireSaving = true;
     },
     changeCandidateRecordProdId(state, action) {
       state.recordList[state.candidateRecordListIdx].PROD_ID = action.payload;
+      state.recordList[state.candidateRecordListIdx].DIRTY = true;
       state.requireSaving = true;
     },
     changeCandidateRecordDeliverDate(state, action) {
       state.recordList[state.candidateRecordListIdx].DELIVER_DATE = action.payload;
+      state.recordList[state.candidateRecordListIdx].DIRTY = true;
       state.requireSaving = true;
     },
     changeCandidateRecordUnitPrice(state, action) {
       state.recordList[state.candidateRecordListIdx].UNIT_PRICE = action.payload;
+      state.recordList[state.candidateRecordListIdx].DIRTY = true;
       state.requireSaving = true;
     },
     changeCandidateRecordQuantity(state, action) {
       state.recordList[state.candidateRecordListIdx].QUANTITY = action.payload;
+      state.recordList[state.candidateRecordListIdx].DIRTY = true;
       state.requireSaving = true;
-    },
-    addChangeRequest(state, action) {
-      let CR = action.payload;
-      state.changeRequests.push(CR);
-    //   if(state.companyList.length < Number(CR.ID)) {
-    //     let companyItem = {
-    //       ID: Number(CR.ID),
-    //       NAME: CR.NAME,
-    //       DIRTY: false,
-    //     }
-    //     state.companyList.push(companyItem);
-    //   }
-    //   state.companyList.forEach(function(obj) {
-    //     if(obj.ID == CR.ID) {
-    //       obj.NAME = CR.NAME;
-    //       obj.DIRTY = true;
-    //     }
-    //   });
     },
   }
 });
@@ -67,7 +54,7 @@ const recordManagerSlice = createSlice({
 // Export actions
 export const { updateRecordList, changeCandidateRecordListIdx, changeCandidateRecordCompId,
   changeCandidateRecordProdId, changeCandidateRecordDeliverDate, changeCandidateRecordUnitPrice, 
-  changeCandidateRecordQuantity, addChangeRequest, addDummyRecord } = recordManagerSlice.actions;
+  changeCandidateRecordQuantity, addDummyRecord } = recordManagerSlice.actions;
 
 // Export reducer
 export default recordManagerSlice.reducer;

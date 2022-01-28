@@ -23,6 +23,7 @@ class FormTable extends React.Component {
   updateRecord(formId) {
     let recordlist = myAPI.listRecord(formId).map(function(obj){
       obj.DIRTY = false;
+      obj.INSERT = false;
       return obj;
     });
     this.props.updateRecordList(recordlist);

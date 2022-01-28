@@ -11,15 +11,25 @@ class RecordSave extends React.Component {
   }
 
   saveAction() {
-    // let CRList = this.props.recordManager.changeRequests.map(function(obj){
-    //   var rObj = {
-    //     id: obj.ID,
-    //     name: obj.NAME,
-    //     hide: "false",
-    //   };
-    //   return rObj;
-    // });
-    // myAPI.handleCompanyChangeRequest(CRList);
+    let modifiedList = this.props.recordManager.recordList.filter(function(obj){
+      if(obj.DIRTY) return true;
+      return false;
+    });
+    let CRList = modifiedList.map(function(obj){
+      var rObj = {
+        id: obj.INSERT?0:obj.ID,
+        comp_id: obj.COMP_ID,
+        prod_id: obj.PROD_ID,
+        form_id: obj.FORM_ID,
+        created_date: obj.CREATED_DATE,
+        deliver_date: obj.DELIVER_DATE,
+        unit_price: obj.UNIT_PRICE,
+        quantity: obj.QUANTITY,
+        hide: "false",
+      };
+      return rObj;
+    });
+    myAPI.handleRecordChangeRequest(CRList);
 
     let formId = this.props.formManager.candidateFormID;
     let recordlist = myAPI.listRecord(formId).map(function(obj){

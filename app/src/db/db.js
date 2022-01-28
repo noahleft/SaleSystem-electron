@@ -127,6 +127,32 @@ class DbManager {
         const row = this.db.prepare('SELECT * FROM record WHERE form_id = ?').all(formId);
         return row;
     }
+    addRecord(recordList) {
+        const insert = this.db.prepare('INSERT INTO record (comp_id, prod_id, form_id, created_date, deliver_date, unit_price, quantity, hide) VALUES (@comp_id, @prod_id, @form_id, @created_date, @deliver_date, @unit_price, @quantity, @hide);');
+        const insertMany = this.db.transaction((recordList) => {
+            for (const record of recordList) insert.run(record);
+          });
+        insertMany(recordList);
+    }
+    updateRecord(recordList) {
+        const update = this.db.prepare('UPDATE record SET comp_id = (@comp_id), prod_id = (@prod_id), form_id = (@form_id), created_date = (@created_date), deliver_date = (@deliver_date), unit_price = (@unit_price), quantity = (@quantity), hide = (@hide) WHERE id = (@id);');
+        const updateMany = this.db.transaction((recordList) => {
+            for (const record of recordList) update.run(record);
+        });
+        updateMany(recordList);
+    }
+    handleRecordChangeRequest(recordList) {
+        const insertList = recordList.filter(function(obj){
+            if(obj.id == 0) return true;
+            return false;
+        });
+        this.addRecord(insertList);
+        const updateList = recordList.filter(function(obj){
+            if(obj.id != 0) return true;
+            return false;
+        });
+        this.updateRecord(updateList);
+    }
 }
 
 const manager = new DbManager();

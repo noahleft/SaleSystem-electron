@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button, Stack, Container } from "react-bootstrap";
-import { addChangeRequest, addDummyRecord, changeCandidateRecordListIdx } from "Redux/components/recordManager/recordManagerSlice";
+import { addDummyRecord, changeCandidateRecordListIdx } from "Redux/components/recordManager/recordManagerSlice";
 import FormID from "Components/recordform/formID";
 import FormComp from "Components/recordform/formComp";
 import FormProd from "Components/recordform/formProd";
@@ -9,6 +9,7 @@ import FormPrice from "Components/recordform/formPrice";
 import FormQuan from "Components/recordform/formQuan";
 import FormDate from "Components/recordform/formDate";
 import PriceCard from "Components/shortcut/priceCard";
+import moment from 'moment';
 
 class RecordInfo extends React.Component {
   constructor(props) {
@@ -23,10 +24,13 @@ class RecordInfo extends React.Component {
       ID: len+1,
       COMP_ID: 0,
       PROD_ID: 0,
+      FORM_ID: this.props.formManager.candidateFormID,
       UNIT_PRICE: "",
-      DELIVER_DATE: "",
+      CREATED_DATE: moment().format('YYYY-MM-DD'),
+      DELIVER_DATE: moment().format('YYYY-MM-DD'),
       QUANTITY: "",
       DIRTY: false,
+      INSERT: true,
     }
     this.props.addDummyRecord(dummy);
     this.props.changeCandidateRecordListIdx(len);
@@ -75,8 +79,9 @@ class RecordInfo extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
+  formManager: state.formManager,
   recordManager: state.recordManager
 });
-const mapDispatch = { addChangeRequest, addDummyRecord, changeCandidateRecordListIdx };
+const mapDispatch = { addDummyRecord, changeCandidateRecordListIdx };
 
 export default connect(mapStateToProps, mapDispatch)(RecordInfo);
