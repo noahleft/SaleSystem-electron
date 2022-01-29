@@ -5,6 +5,7 @@ import RecordInfo from "Components/selection/recordInfo";
 import RecordTable from "Components/tables/recordtable";
 import RecordFooter from "Components/footer/recordFooter";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { updateExportList } from "Redux/components/exportManager/exportManagerSlice";
 
 class RecordList extends React.Component {
   constructor(props) {
@@ -33,6 +34,8 @@ class RecordList extends React.Component {
             {message}
             <Button variant="primary"
               onClick={() => {
+                let exportList = myAPI.listRecord(this.props.formManager.candidateFormID);
+                this.props.updateExportList(exportList);
                 this.navigate(ROUTES.RECORDEXPORT);
               }} disabled={disableExport}>
               Export
@@ -50,7 +53,8 @@ class RecordList extends React.Component {
 const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
   recordManager: state.recordManager,
+  exportManager: state.exportManager,
 });
-const mapDispatch = { };
+const mapDispatch = { updateExportList };
 
 export default connect(mapStateToProps, mapDispatch)(RecordList);

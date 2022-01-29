@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import ExportTable from "Components/tables/exporttable";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Stack } from "react-bootstrap";
+import ExportSelect from "Components/dropdowns/exportselect";
 
 class RecordExport extends React.Component {
 
@@ -10,11 +11,13 @@ class RecordExport extends React.Component {
     return (
       <section className="section">
         <Container fluid>
-          <Row className="title is-1"><Col>
-            {message}
-          </Col></Row>
+          <Row className="title is-1">
+            <Stack direction="horizontal">
+              <div>{message}</div>
+              <div className="ms-auto"><ExportSelect></ExportSelect></div>
+            </Stack>
+          </Row>
           <ExportTable></ExportTable>
-          Total:
         </Container>
       </section>
     );
