@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import { changeCandidateProdID } from "Redux/components/productManager/productManagerSlice";
+import { withTranslation } from "react-i18next";
 
 function HighlightText(props) {
   if(props.highlight)
@@ -45,6 +46,7 @@ class ProductTable extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     let content = [];
     let productList = this.props.productManager.productList;
     for(let i=0; i<=productList.length-1; i++) {
@@ -58,7 +60,7 @@ class ProductTable extends React.Component {
     <thead>
       <tr>
         <th scope="col" width="80px">#</th>
-        <th scope="col">Product Name</th>
+        <th scope="col">{t("Name")}</th>
       </tr>
     </thead>
     <tbody>
@@ -74,4 +76,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { changeCandidateProdID };
 
-export default connect(mapStateToProps, mapDispatch)(ProductTable);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(ProductTable));

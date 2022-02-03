@@ -4,6 +4,7 @@ import { changeCandidateFormID } from "Redux/components/formManager/formManagerS
 import { updateRecordList } from "Redux/components/recordManager/recordManagerSlice";
 import { connect } from "react-redux";
 import { Table, Button } from "react-bootstrap";
+import { withTranslation } from "react-i18next";
 
 function HighlightText(props) {
   if(props.highlight)
@@ -68,6 +69,7 @@ class FormTable extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     let content = [];
     let formList = this.props.formManager.formList;
     for(let i=0; i<=formList.length-1; i++) {
@@ -81,7 +83,7 @@ class FormTable extends React.Component {
     <thead>
       <tr>
         <th scope="col" width="80px">#</th>
-        <th scope="col">Form Name</th>
+        <th scope="col">{t("Name")}</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -99,4 +101,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { changeCandidateFormID, updateRecordList };
 
-export default connect(mapStateToProps, mapDispatch)(FormTable);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(FormTable));

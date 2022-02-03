@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import PriceRow from "Components/selection/priceRow";
+import { withTranslation } from "react-i18next";
 
 class PriceTable extends React.Component {
   componentWillUnmount() {
@@ -23,6 +24,7 @@ class PriceTable extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     let content = [];
     let compPriceList = this.props.productManager.productList.map(function(obj){
       var rObj = {
@@ -50,9 +52,9 @@ class PriceTable extends React.Component {
     <thead>
       <tr>
         <th scope="col" width="80px">#</th>
-        <th scope="col">Product Name</th>
-        <th scope="col">Unit Price</th>
-        <th scope="col">Edit</th>
+        <th scope="col">{t("Product")}</th>
+        <th scope="col">{t("UnitPrice")}</th>
+        <th scope="col">{t("EditPrice")}</th>
       </tr>
     </thead>
     <tbody> 
@@ -71,4 +73,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { };
 
-export default connect(mapStateToProps, mapDispatch)(PriceTable);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(PriceTable));

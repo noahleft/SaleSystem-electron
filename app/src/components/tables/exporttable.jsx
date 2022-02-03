@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Table, Stack } from "react-bootstrap";
+import { withTranslation } from "react-i18next";
 
 class ExportTable extends React.Component {
   componentWillUnmount() {
@@ -11,6 +12,7 @@ class ExportTable extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     let content = [];
     function isSelectedCompID(CompId) {
       return function(obj) {
@@ -30,6 +32,7 @@ class ExportTable extends React.Component {
         <td>{recordList[i].QUANTITY}</td>
         <td>{recordList[i].UNIT_PRICE}</td>
         <td>{sum}</td>
+        <td></td>
         </tr>)
     }
     return (
@@ -38,11 +41,12 @@ class ExportTable extends React.Component {
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
-              <th scope="col">Deliver_Date</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Unit Price</th>
-              <th scope="col">Sum</th>
+              <th scope="col">{t("DeliverDate")}</th>
+              <th scope="col">{t("Item")}</th>
+              <th scope="col">{t("Quantity")}</th>
+              <th scope="col">{t("UnitPrice")}</th>
+              <th scope="col">{t("Sum")}</th>
+              <th scope="col">{t("Note")}</th>
             </tr>
           </thead>
           <tbody> 
@@ -64,4 +68,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { };
 
-export default connect(mapStateToProps, mapDispatch)(ExportTable);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(ExportTable));

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import { changeCandidateRecordListIdx } from "Redux/components/recordManager/recordManagerSlice";
+import { withTranslation } from "react-i18next";
 
 function HighlightText(props) {
   if(props.highlight)
@@ -52,6 +53,7 @@ class RecordTable extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     let content = [];
     const recordList = this.props.recordManager.recordList;
     const originalList = this.props.recordManager.originalList;
@@ -64,12 +66,12 @@ class RecordTable extends React.Component {
       <thead>
         <tr>
           <th scope="col" width="80px">#</th>
-          <th scope="col">Company Name</th>
-          <th scope="col">Product Name</th>
-          <th scope="col">Deliver_Date</th>
-          <th scope="col">Unit Price</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Note</th>
+          <th scope="col">{t("CompanyName")}</th>
+          <th scope="col">{t("ProductName")}</th>
+          <th scope="col">{t("DeliverDate")}</th>
+          <th scope="col">{t("UnitPrice")}</th>
+          <th scope="col">{t("Quantity")}</th>
+          <th scope="col">{t("Note")}</th>
         </tr>
       </thead>
       <tbody> 
@@ -88,4 +90,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { changeCandidateRecordListIdx };
 
-export default connect(mapStateToProps, mapDispatch)(RecordTable);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(RecordTable));
