@@ -24,6 +24,7 @@ const crypto = require("crypto");
 const isDev = process.env.NODE_ENV === "development";
 const port = 40992; // Hardcoded; needs to match webpack.development.js and package.json
 const selfHost = `http://localhost:${port}`;
+const {DbManager} = require("../src/db/db");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -44,6 +45,10 @@ async function createWindow() {
   }
 
   const store = new Store({
+    path: app.getPath("userData")
+  });
+
+  const manager = new DbManager({
     path: app.getPath("userData")
   });
 

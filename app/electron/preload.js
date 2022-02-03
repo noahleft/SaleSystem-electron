@@ -5,16 +5,12 @@ const Store = require("secure-electron-store").default;
 const ContextMenu = require("secure-electron-context-menu").default;
 const SecureElectronLicenseKeys = require("secure-electron-license-keys");
 const {DbManager} = require("../src/db/db");
-const path = require("path");
 
 // Create the electron store to be made available in the renderer process
 const store = new Store();
 
-// Connect Db
-const arg = process.argv.filter(p => p.indexOf("dbPath:") >= 0)[0];
-const dbPath = arg.substr(arg.indexOf(":") + 1);
+// Create Db manager for render
 const manager = new DbManager();
-manager.connectDb(path.join(dbPath,"sample.db"));
 
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object

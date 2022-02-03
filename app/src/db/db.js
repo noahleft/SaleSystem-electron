@@ -1,7 +1,17 @@
 const Sqlite3 = require('better-sqlite3');
+const path = require("path");
 
 class DbManager {
-    connectDb(dbPath) {
+    constructor(options) {
+        if(typeof options === "undefined") {
+            const arg = process.argv.filter(p => p.indexOf("dbPath:") >= 0)[0];
+            const dbPath = arg.substr(arg.indexOf(":") + 1);
+            options = {
+                path: dbPath,
+            };
+        }
+        const dbPath = path.join(options.path, "sample.db");
+        
         this.db = Sqlite3(dbPath);
     }
     listCompany() {
