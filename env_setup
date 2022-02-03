@@ -1,0 +1,4 @@
+# disable code sign on mac os,
+# https://www.electron.build/code-signing.html#how-to-disable-code-signing-during-the-build-process-on-macos
+export CSC_IDENTITY_AUTO_DISCOVERY=false
+
