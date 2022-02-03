@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { changeSelectedCompID } from "Redux/components/priceManager/priceManagerSlice";
+import { withTranslation } from "react-i18next";
 
 class CompSelect extends React.Component {
   componentWillUnmount() {
@@ -12,9 +13,10 @@ class CompSelect extends React.Component {
   }
 
   render() {
-    let content = [<Dropdown.Item key='0' onClick={()=>{this.props.changeSelectedCompID(0);}}>Select</Dropdown.Item>];
+    const { t } = this.props;
+    let title = t("SelectCompany");
+    let content = [<Dropdown.Item key='0' onClick={()=>{this.props.changeSelectedCompID(0);}} disabled>{title}</Dropdown.Item>];
     const companyList = this.props.companyManager.companyList;
-    let title = "Select";
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(
         <Dropdown.Item key={companyList[i].ID} onClick={()=>{
@@ -41,4 +43,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { changeSelectedCompID };
 
-export default connect(mapStateToProps, mapDispatch)(CompSelect);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(CompSelect));

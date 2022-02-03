@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavDropdown } from "react-bootstrap";
 import { changeSelectedCompID } from "Redux/components/exportManager/exportManagerSlice";
+import { withTranslation } from "react-i18next";
 
 class ExportSelect extends React.Component {
   componentWillUnmount() {
@@ -12,9 +13,10 @@ class ExportSelect extends React.Component {
   }
 
   render() {
-    let content = [<NavDropdown.Item key='0' onClick={()=>{this.props.changeSelectedCompID(0);}}>All</NavDropdown.Item>];
+    const { t } = this.props;
+    let title = t("AllCompany");
+    let content = [<NavDropdown.Item key='0' onClick={()=>{this.props.changeSelectedCompID(0);}}>{title}</NavDropdown.Item>];
     const companyList = this.props.companyManager.companyList;
-    let title = "All";
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(
         <NavDropdown.Item key={companyList[i].ID} onClick={()=>{
@@ -41,4 +43,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { changeSelectedCompID };
 
-export default connect(mapStateToProps, mapDispatch)(ExportSelect);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(ExportSelect));
