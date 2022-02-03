@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import RecordInfo from "Components/selection/recordInfo";
 import RecordTable from "Components/tables/recordtable";
 import RecordFooter from "Components/footer/recordFooter";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Stack, Button } from "react-bootstrap";
 import { updateExportList } from "Redux/components/exportManager/exportManagerSlice";
 
 class RecordList extends React.Component {
@@ -30,17 +30,21 @@ class RecordList extends React.Component {
     return (
       <section className="section">
         <Container fluid>
-          <Row className="title is-1"><Col>
-            {message}
-            <Button variant="primary"
-              onClick={() => {
-                let exportList = myAPI.listRecord(this.props.formManager.candidateFormID);
-                this.props.updateExportList(exportList);
-                this.navigate(ROUTES.RECORDEXPORT);
-              }} disabled={disableExport}>
-              Export
-            </Button>
-          </Col></Row>
+          <Row className="title is-1">
+            <Stack direction="horizontal">
+              <div>{message}</div>
+              <div className="ms-auto">
+                <Button variant="primary"
+                  onClick={() => {
+                    let exportList = myAPI.listRecord(this.props.formManager.candidateFormID);
+                    this.props.updateExportList(exportList);
+                    this.navigate(ROUTES.RECORDEXPORT);
+                  }} disabled={disableExport}>
+                  Export
+                </Button>
+              </div>
+            </Stack>
+          </Row>
           <RecordTable></RecordTable>
         </Container>
         <RecordInfo></RecordInfo>
