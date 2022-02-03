@@ -65,7 +65,8 @@ async function createWindow() {
       nodeIntegrationInSubFrames: false,
       contextIsolation: true,
       enableRemoteModule: false,
-      additionalArguments: [`storePath:${app.getPath("userData")}`],
+      additionalArguments: [`storePath:${app.getPath("userData")}`,
+                            `dbPath:${app.getPath("userData")}`],
       preload: path.join(__dirname, "preload.js"),
       /* eng-disable PRELOAD_JS_CHECK */
       disableBlinkFeatures: "Auxclick"
