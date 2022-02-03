@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button } from "react-bootstrap";
 import { addChangeRequest } from "Redux/components/formManager/formManagerSlice";
+import { withTranslation } from "react-i18next";
 
 class FormInfo extends React.Component {
   constructor(props) {
@@ -35,13 +36,14 @@ class FormInfo extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     let display = {
       ID: this.props.formManager.candidateFormID,
       NAME: this.getFormName(this.props.formManager.candidateFormID),
     };
     return (
     <Card>
-      <Card.Title>Form Info</Card.Title>
+      <Card.Title>{t("FormInfo")}</Card.Title>
       <Card.Body>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formFormId">
@@ -74,4 +76,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { addChangeRequest };
 
-export default connect(mapStateToProps, mapDispatch)(FormInfo);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(FormInfo));

@@ -10,6 +10,7 @@ import FormQuan from "Components/recordform/formQuan";
 import FormDate from "Components/recordform/formDate";
 import PriceCard from "Components/shortcut/priceCard";
 import moment from 'moment';
+import { withTranslation } from "react-i18next";
 
 class RecordInfo extends React.Component {
   constructor(props) {
@@ -37,9 +38,10 @@ class RecordInfo extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
     <Card>
-      <Card.Title>Record Info</Card.Title>
+      <Card.Title>{t("RecordInfo")}</Card.Title>
       <Card.Body>
         <Button onClick={this.handleNewRecord}>New Record</Button>
         <Form><Container>
@@ -84,4 +86,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { addDummyRecord, changeCandidateRecordListIdx };
 
-export default connect(mapStateToProps, mapDispatch)(RecordInfo);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(RecordInfo));

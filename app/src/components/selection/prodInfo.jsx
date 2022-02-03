@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button } from "react-bootstrap";
 import { addChangeRequest } from "Redux/components/productManager/productManagerSlice";
+import { withTranslation } from "react-i18next";
 
 class ProdInfo extends React.Component {
   constructor(props) {
@@ -35,13 +36,14 @@ class ProdInfo extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     let display = {
       ID: this.props.productManager.candidateProdID,
       NAME: this.getProductName(this.props.productManager.candidateProdID),
     };
     return (
     <Card>
-      <Card.Title>Product Info</Card.Title>
+      <Card.Title>{t("ProductInfo")}</Card.Title>
       <Card.Body>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formProdId">
@@ -74,4 +76,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { addChangeRequest };
 
-export default connect(mapStateToProps, mapDispatch)(ProdInfo);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(ProdInfo));

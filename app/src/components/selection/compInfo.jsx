@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button } from "react-bootstrap";
 import { addChangeRequest } from "Redux/components/companyManager/companyManagerSlice";
+import { withTranslation } from "react-i18next";
 
 class CompInfo extends React.Component {
   constructor(props) {
@@ -35,13 +36,14 @@ class CompInfo extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     let display = {
       ID: this.props.companyManager.candidateCompID,
       NAME: this.getCompanyName(this.props.companyManager.candidateCompID),
     };
     return (
     <Card>
-      <Card.Title>Company Info</Card.Title>
+      <Card.Title>{t("CompanyInfo")}</Card.Title>
       <Card.Body>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formCompId">
@@ -74,4 +76,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { addChangeRequest };
 
-export default connect(mapStateToProps, mapDispatch)(CompInfo);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(CompInfo));
