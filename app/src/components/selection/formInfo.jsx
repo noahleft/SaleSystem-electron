@@ -53,7 +53,7 @@ class FormInfo extends React.Component {
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formFormName" ref="formFormName">
-            <Form.Label column sm={2}>Form Name:</Form.Label>
+            <Form.Label column sm={2}>{t("FormName")}:</Form.Label>
             <Col sm={10}>
               <Form.Control className="me-auto" placeholder={display.NAME} 
               type="text" value={this.state.value} onChange={this.handleChange} />
@@ -61,7 +61,7 @@ class FormInfo extends React.Component {
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
             <Col sm={{span: 10, offset:2}}>
-              <Button type="submit">Submit</Button>
+              <Button type="submit">{t("Submit")}</Button>
             </Col>
           </Form.Group>
         </Form>
