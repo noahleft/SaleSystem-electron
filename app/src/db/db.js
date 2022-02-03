@@ -155,5 +155,4 @@ class DbManager {
     }
 }
 
-const manager = new DbManager();
-module.exports = manager;
+module.exports = { DbManager };
