@@ -5,6 +5,25 @@ const isMac = process.platform === "darwin";
 
 const MenuBuilder = function(mainWindow, appName) {
 
+  function handleClickPrint(menuItem, browserWindow, event) {
+    var options = {
+      silent: false,
+      printBackground: true,
+      color: false,
+      margin: {
+        marginType: 'printableArea',
+      },
+      landscape: false,
+      pagesPerSheet: 1,
+      collate: false,
+      copies: 1,
+    }
+    browserWindow.webContents.print(options, (success, failureReason) => {
+      if(!success) console.log(failureReason);
+      
+    })
+  }
+
   // https://electronjs.org/docs/api/menu#main-process
   const defaultTemplate = function(i18nextMainBackend) {
     return [
@@ -63,7 +82,12 @@ const MenuBuilder = function(mainWindow, appName) {
             : {
                 role: "quit",
                 label: i18nextMainBackend.t("Exit")
-              }
+              },
+              {
+                role: "print",
+                click: handleClickPrint,
+                label: i18nextMainBackend.t("Print")
+              },
         ]
       },
       // { role: "editMenu" }
