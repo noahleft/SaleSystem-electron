@@ -9,6 +9,9 @@ const manager = require("../src/db/db")
 // Create the electron store to be made available in the renderer process
 const store = new Store();
 
+// Connect Db
+manager.connectDb("sample.db");
+
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object
 contextBridge.exposeInMainWorld("api", {

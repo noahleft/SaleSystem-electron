@@ -1,7 +1,7 @@
 const Sqlite3 = require('better-sqlite3');
 
 class DbManager {
-    constructor(dbPath) {
+    connectDb(dbPath) {
         this.db = Sqlite3(dbPath);
     }
     listCompany() {
@@ -155,5 +155,5 @@ class DbManager {
     }
 }
 
-const manager = new DbManager("sample.db");
+const manager = new DbManager();
 module.exports = manager;
