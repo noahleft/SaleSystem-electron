@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ExportTable from "Components/tables/exporttable";
 import { Container, Row, Card, Navbar, Nav } from "react-bootstrap";
 import ExportSelect from "Components/dropdowns/exportselect";
+import { withTranslation } from "react-i18next";
 import "./print.css";
 
 class RecordExport extends React.Component {
@@ -15,13 +16,14 @@ class RecordExport extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     let formName = this.getFormName();
     let message = "Records" + this.getCompanyName() + formName;
     return (
       <section className="section">
         <Navbar bg="light">
           <Container>
-            <Navbar.Brand>Print {formName}</Navbar.Brand>
+            <Navbar.Brand>{t("ExportTitle")} {formName}</Navbar.Brand>
             <Nav className="me-auto">
               <ExportSelect/>
             </Nav>
@@ -48,4 +50,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { };
 
-export default connect(mapStateToProps, mapDispatch)(RecordExport);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(RecordExport));

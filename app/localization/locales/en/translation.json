@@ -1,5 +1,10 @@
 {
-  "WelcomeTitle":"Sale system for invoice.",
+  "WelcomeTitle": "Sale system for invoice.",
+  "CompanyTitle": "Company View",
+  "ProductTitle": "Product View",
+  "PriceTitle": "Unit Price View",
+  "FormTitle": "Form View",
+  "ExportTitle": "Print",
   "Home": "Home",
   "CompanyList": "CompanyList",
   "ProductList": "ProductList",

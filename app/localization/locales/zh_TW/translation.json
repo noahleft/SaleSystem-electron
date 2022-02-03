@@ -1,5 +1,10 @@
 {
   "WelcomeTitle":"表單系統",
+  "CompanyTitle": "公司列表",
+  "ProductTitle": "產品列表",
+  "PriceTitle": "單價列表",
+  "FormTitle": "表單列表",
+  "ExportTitle": "列印",
   "Home": "首頁",
   "CompanyList": "公司",
   "ProductList": "產品",
