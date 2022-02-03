@@ -24,5 +24,17 @@
   "Zoom": "放大",
   "Close": "關閉",
   "Help": "幫助",
-  "Learn More": "了解更多"
+  "Learn More": "了解更多",
+  "About": "關於",
+  "Services": "服務",
+  "Hide": "隱藏",
+  "Hide Others": "隱藏其他",
+  "Unhide": "取消隱藏",
+  "Quit": "離開",
+  "Paste and Match Style": "貼上並符合樣式",
+  "Speech": "朗讀",
+  "Start Speaking": "開始朗讀",
+  "Stop Speaking": "結束朗讀",
+  "Front": "移到前面",
+  "Print": "列印"
 }
