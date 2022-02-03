@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Stack } from "react-bootstrap";
 import CompInfo from "Components/selection/compInfo";
 import CompanyTable from "Components/tables/companytable";
 import CompFooter from "Components/footer/compFooter";
@@ -11,7 +11,11 @@ class CompanyList extends React.Component {
     return (
       <section className="section">
           <Container fluid>
-            <Row className="title is-1">{t("CompanyTitle")}</Row>
+            <Row className="title is-1">
+              <Stack direction="horizontal">
+                <div>{t("CompanyTitle")}</div>
+              </Stack>
+            </Row>
             <Row><CompanyTable></CompanyTable></Row>
           </Container><hr />
           <CompInfo></CompInfo>
