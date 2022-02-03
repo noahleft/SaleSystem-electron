@@ -1,5 +1,11 @@
 {
   "WelcomeTitle":"表單系統",
+  "Home": "首頁",
+  "CompanyList": "公司",
+  "ProductList": "產品",
+  "UnitPriceList": "單價",
+  "FormList": "表單",
+  "CheckLicense": "許可證",
   "Hello": "你好",
   "File": "檔案",
   "Exit": "退出",

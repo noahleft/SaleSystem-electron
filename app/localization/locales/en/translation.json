@@ -1,5 +1,11 @@
 {
   "WelcomeTitle":"Sale system for invoice.",
+  "Home": "Home",
+  "CompanyList": "CompanyList",
+  "ProductList": "ProductList",
+  "UnitPriceList": "Unit Price List",
+  "FormList": "FormList",
+  "CheckLicense": "Check license",
   "Hello": "Hello",
   "File": "File",
   "Exit": "Exit",

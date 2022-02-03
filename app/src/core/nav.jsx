@@ -5,6 +5,7 @@ import {
   validateLicenseRequest,
   validateLicenseResponse,
 } from "secure-electron-license-keys";
+import { withTranslation } from "react-i18next";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -217,6 +218,7 @@ class Nav extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <nav
         className="navbar is-dark"
@@ -246,28 +248,28 @@ class Nav extends React.Component {
             <a
               className="navbar-item"
               onClick={() => this.navigate(ROUTES.WELCOME)}>
-              Home
+              {t("Home")}
             </a>
 
             <a
               className="navbar-item"
               onClick={() => this.navigate(ROUTES.COMPANYLIST)}>
-              CompanyList
+              {t("CompanyList")}
             </a>
             <a
               className="navbar-item"
               onClick={() => this.navigate(ROUTES.PRODUCTLIST)}>
-              ProductList
+              {t("ProductList")}
             </a>
             <a
               className="navbar-item"
               onClick={() => this.navigate(ROUTES.PRICELIST)}>
-              Unit Price List
+              {t("UnitPriceList")}
             </a>
             <a
               className="navbar-item"
               onClick={() => this.navigate(ROUTES.FORMLIST)}>
-              Form List
+              {t("FormList")}
             </a>
           </div>
           {this.renderLicenseModal()}
@@ -278,7 +280,7 @@ class Nav extends React.Component {
                 <a
                   className="button is-light"
                   onClick={this.toggleLicenseModal}>
-                  Check license
+                  {t("CheckLicense")}
                 </a>
               </div>
             </div>
@@ -298,4 +300,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { };
 
-export default connect(mapStateToProps, mapDispatch)(Nav);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(Nav));
