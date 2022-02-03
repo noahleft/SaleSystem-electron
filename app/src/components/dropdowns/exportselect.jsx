@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import { changeSelectedCompID } from "Redux/components/exportManager/exportManagerSlice";
 
 class ExportSelect extends React.Component {
@@ -12,25 +12,25 @@ class ExportSelect extends React.Component {
   }
 
   render() {
-    let content = [<Dropdown.Item key='0' onClick={()=>{this.props.changeSelectedCompID(0);}}>All</Dropdown.Item>];
+    let content = [<NavDropdown.Item key='0' onClick={()=>{this.props.changeSelectedCompID(0);}}>All</NavDropdown.Item>];
     const companyList = this.props.companyManager.companyList;
     let title = "All";
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(
-        <Dropdown.Item key={companyList[i].ID} onClick={()=>{
+        <NavDropdown.Item key={companyList[i].ID} onClick={()=>{
           this.props.changeSelectedCompID(companyList[i].ID);
         }}>
         {companyList[i].NAME}
-        </Dropdown.Item>)
+        </NavDropdown.Item>)
       
       if(companyList[i].ID == this.props.exportManager.selectedCompID) {
         title = companyList[i].NAME;
       }
     }
     return (
-        <DropdownButton title={title}>
+        <NavDropdown title={title}>
         {content}
-        </DropdownButton>
+        </NavDropdown>
     );
   }
 }
