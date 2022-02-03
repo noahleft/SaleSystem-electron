@@ -9,8 +9,12 @@ class PriceList extends React.Component {
     return (
       <section className="section">
         <Container fluid>
-          <Row className="title is-1">Unit Price View</Row>
-          <Row><CompSelect></CompSelect></Row>
+          <Row className="title is-1">
+            <Stack direction="horizontal">
+              <div>Unit Price View</div>
+              <div className="ms-auto"><CompSelect/></div>
+            </Stack>
+          </Row>
           <Row><PriceTable></PriceTable></Row>
         </Container>
         <PriceFooter></PriceFooter>
