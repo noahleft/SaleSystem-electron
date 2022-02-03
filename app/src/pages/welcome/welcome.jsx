@@ -4,6 +4,7 @@ import { updateCompanyList } from "Redux/components/companyManager/companyManage
 import { updateProductList } from "Redux/components/productManager/productManagerSlice";
 import { updatePriceList } from "Redux/components/priceManager/priceManagerSlice";
 import { updateFormList } from "Redux/components/formManager/formManagerSlice";
+import { withTranslation } from "react-i18next";
 
 class Welcome extends React.Component {
   componentDidMount() {
@@ -33,6 +34,7 @@ class Welcome extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <React.Fragment>
         <section className="section">
@@ -40,7 +42,7 @@ class Welcome extends React.Component {
             <section className="hero is-info">
               <div className="hero-body">
                 <p className="title">
-                  Sale system for invoice.
+                  {t("WelcomeTitle")}
                 </p>
                 <p className="subtitle">
                   Contact noahleft@gmail.com
@@ -62,5 +64,5 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { updateCompanyList, updateProductList, updatePriceList, updateFormList };
 
-export default connect(mapStateToProps, mapDispatch)(Welcome);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(Welcome));
 
