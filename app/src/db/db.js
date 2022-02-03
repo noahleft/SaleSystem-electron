@@ -1,8 +1,8 @@
 const Sqlite3 = require('better-sqlite3');
 
 class DbManager {
-    constructor() {
-        this.db = Sqlite3("sample.db");
+    constructor(dbPath) {
+        this.db = Sqlite3(dbPath);
     }
     listCompany() {
         const row = this.db.prepare('SELECT * FROM company').all();
@@ -155,5 +155,5 @@ class DbManager {
     }
 }
 
-const manager = new DbManager();
+const manager = new DbManager("sample.db");
 module.exports = manager;
