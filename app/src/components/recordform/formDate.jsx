@@ -6,6 +6,7 @@ import moment from 'moment';
 import 'moment/locale/zh-tw';
 import { Form, Row, Col } from "react-bootstrap";
 import { changeCandidateRecordDeliverDate } from "Redux/components/recordManager/recordManagerSlice";
+import i18n from "I18n/i18n.config";
 
 class FormDate extends React.Component {
   constructor(props) {
@@ -22,12 +23,13 @@ class FormDate extends React.Component {
   }
 
   render() {
+    const locale = (i18n.language=="zh_TW")?"zh-tw":"en";
     const idx = this.props.recordManager.candidateRecordListIdx;
     const deliver = (idx!=-1)?this.props.recordManager.recordList[idx].DELIVER_DATE:"";
     return (
       <Form.Group as={Row} className="mb-3" controlId="formDeliverDate" ref="formDeliverDate">
       <Form.Control className="me-auto" placeholder={deliver} type="text" value={deliver} readOnly/>
-      <Datetime locale="zh-tw" dateFormat="YYYY-MM-DD" timeFormat={false} input={false} value={deliver} 
+      <Datetime locale={locale} dateFormat="YYYY-MM-DD" timeFormat={false} input={false} value={deliver} 
         onChange={this.handleChange}/>
       </Form.Group>
     );
