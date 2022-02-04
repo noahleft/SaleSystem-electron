@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Table, Stack } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
+import i18n from "I18n/i18n.config";
 
 class ExportTable extends React.Component {
   componentWillUnmount() {
@@ -9,6 +10,15 @@ class ExportTable extends React.Component {
     // important on mac-os if the app is suspended
     // and resumed. Existing subscriptions must be cleared
     window.api.contextMenu.clearRendererBindings();
+  }
+
+  getDisplayDate(date) {
+    if(i18n.language=="zh_TW") {
+      var element = date.split('-');
+      element[0] = element[0] - 1911;
+      return element.join('-');
+    }
+    return date;
   }
 
   render() {
@@ -27,7 +37,7 @@ class ExportTable extends React.Component {
       let sum = recordList[i].UNIT_PRICE * recordList[i].QUANTITY;
       total += sum;
       content.push(<tr key={recordList[i].ID}>
-        <td>{recordList[i].DELIVER_DATE}</td>
+        <td>{this.getDisplayDate(recordList[i].DELIVER_DATE)}</td>
         <td>{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
         <td>{recordList[i].QUANTITY}</td>
         <td>{recordList[i].UNIT_PRICE}</td>

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import { changeCandidateRecordListIdx } from "Redux/components/recordManager/recordManagerSlice";
 import { withTranslation } from "react-i18next";
+import i18n from "I18n/i18n.config";
 
 function HighlightText(props) {
   if(props.highlight)
@@ -37,6 +38,15 @@ class RecordTable extends React.Component {
     return "";
   }
 
+  getDisplayDate(date) {
+    if(i18n.language=="zh_TW") {
+      var element = date.split('-');
+      element[0] = element[0] - 1911;
+      return element.join('-');
+    }
+    return date;
+  }
+
   genRow(idx, obj, ori) {
     return (<tr key={idx} onClick={()=>{
       this.props.changeCandidateRecordListIdx(idx);
@@ -44,7 +54,7 @@ class RecordTable extends React.Component {
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={this.getCompanyName(obj.COMP_ID)} highlight={obj.COMP_ID!=ori.COMP_ID} /></td>
     <td><HighlightText name={this.getProductName(obj.PROD_ID)} highlight={obj.PROD_ID!=ori.PROD_ID} /></td>
-    <td><HighlightText name={obj.DELIVER_DATE} highlight={obj.DELIVER_DATE!=ori.DELIVER_DATE} /></td>
+    <td><HighlightText name={this.getDisplayDate(obj.DELIVER_DATE)} highlight={obj.DELIVER_DATE!=ori.DELIVER_DATE} /></td>
     <td><HighlightText name={obj.UNIT_PRICE} highlight={obj.UNIT_PRICE!=ori.UNIT_PRICE} /></td>
     <td><HighlightText name={obj.QUANTITY} highlight={obj.QUANTITY!=ori.QUANTITY} /></td>
     <td></td>

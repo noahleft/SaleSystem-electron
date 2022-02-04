@@ -28,7 +28,7 @@ class FormDate extends React.Component {
     const deliver = (idx!=-1)?this.props.recordManager.recordList[idx].DELIVER_DATE:"";
     return (
       <Form.Group as={Row} className="mb-3" controlId="formDeliverDate" ref="formDeliverDate">
-      <Form.Control className="me-auto" placeholder={deliver} type="text" value={deliver} readOnly/>
+      <Form.Control className="me-auto" placeholder={deliver} type="text" value={deliver} readOnly hidden/>
       <Datetime locale={locale} dateFormat="YYYY-MM-DD" timeFormat={false} input={false} value={deliver} 
         onChange={this.handleChange}/>
       </Form.Group>
