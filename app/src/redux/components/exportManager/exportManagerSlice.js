@@ -10,6 +10,7 @@ const exportManagerSlice = createSlice({
   reducers: {
     updateExportList(state, action) {
       state.exportList = action.payload;
+      state.selectedCompID = 0;
       state.needTax = false;
     },
     changeSelectedCompID(state, action) {
