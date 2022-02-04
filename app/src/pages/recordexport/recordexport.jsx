@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ExportTable from "Components/tables/exporttable";
 import { Container, Row, Card, Navbar, Nav } from "react-bootstrap";
 import ExportSelect from "Components/dropdowns/exportselect";
+import TaxCheck from "Components/checkbox/taxcheck";
 import { withTranslation } from "react-i18next";
 import "./print.css";
 
@@ -26,6 +27,9 @@ class RecordExport extends React.Component {
             <Navbar.Brand>{t("ExportTitle")} {formName}</Navbar.Brand>
             <Nav className="me-auto">
               <ExportSelect/>
+            </Nav>
+            <Nav>
+              <TaxCheck/>
             </Nav>
           </Container>
         </Navbar>

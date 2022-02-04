@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Table, Stack } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import i18n from "I18n/i18n.config";
+import { Math } from "globalthis/implementation";
+import "./textalign.css";
 
 class ExportTable extends React.Component {
   componentWillUnmount() {
@@ -45,6 +47,8 @@ class ExportTable extends React.Component {
         <td></td>
         </tr>)
     }
+    let tax = Math.round(total * 0.05);
+    let posttax = tax + total;
     return (
     <div>
       <div>
@@ -64,8 +68,21 @@ class ExportTable extends React.Component {
           </tbody>
         </Table>
       </div>
-      <Stack>
-        <div className="ms-auto">Total:{total}</div>
+      <Stack direction="horizontal">
+        <div className="ms-auto">
+          <Stack>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}>{t("PreTax")}:</div>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}>{t("Tax")}:</div>
+            <div className="right-side">{t("Total")}:</div>
+          </Stack>
+        </div>
+        <div>
+          <Stack>
+            <div className="right-side">{total}</div>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}>{tax}</div>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}>{posttax}</div>
+          </Stack>
+        </div>
       </Stack>
     </div>
     );
