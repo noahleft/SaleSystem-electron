@@ -19,7 +19,7 @@ class RecordExport extends React.Component {
   render() {
     const { t } = this.props;
     let formName = this.getFormName();
-    let message = "Records" + this.getCompanyName() + formName;
+    let message = t("PrintableTitle") + this.getCompanyName() + formName;
     return (
       <section className="section">
         <Navbar bg="light">
