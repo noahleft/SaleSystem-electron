@@ -12,11 +12,23 @@ class ExportSelect extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
+  extractCompIDSet() {
+    const compIdSet = new Set(this.props.exportManager.exportList.map(p => p.COMP_ID));
+    function isInCompIdSet(compIdSet) {
+      return function(obj) {
+        if(compIdSet.has(obj.ID)) return true;
+        return false; 
+      }
+    }
+    const reducedCompanyList = this.props.companyManager.companyList.filter(isInCompIdSet(compIdSet));
+    return reducedCompanyList;
+  }
+
   render() {
     const { t } = this.props;
     let title = t("AllCompany");
     let content = [<NavDropdown.Item key='0' onClick={()=>{this.props.changeSelectedCompID(0);}}>{title}</NavDropdown.Item>];
-    const companyList = this.props.companyManager.companyList;
+    const companyList = this.extractCompIDSet();
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(
         <NavDropdown.Item key={companyList[i].ID} onClick={()=>{
