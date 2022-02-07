@@ -100,14 +100,22 @@ const MenuBuilder = function(mainWindow, appName) {
         label: i18nextMainBackend.t("File"),
         submenu: [
           {
-            role: "import...",
-            click: handleClickImport,
-            label: i18nextMainBackend.t("Import")
+            label: i18nextMainBackend.t("Database"),
+            submenu: [
+              {
+                role: "import...",
+                click: handleClickImport,
+                label: i18nextMainBackend.t("Import")
+              },
+              {
+                role: "export...",
+                click: handleClickExport,
+                label: i18nextMainBackend.t("Export")
+              },
+            ]
           },
           {
-            role: "export...",
-            click: handleClickExport,
-            label: i18nextMainBackend.t("Export")
+            type: "separator"
           },
           {
             role: "print",
