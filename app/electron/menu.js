@@ -120,6 +120,7 @@ const MenuBuilder = function(mainWindow, appName) {
           {
             role: "print",
             click: handleClickPrint,
+            accelerator: process.platform === 'darwin' ? 'Cmd+P' : 'Shift+P',
             label: i18nextMainBackend.t("Print")
           },
           isMac
