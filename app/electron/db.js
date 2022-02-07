@@ -54,11 +54,13 @@ class DbManager {
             };
         }
         const dbPath = path.join(options.path, "sample.db");
-        fs.access(dbPath, fs.F_OK, (err) => {
-            if (err) {
-                const fakeDb = new FakeDb(dbPath);
-            }
-        });
+        try {
+            fs.accessSync(dbPath, fs.constants.R_OK);
+        } catch (err) {
+            // creating fake db
+            const fakeDb = new FakeDb(dbPath);
+        }
+
         this.db = Sqlite3(dbPath);
     }
     listCompany() {
