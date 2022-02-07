@@ -53,7 +53,7 @@ class DbManager {
                 path: dbPath,
             };
         }
-        const dbPath = path.join(options.path, "sample.db");
+        const dbPath = path.join(options.path, "data.db");
         try {
             fs.accessSync(dbPath, fs.constants.R_OK);
         } catch (err) {
