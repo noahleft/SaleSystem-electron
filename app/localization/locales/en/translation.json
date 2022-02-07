@@ -72,5 +72,7 @@
   "Start Speaking": "Start Speaking",
   "Stop Speaking": "Stop Speaking",
   "Front": "Front",
-  "Print": "Print"
+  "Print": "Print",
+  "Import": "Import",
+  "Export": "Export"
 }

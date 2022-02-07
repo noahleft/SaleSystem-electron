@@ -72,5 +72,7 @@
   "Start Speaking": "開始朗讀",
   "Stop Speaking": "結束朗讀",
   "Front": "移到前面",
-  "Print": "列印"
+  "Print": "列印",
+  "Import": "匯入",
+  "Export": "匯出"
 }
