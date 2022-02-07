@@ -1,5 +1,48 @@
 const Sqlite3 = require('better-sqlite3');
 const path = require("path");
+const fs = require("fs");
+
+class FakeDb {
+    constructor(dbPath) {
+        console.log(`creating fake db on ${dbPath}`);
+        this.db = Sqlite3(dbPath);
+        const compTbl = "CREATE TABLE company(\
+                        ID    INTEGER PRIMARY KEY AUTOINCREMENT,\
+                        NAME  TEXT NOT NULL,\
+                        HIDE  BOOLEAN NOT NULL DEFAULT FALSE,\
+                        UNIQUE(NAME));";
+        this.db.exec(compTbl);
+        const prodTbl = "CREATE TABLE product(\
+                        ID    INTEGER PRIMARY KEY AUTOINCREMENT,\
+                        NAME  TEXT NOT NULL,\
+                        HIDE  BOOLEAN NOT NULL DEFAULT FALSE,\
+                        UNIQUE(NAME));";
+        this.db.exec(prodTbl);
+        const priceTbl = "CREATE TABLE unitprice(\
+                        ID       INTEGER PRIMARY KEY AUTOINCREMENT,\
+                        COMP_ID  INTEGER NOT NULL,\
+                        PROD_ID  INTEGER NOT NULL,\
+                        UNIT_PRICE REAL  NOT NULL);";
+        this.db.exec(priceTbl);
+        const formTbl = "CREATE TABLE form(\
+                        ID    INTEGER PRIMARY KEY AUTOINCREMENT,\
+                        NAME  TEXT NOT NULL,\
+                        HIDE  BOOLEAN NOT NULL DEFAULT FALSE,\
+                        UNIQUE(NAME));";
+        this.db.exec(formTbl);
+        const recordTbl = "CREATE TABLE record(\
+                        ID           INTEGER  PRIMARY KEY AUTOINCREMENT,\
+                        COMP_ID      INTEGER  NOT NULL,\
+                        PROD_ID      INTEGER  NOT NULL,\
+                        FORM_ID      INTEGER  NOT NULL,\
+                        CREATED_DATE DATETIME NOT NULL,\
+                        DELIVER_DATE DATETIME NOT NULL,\
+                        UNIT_PRICE   REAL     NOT NULL,\
+                        QUANTITY     INTEGER  NOT NULL,\
+                        HIDE  BOOLEAN NOT NULL DEFAULT FALSE);";
+        this.db.exec(recordTbl);
+    }
+};
 
 class DbManager {
     constructor(options) {
@@ -11,7 +54,11 @@ class DbManager {
             };
         }
         const dbPath = path.join(options.path, "sample.db");
-        
+        fs.access(dbPath, fs.F_OK, (err) => {
+            if (err) {
+                const fakeDb = new FakeDb(dbPath);
+            }
+        });
         this.db = Sqlite3(dbPath);
     }
     listCompany() {
