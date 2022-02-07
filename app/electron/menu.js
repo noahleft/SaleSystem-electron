@@ -1,9 +1,34 @@
-const { Menu, MenuItem, BrowserWindow } = require("electron");
+const { app, dialog, Menu, MenuItem, BrowserWindow } = require("electron");
 const i18nBackend = require("i18next-electron-fs-backend");
 const whitelist = require("../localization/whitelist");
 const isMac = process.platform === "darwin";
+const path = require("path");
+const fs = require("fs");
 
 const MenuBuilder = function(mainWindow, appName) {
+
+  function handleClickImport(menuItem, browserWindow, event) {
+    const dbPath = app.getPath("userData");
+    const dataPath = path.join(dbPath, "data.db");
+    const importFiles = dialog.showOpenDialogSync({ properties: ['openFile'] });
+    if(importFiles){
+      fs.copyFileSync(importFiles[0], dataPath);
+      app.relaunch();
+      app.exit();
+    }
+  }
+
+  function handleClickExport(menuItem, browserWindow, event) {
+    const dbPath = app.getPath("userData");
+    const dataPath = path.join(dbPath, "data.db");
+    const destDir = dialog.showOpenDialogSync({ properties: ['openDirectory'] });
+    if(destDir) {
+      const destPath = path.join(destDir[0], "data.db");
+      fs.copyFile(dataPath, destPath, (err) => {
+        if (err) throw err;
+      });
+    }
+  }
 
   function handleClickPrint(menuItem, browserWindow, event) {
     var options = {
@@ -74,6 +99,21 @@ const MenuBuilder = function(mainWindow, appName) {
       {
         label: i18nextMainBackend.t("File"),
         submenu: [
+          {
+            role: "import...",
+            click: handleClickImport,
+            label: i18nextMainBackend.t("Import")
+          },
+          {
+            role: "export...",
+            click: handleClickExport,
+            label: i18nextMainBackend.t("Export")
+          },
+          {
+            role: "print",
+            click: handleClickPrint,
+            label: i18nextMainBackend.t("Print")
+          },
           isMac
             ? {
                 role: "close",
@@ -82,11 +122,6 @@ const MenuBuilder = function(mainWindow, appName) {
             : {
                 role: "quit",
                 label: i18nextMainBackend.t("Exit")
-              },
-              {
-                role: "print",
-                click: handleClickPrint,
-                label: i18nextMainBackend.t("Print")
               },
         ]
       },
