@@ -9,24 +9,24 @@ import FormName from "Components/compform/formName";
 class CompInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {name: ''};
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
-    if (this.state.value != '') {
+    if (this.state.name != '') {
       let CR = {ID:   e.target.formCompId.placeholder,
-                NAME: this.state.value};
+                NAME: this.state.name};
       this.props.addChangeRequest(CR);
     }
     // reset
-    this.setState({value: ""});
+    this.setState({name: ""});
   }
 
   handleChange(e) {
-    this.setState({value: e.target.value});
+    this.setState({name: e.target.value});
   }
 
   getCompanyName(id) {
@@ -49,7 +49,7 @@ class CompInfo extends React.Component {
       <Card.Body>
         <Form onSubmit={this.handleSubmit}>
           <FormID/>
-          <FormName orig={display.NAME} name={this.state.value} onNameChange={this.handleChange}/>
+          <FormName orig={display.NAME} name={this.state.name} onNameChange={this.handleChange}/>
           <Form.Group as={Row} className="mb-3">
             <Col sm={{span: 10, offset:2}}>
               <Button type="submit">{t("Submit")}</Button>
