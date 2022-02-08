@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { updateProductList } from "Redux/components/productManager/productManagerSlice";
 import { Button } from "react-bootstrap";
+import { withTranslation } from "react-i18next";
 
 class ProdSave extends React.Component {
   constructor(props) {
@@ -29,10 +30,8 @@ class ProdSave extends React.Component {
   }
 
   render() {
-    if(this.props.enable)
-      return <Button onClick={this.saveAction}>Save</Button>
-    else
-      return <Button disabled>Save</Button>
+    const { t } = this.props;
+    return <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
   }
 }
 
@@ -41,4 +40,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { updateProductList };
 
-export default connect(mapStateToProps, mapDispatch)(ProdSave);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(ProdSave));

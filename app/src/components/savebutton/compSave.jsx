@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { updateCompanyList } from "Redux/components/companyManager/companyManagerSlice";
 import { Button } from "react-bootstrap";
+import { withTranslation } from "react-i18next";
 
 class CompSave extends React.Component {
   constructor(props) {
@@ -29,10 +30,8 @@ class CompSave extends React.Component {
   }
 
   render() {
-    if(this.props.enable)
-      return <Button onClick={this.saveAction}>Save</Button>
-    else
-      return <Button disabled>Save</Button>
+    const { t } = this.props;
+    return <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
   }
 }
 
@@ -41,4 +40,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { updateCompanyList };
 
-export default connect(mapStateToProps, mapDispatch)(CompSave);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(CompSave));

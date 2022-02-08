@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { updateRecordList } from "Redux/components/recordManager/recordManagerSlice";
 import { Button } from "react-bootstrap";
+import { withTranslation } from "react-i18next";
 
 class RecordSave extends React.Component {
   constructor(props) {
@@ -40,10 +41,8 @@ class RecordSave extends React.Component {
   }
 
   render() {
-    if(this.props.enable)
-      return <Button onClick={this.saveAction}>Save</Button>
-    else
-      return <Button disabled>Save</Button>
+    const { t } = this.props;
+    return <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
   }
 }
 
@@ -53,4 +52,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { updateRecordList };
 
-export default connect(mapStateToProps, mapDispatch)(RecordSave);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(RecordSave));
