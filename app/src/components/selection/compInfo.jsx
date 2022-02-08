@@ -12,7 +12,7 @@ class CompInfo extends React.Component {
     this.state = {name: ''};
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
 
   handleSubmit(e) {
@@ -25,7 +25,7 @@ class CompInfo extends React.Component {
     this.setState({name: ""});
   }
 
-  handleChange(e) {
+  handleNameChange(e) {
     this.setState({name: e.target.value});
   }
 
@@ -49,7 +49,7 @@ class CompInfo extends React.Component {
       <Card.Body>
         <Form onSubmit={this.handleSubmit}>
           <FormID/>
-          <FormName orig={display.NAME} name={this.state.name} onNameChange={this.handleChange}/>
+          <FormName orig={display.NAME} name={this.state.name} onNameChange={this.handleNameChange}/>
           <Form.Group as={Row} className="mb-3">
             <Col sm={{span: 10, offset:2}}>
               <Button type="submit">{t("Submit")}</Button>
