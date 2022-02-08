@@ -4,6 +4,7 @@ import { Card, Form, Row, Col, Button } from "react-bootstrap";
 import { addChangeRequest } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
 import FormID from "Components/compform/formID";
+import FormName from "Components/compform/formName";
 
 class CompInfo extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class CompInfo extends React.Component {
       this.props.addChangeRequest(CR);
     }
     // reset
-    this.state.value = '';
+    this.setState({value: ""});
   }
 
   handleChange(e) {
@@ -29,7 +30,7 @@ class CompInfo extends React.Component {
   }
 
   getCompanyName(id) {
-    let companyList = this.props.companyManager.companyList;
+    let companyList = this.props.companyManager.originalList;
     for(let i=0; i<companyList.length; i++) {
       if(companyList[i].ID == id) return companyList[i].NAME;
     }
@@ -48,13 +49,7 @@ class CompInfo extends React.Component {
       <Card.Body>
         <Form onSubmit={this.handleSubmit}>
           <FormID/>
-          <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
-            <Form.Label column sm={2}>{t("CompanyName")}:</Form.Label>
-            <Col sm={10}>
-              <Form.Control className="me-auto" placeholder={display.NAME} 
-              type="text" value={this.state.value} onChange={this.handleChange} />
-            </Col>
-          </Form.Group>
+          <FormName orig={display.NAME} name={this.state.value} onNameChange={this.handleChange}/>
           <Form.Group as={Row} className="mb-3">
             <Col sm={{span: 10, offset:2}}>
               <Button type="submit">{t("Submit")}</Button>

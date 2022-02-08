@@ -4,12 +4,14 @@ const companyManagerSlice = createSlice({
   name: "companyManager",
   initialState: {
     companyList: [],
+    originalList: [],
     candidateCompID: 1,
     changeRequests: [],
   },
   reducers: {
     updateCompanyList(state, action) {
       state.companyList = action.payload;
+      state.originalList = action.payload;
       state.changeRequests = [];
     },
     changeCandidateCompID(state, action) {
