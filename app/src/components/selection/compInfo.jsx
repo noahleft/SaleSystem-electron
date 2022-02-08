@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button } from "react-bootstrap";
 import { addChangeRequest } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
+import FormID from "Components/compform/formID";
 
 class CompInfo extends React.Component {
   constructor(props) {
@@ -46,12 +47,7 @@ class CompInfo extends React.Component {
       <Card.Title>{t("CompanyInfo")}</Card.Title>
       <Card.Body>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group as={Row} className="mb-3" controlId="formCompId">
-            <Form.Label column sm={2}>ID:</Form.Label>
-            <Col sm={10}>
-            <Form.Control className="me-auto" placeholder={display.ID} readOnly />
-            </Col>
-          </Form.Group>
+          <FormID/>
           <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
             <Form.Label column sm={2}>{t("CompanyName")}:</Form.Label>
             <Col sm={10}>
