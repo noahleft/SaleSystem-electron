@@ -7,9 +7,16 @@ class FakeDb {
         console.log(`creating fake db on ${dbPath}`);
         this.db = Sqlite3(dbPath);
         const compTbl = "CREATE TABLE company(\
-                        ID    INTEGER PRIMARY KEY AUTOINCREMENT,\
-                        NAME  TEXT NOT NULL,\
-                        HIDE  BOOLEAN NOT NULL DEFAULT FALSE,\
+                        ID          INTEGER PRIMARY KEY AUTOINCREMENT,\
+                        NAME        TEXT    NOT NULL,\
+                        HIDE        BOOLEAN NOT NULL DEFAULT FALSE,\
+                        PRINTTAX    BOOLEAN NOT NULL DEFAULT FALSE,\
+                        ADDRESS     TEXT    NOT NULL DEFAULT '', \
+                        PHONE       TEXT    NOT NULL DEFAULT '', \
+                        CONTACT     TEXT    NOT NULL DEFAULT '', \
+                        BUSINESSNUM TEXT    NOT NULL DEFAULT '', \
+                        NOTE        TEXT    NOT NULL DEFAULT '', \
+                        INTERNAL    TEXT    NOT NULL DEFAULT '', \
                         UNIQUE(NAME));";
         this.db.exec(compTbl);
         const prodTbl = "CREATE TABLE product(\
@@ -19,15 +26,17 @@ class FakeDb {
                         UNIQUE(NAME));";
         this.db.exec(prodTbl);
         const priceTbl = "CREATE TABLE unitprice(\
-                        ID       INTEGER PRIMARY KEY AUTOINCREMENT,\
-                        COMP_ID  INTEGER NOT NULL,\
-                        PROD_ID  INTEGER NOT NULL,\
+                        ID         INTEGER PRIMARY KEY AUTOINCREMENT,\
+                        COMP_ID    INTEGER NOT NULL,\
+                        PROD_ID    INTEGER NOT NULL,\
                         UNIT_PRICE REAL  NOT NULL);";
         this.db.exec(priceTbl);
         const formTbl = "CREATE TABLE form(\
-                        ID    INTEGER PRIMARY KEY AUTOINCREMENT,\
-                        NAME  TEXT NOT NULL,\
-                        HIDE  BOOLEAN NOT NULL DEFAULT FALSE,\
+                        ID       INTEGER PRIMARY KEY AUTOINCREMENT,\
+                        NAME     TEXT    NOT NULL,\
+                        HIDE     BOOLEAN NOT NULL DEFAULT FALSE,\
+                        QUANTITY INTEGER NOT NULL DEFAULT 0,\
+                        SUM      INTEGER NOT NULL DEFAULT 0,\
                         UNIQUE(NAME));";
         this.db.exec(formTbl);
         const recordTbl = "CREATE TABLE record(\
@@ -39,6 +48,7 @@ class FakeDb {
                         DELIVER_DATE DATETIME NOT NULL,\
                         UNIT_PRICE   REAL     NOT NULL,\
                         QUANTITY     INTEGER  NOT NULL,\
+                        NOTE         TEXT     NOT NULL DEFAULT '',\
                         HIDE  BOOLEAN NOT NULL DEFAULT FALSE);";
         this.db.exec(recordTbl);
     }
