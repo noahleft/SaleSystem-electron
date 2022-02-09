@@ -17,7 +17,7 @@ class FormComp extends React.Component {
       idx:   idx,
       value: comp_id});
 
-    const record = this.props.recordManager.recordList[this.props.recordManager.candidateRecordListIdx];
+    const record = this.props.recordManager.recordList[idx];
     if(record.INSERT && record.PROD_ID!=0) {
       for(const obj of this.props.priceManager.priceList) {
         if(obj.COMP_ID==comp_id && obj.PROD_ID==record.PROD_ID) {
