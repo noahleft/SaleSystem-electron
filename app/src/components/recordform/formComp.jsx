@@ -12,7 +12,10 @@ class FormComp extends React.Component {
 
   handleChange(e) {
     const comp_id = e.target.value;
-    this.props.changeCandidateRecordCompId(comp_id);
+    const idx = this.props.recordManager.candidateRecordListIdx;
+    this.props.changeCandidateRecordCompId({
+      idx:   idx,
+      value: comp_id});
 
     const record = this.props.recordManager.recordList[this.props.recordManager.candidateRecordListIdx];
     if(record.INSERT && record.PROD_ID!=0) {

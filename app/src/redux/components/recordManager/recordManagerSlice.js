@@ -24,8 +24,10 @@ const recordManagerSlice = createSlice({
       state.candidateRecordListIdx = action.payload;
     },
     changeCandidateRecordCompId(state, action) {
-      state.recordList[state.candidateRecordListIdx].COMP_ID = action.payload;
-      state.recordList[state.candidateRecordListIdx].DIRTY = true;
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.recordList[idx].COMP_ID = val;
+      state.recordList[idx].DIRTY = true;
       state.requireSaving = true;
     },
     changeCandidateRecordProdId(state, action) {
