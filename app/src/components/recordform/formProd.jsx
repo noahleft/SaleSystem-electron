@@ -12,13 +12,20 @@ class FormProd extends React.Component {
 
   handleChange(e) {
     const prod_id = e.target.value;
-    this.props.changeCandidateRecordProdId(prod_id);
+    const idx = this.props.recordManager.candidateRecordListIdx;
+    this.props.changeCandidateRecordProdId({
+      idx:   idx,
+      value: prod_id,
+    });
 
     const record = this.props.recordManager.recordList[this.props.recordManager.candidateRecordListIdx];
     if(record.INSERT && record.COMP_ID!=0) {
       for(const obj of this.props.priceManager.priceList) {
         if(obj.COMP_ID==record.COMP_ID && obj.PROD_ID==prod_id) {
-          this.props.changeCandidateRecordUnitPrice(obj.UNIT_PRICE);
+          this.props.changeCandidateRecordUnitPrice({
+            idx:   idx,
+            value: obj.UNIT_PRICE
+          });
         }
       }
     }

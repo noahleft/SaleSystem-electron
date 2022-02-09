@@ -11,8 +11,12 @@ class FormQuan extends React.Component {
   }
 
   handleChange(e) {
+    const idx = this.props.recordManager.candidateRecordListIdx;
     const quantity = e.target.value;
-    this.props.changeCandidateRecordQuantity(quantity);
+    this.props.changeCandidateRecordQuantity({
+      idx:   idx,
+      value: quantity
+    });
   }
 
   render() {

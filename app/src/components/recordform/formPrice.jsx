@@ -11,8 +11,12 @@ class FormPrice extends React.Component {
   }
 
   handleChange(e) {
+    const idx = this.props.recordManager.candidateRecordListIdx;
     const price = e.target.value;
-    this.props.changeCandidateRecordUnitPrice(price);
+    this.props.changeCandidateRecordUnitPrice({
+      idx:   idx,
+      value: price,
+    });
   }
 
   render() {

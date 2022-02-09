@@ -31,23 +31,31 @@ const recordManagerSlice = createSlice({
       state.requireSaving = true;
     },
     changeCandidateRecordProdId(state, action) {
-      state.recordList[state.candidateRecordListIdx].PROD_ID = action.payload;
-      state.recordList[state.candidateRecordListIdx].DIRTY = true;
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.recordList[idx].PROD_ID = val;
+      state.recordList[idx].DIRTY = true;
       state.requireSaving = true;
     },
     changeCandidateRecordDeliverDate(state, action) {
-      state.recordList[state.candidateRecordListIdx].DELIVER_DATE = action.payload;
-      state.recordList[state.candidateRecordListIdx].DIRTY = true;
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.recordList[idx].DELIVER_DATE = val;
+      state.recordList[idx].DIRTY = true;
       state.requireSaving = true;
     },
     changeCandidateRecordUnitPrice(state, action) {
-      state.recordList[state.candidateRecordListIdx].UNIT_PRICE = action.payload;
-      state.recordList[state.candidateRecordListIdx].DIRTY = true;
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.recordList[idx].UNIT_PRICE = val;
+      state.recordList[idx].DIRTY = true;
       state.requireSaving = true;
     },
     changeCandidateRecordQuantity(state, action) {
-      state.recordList[state.candidateRecordListIdx].QUANTITY = action.payload;
-      state.recordList[state.candidateRecordListIdx].DIRTY = true;
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.recordList[idx].QUANTITY = val;
+      state.recordList[idx].DIRTY = true;
       state.requireSaving = true;
     },
   }

@@ -21,7 +21,10 @@ class FormComp extends React.Component {
     if(record.INSERT && record.PROD_ID!=0) {
       for(const obj of this.props.priceManager.priceList) {
         if(obj.COMP_ID==comp_id && obj.PROD_ID==record.PROD_ID) {
-          this.props.changeCandidateRecordUnitPrice(obj.UNIT_PRICE);
+          this.props.changeCandidateRecordUnitPrice({
+            idx:   idx,
+            value: obj.UNIT_PRICE
+          });
         }
       }
     }

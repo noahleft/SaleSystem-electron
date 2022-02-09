@@ -16,9 +16,13 @@ class FormDate extends React.Component {
   }
 
   handleChange(e) {
-    if(this.props.recordManager.candidateRecordListIdx!=-1){
+    const idx = this.props.recordManager.candidateRecordListIdx;
+    if(idx!=-1){
       const date = e.format("YYYY-MM-DD");
-      this.props.changeCandidateRecordDeliverDate(date);
+      this.props.changeCandidateRecordDeliverDate({
+        idx:   idx,
+        value: date,
+      });
     }
   }
 
