@@ -90,7 +90,7 @@ class Nav extends React.Component {
   } 
 
   hasUnsavedChangeRequest() {
-    if(this.props.companyManager.changeRequests.length!=0) {
+    if(this.props.companyManager.requireSaving) {
       return true;
     }
     if(this.props.productManager.changeRequests.length!=0) {

@@ -5,7 +5,7 @@ import CompSave from "Components/savebutton/compSave";
 
 class CompFooter extends React.Component {
   render() {
-    let enableSave = this.props.companyManager.changeRequests.length != 0;
+    let enableSave = this.props.companyManager.requireSaving;
     return(
       <Navbar fixed="bottom" bg="dark">
         <Container>

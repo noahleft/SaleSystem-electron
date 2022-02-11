@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button } from "react-bootstrap";
-import { addChangeRequest } from "Redux/components/companyManager/companyManagerSlice";
+import { addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
 import FormID from "Components/compform/formID";
 import FormName from "Components/compform/formName";
@@ -9,24 +9,30 @@ import FormName from "Components/compform/formName";
 class CompInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {name: ''};
 
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+
+    this.handleNewRecord = this.handleNewRecord.bind(this);
   }
 
-  handleSubmit(e) {
-    if (this.state.name != '') {
-      let CR = {ID:   e.target.formCompId.placeholder,
-                NAME: this.state.name};
-      this.props.addChangeRequest(CR);
+  handleNewRecord(e) {
+    const len = this.props.companyManager.companyList.length;
+    let dummy = {
+      ID: len+1,
+      NAME: "",
+      DIRTY: false,
+      INSERT: true,
     }
-    // reset
-    this.setState({name: ""});
+    this.props.addDummyCompany(dummy);
+    this.props.changeCandidateCompListIdx(len);
   }
 
   handleNameChange(e) {
-    this.setState({name: e.target.value});
+    const name = e.target.value;
+    const idx = this.props.companyManager.candidateCompListIdx;
+    this.props.changeCandidateCompName({
+      idx:   idx,
+      value: name});
   }
 
   getCompanyName(id) {
@@ -36,20 +42,20 @@ class CompInfo extends React.Component {
 
   render() {
     const { t } = this.props;
-    let display = {
-      ID: this.props.companyManager.candidateCompListIdx,
-      NAME: this.getCompanyName(this.props.companyManager.candidateCompListIdx),
-    };
+    const idx = this.props.companyManager.candidateCompListIdx;
+    const name = (idx!=-1)?this.props.companyManager.companyList[idx].NAME:"";
+    const orig = (idx!=-1)?this.props.companyManager.originalList[idx].NAME:"";
+    
     return (
     <Card>
       <Card.Title>{t("CompanyInfo")}</Card.Title>
       <Card.Body>
+      <Button onClick={this.handleNewRecord}>New Record</Button>
         <Form onSubmit={this.handleSubmit}>
           <FormID/>
-          <FormName orig={display.NAME} name={this.state.name} onNameChange={this.handleNameChange}/>
+          <FormName orig={orig} name={name} onNameChange={this.handleNameChange}/>
           <Form.Group as={Row} className="mb-3">
             <Col sm={{span: 10, offset:2}}>
-              <Button type="submit">{t("Submit")}</Button>
             </Col>
           </Form.Group>
         </Form>
@@ -62,6 +68,6 @@ class CompInfo extends React.Component {
 const mapStateToProps = (state, props) => ({
   companyManager: state.companyManager
 });
-const mapDispatch = { addChangeRequest };
+const mapDispatch = { addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(CompInfo));

@@ -6,41 +6,35 @@ const companyManagerSlice = createSlice({
     companyList: [],
     originalList: [],
     candidateCompListIdx: -1,
-    changeRequests: [],
+    requireSaving: false,
   },
   reducers: {
     updateCompanyList(state, action) {
       state.companyList = action.payload;
       state.originalList = action.payload;
       state.candidateCompListIdx = -1;
-      state.changeRequests = [];
+      state.requireSaving = false;
+    },
+    addDummyCompany(state, action) {
+      state.companyList = [...state.companyList, action.payload];
+      state.originalList = [...state.originalList, action.payload];
+      state.requireSaving = true;
     },
     changeCandidateCompListIdx(state, action) {
       state.candidateCompListIdx = action.payload;
     },
-    addChangeRequest(state, action) {
-      let CR = action.payload;
-      state.changeRequests.push(CR);
-      if(state.companyList.length < Number(CR.ID)) {
-        let companyItem = {
-          ID: Number(CR.ID),
-          NAME: CR.NAME,
-          DIRTY: false,
-        }
-        state.companyList.push(companyItem);
-      }
-      state.companyList.forEach(function(obj) {
-        if(obj.ID == CR.ID) {
-          obj.NAME = CR.NAME;
-          obj.DIRTY = true;
-        }
-      });
+    changeCandidateCompName(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.companyList[idx].NAME = val;
+      state.companyList[idx].DIRTY = true;
+      state.requireSaving = true;
     },
   }
 });
 
 // Export actions
-export const { updateCompanyList, changeCandidateCompListIdx, addChangeRequest } = companyManagerSlice.actions;
+export const { updateCompanyList, addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName } = companyManagerSlice.actions;
 
 // Export reducer
 export default companyManagerSlice.reducer;

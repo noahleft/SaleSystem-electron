@@ -29,22 +29,6 @@ class CompanyTable extends React.Component {
     );
   }
 
-  genLastRow(companyList) {
-    var obj = {};
-    if(companyList.length == 0) {
-      obj.ID= 1 ;
-      obj.NAME = "";
-      obj.DIRTY = false;
-    }
-    else {
-      let lastItem = companyList.slice(-1)[0];
-      obj.ID= lastItem.ID+1 ;
-      obj.NAME = "";
-      obj.DIRTY = false;
-    }
-    return this.genRow(obj);
-  }
-
   render() {
     const { t } = this.props;
     let content = [];
@@ -52,7 +36,6 @@ class CompanyTable extends React.Component {
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(this.genRow(i, companyList[i]));
     }
-    // content.push(this.genLastRow(companyList));
 
     return (
     <div className="scrollTable">
