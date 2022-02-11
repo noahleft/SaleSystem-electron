@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { updateProductList } from "Redux/components/productManager/productManagerSlice";
-import { Button } from "react-bootstrap";
+import { Button, Stack } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 
 class ProdSave extends React.Component {
@@ -9,10 +9,15 @@ class ProdSave extends React.Component {
     super(props);
 
     this.saveAction = this.saveAction.bind(this);
+    this.clearAction = this.clearAction.bind(this);
   }
 
   saveAction() {
-    let CRList = this.props.productManager.changeRequests.map(function(obj){
+    let modifiedList = this.props.productManager.productList.filter(function(obj){
+      if(obj.DIRTY) return true;
+      return false;
+    });
+    let CRList = modifiedList.map(function(obj){
       var rObj = {
         id: obj.ID,
         name: obj.NAME,
@@ -22,6 +27,10 @@ class ProdSave extends React.Component {
     });
     myAPI.handleProductChangeRequest(CRList);
 
+    this.clearAction();
+  }
+
+  clearAction() {
     let productlist = myAPI.listProduct().map(function(obj){
       obj.DIRTY = false;
       return obj;
@@ -31,7 +40,12 @@ class ProdSave extends React.Component {
 
   render() {
     const { t } = this.props;
-    return <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
+    return (
+      <Stack direction="horizontal" gap={3}>
+        <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
+        <Button variant="danger" onClick={this.clearAction} disabled={!this.props.enable}>{t("Clear")}</Button>
+      </Stack>
+    )
   }
 }
 

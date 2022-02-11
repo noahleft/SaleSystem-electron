@@ -51,7 +51,7 @@ class CompInfo extends React.Component {
       <Card.Title>{t("CompanyInfo")}</Card.Title>
       <Card.Body>
       <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
-        <Form onSubmit={this.handleSubmit}>
+        <Form>
           <FormID/>
           <FormName orig={orig} name={name} disabled={idx==-1} onNameChange={this.handleNameChange}/>
           <Form.Group as={Row} className="mb-3">

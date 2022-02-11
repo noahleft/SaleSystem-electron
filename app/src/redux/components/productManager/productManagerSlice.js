@@ -4,40 +4,37 @@ const productManagerSlice = createSlice({
   name: "productManager",
   initialState: {
     productList: [],
-    candidateProdID: 1,
-    changeRequests: [],
+    originalList: [],
+    candidateProdListIdx: -1,
+    requireSaving: false,
   },
   reducers: {
     updateProductList(state, action) {
       state.productList = action.payload;
-      state.changeRequests = [];
+      state.originalList = action.payload;
+      state.candidateProdListIdx = -1;
+      state.requireSaving = false;
     },
-    changeCandidateProdID(state, action) {
-      state.candidateProdID = action.payload;
+    addDummyProduct(state, action) {
+      state.productList = [...state.productList, action.payload];
+      state.originalList = [...state.originalList, action.payload];
+      state.requireSaving = true;
     },
-    addChangeRequest(state, action) {
-      let CR = action.payload;
-      state.changeRequests.push(CR);
-      if(state.productList.length < Number(CR.ID)) {
-        let productItem = {
-          ID: Number(CR.ID),
-          NAME: CR.NAME,
-          DIRTY: false,
-        }
-        state.productList.push(productItem);
-      }
-      state.productList.forEach(function(obj) {
-        if(obj.ID == CR.ID) {
-          obj.NAME = CR.NAME;
-          obj.DIRTY = true;
-        }
-      });
+    changeCandidateProdListIdx(state, action) {
+      state.candidateProdListIdx = action.payload;
+    },
+    changeCandidateProdName(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.productList[idx].NAME = val;
+      state.productList[idx].DIRTY = true;
+      state.requireSaving = true;
     },
   }
 });
 
 // Export actions
-export const { updateProductList, changeCandidateProdID, addChangeRequest } = productManagerSlice.actions;
+export const { updateProductList, addDummyProduct, changeCandidateProdListIdx, changeCandidateProdName } = productManagerSlice.actions;
 
 // Export reducer
 export default productManagerSlice.reducer;

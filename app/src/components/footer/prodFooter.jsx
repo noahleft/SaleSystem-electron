@@ -5,7 +5,7 @@ import ProdSave from "Components/savebutton/prodSave";
 
 class ProdFooter extends React.Component {
   render() {
-    let enableSave = this.props.productManager.changeRequests.length != 0;
+    let enableSave = this.props.productManager.requireSaving;
     return(
       <Navbar fixed="bottom" bg="dark">
         <Container>

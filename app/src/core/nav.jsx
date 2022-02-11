@@ -93,7 +93,7 @@ class Nav extends React.Component {
     if(this.props.companyManager.requireSaving) {
       return true;
     }
-    if(this.props.productManager.changeRequests.length!=0) {
+    if(this.props.productManager.requireSaving) {
       return true;
     }
     if(this.props.priceManager.changeRequests.length!=0) {
