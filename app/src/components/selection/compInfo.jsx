@@ -53,7 +53,7 @@ class CompInfo extends React.Component {
       <Button onClick={this.handleNewRecord}>New Record</Button>
         <Form onSubmit={this.handleSubmit}>
           <FormID/>
-          <FormName orig={orig} name={name} onNameChange={this.handleNameChange}/>
+          <FormName orig={orig} name={name} disabled={idx==-1} onNameChange={this.handleNameChange}/>
           <Form.Group as={Row} className="mb-3">
             <Col sm={{span: 10, offset:2}}>
             </Col>

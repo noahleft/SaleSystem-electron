@@ -13,7 +13,7 @@ class FormName extends React.Component {
     <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
     <Form.Label column sm={2}>{t("CompanyName")}:</Form.Label>
     <Col sm={10}>
-      <Form.Control className="me-auto" placeholder={this.props.orig} 
+      <Form.Control className="me-auto" placeholder={this.props.orig} disabled={this.props.disabled}
       type="text" value={this.props.name} onChange={this.props.onNameChange} />
     </Col>
     </Form.Group>
