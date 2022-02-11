@@ -31,7 +31,6 @@ class PriceTable extends React.Component {
         ID: obj.ID,
         NAME: obj.NAME,
         UNIT_PRICE: "",
-        EDITABLE: false,
         DIRTY: false,
       };
       return rObj;
@@ -40,10 +39,10 @@ class PriceTable extends React.Component {
       let priceItem = this.getPrice(this.props.priceManager.selectedCompID, compPriceList[i].ID);
       compPriceList[i].UNIT_PRICE = priceItem.UNIT_PRICE;
       compPriceList[i].DIRTY = priceItem.DIRTY;
-      compPriceList[i].EDITABLE = this.props.priceManager.selectedCompID!=0;
     }
+    const disable = this.props.priceManager.selectedCompID==0;
     for(let i=0; i< compPriceList.length; i++) {
-      content.push(<PriceRow key={compPriceList[i].ID} compPrice={compPriceList[i]}></PriceRow>);
+      content.push(<PriceRow key={compPriceList[i].ID} compPrice={compPriceList[i]} disabled={disable} />);
     }
 
     return (

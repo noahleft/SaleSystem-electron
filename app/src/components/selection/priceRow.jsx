@@ -40,7 +40,6 @@ class PriceRow extends React.Component {
       ID: this.props.compPrice.ID,
       NAME: this.props.compPrice.NAME,
       UNIT_PRICE: this.props.compPrice.UNIT_PRICE,
-      EDITABLE: this.props.compPrice.EDITABLE,
       DIRTY: this.props.compPrice.DIRTY,
     };
     return (<tr key={display.ID}>
@@ -54,7 +53,7 @@ class PriceRow extends React.Component {
     </Form.Group>
     <Form.Group className="sm" controlId="formUnitPrice">
     <Form.Control size="sm" className="me-auto" type="text" value={this.state.value}
-    onChange={this.handleChange} disabled={!display.EDITABLE} prod_id={display.ID}/>
+    onChange={this.handleChange} disabled={this.props.disabled} prod_id={display.ID}/>
     </Form.Group>
     </Form></td>
     </tr>
