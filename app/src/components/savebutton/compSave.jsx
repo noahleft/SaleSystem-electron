@@ -14,7 +14,7 @@ class CompSave extends React.Component {
 
   saveAction() {
     let modifiedList = this.props.companyManager.companyList.filter(function(obj){
-      if(obj.DIRTY) return true;
+      if(obj.DIRTY && obj.NAME!="") return true;
       return false;
     });
     let CRList = modifiedList.map(function(obj){

@@ -14,7 +14,7 @@ class ProdSave extends React.Component {
 
   saveAction() {
     let modifiedList = this.props.productManager.productList.filter(function(obj){
-      if(obj.DIRTY) return true;
+      if(obj.DIRTY && obj.NAME!="") return true;
       return false;
     });
     let CRList = modifiedList.map(function(obj){
