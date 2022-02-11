@@ -30,18 +30,15 @@ class CompInfo extends React.Component {
   }
 
   getCompanyName(id) {
-    let companyList = this.props.companyManager.originalList;
-    for(let i=0; i<companyList.length; i++) {
-      if(companyList[i].ID == id) return companyList[i].NAME;
-    }
-    return "";
+    if(id == -1) return "";
+    return this.props.companyManager.originalList[id].NAME;
   }
 
   render() {
     const { t } = this.props;
     let display = {
-      ID: this.props.companyManager.candidateCompID,
-      NAME: this.getCompanyName(this.props.companyManager.candidateCompID),
+      ID: this.props.companyManager.candidateCompListIdx,
+      NAME: this.getCompanyName(this.props.companyManager.candidateCompListIdx),
     };
     return (
     <Card>

@@ -5,17 +5,18 @@ const companyManagerSlice = createSlice({
   initialState: {
     companyList: [],
     originalList: [],
-    candidateCompID: 1,
+    candidateCompListIdx: -1,
     changeRequests: [],
   },
   reducers: {
     updateCompanyList(state, action) {
       state.companyList = action.payload;
       state.originalList = action.payload;
+      state.candidateCompListIdx = -1;
       state.changeRequests = [];
     },
-    changeCandidateCompID(state, action) {
-      state.candidateCompID = action.payload;
+    changeCandidateCompListIdx(state, action) {
+      state.candidateCompListIdx = action.payload;
     },
     addChangeRequest(state, action) {
       let CR = action.payload;
@@ -39,7 +40,7 @@ const companyManagerSlice = createSlice({
 });
 
 // Export actions
-export const { updateCompanyList, changeCandidateCompID, addChangeRequest } = companyManagerSlice.actions;
+export const { updateCompanyList, changeCandidateCompListIdx, addChangeRequest } = companyManagerSlice.actions;
 
 // Export reducer
 export default companyManagerSlice.reducer;

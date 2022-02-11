@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
-import { changeCandidateCompID } from "Redux/components/companyManager/companyManagerSlice";
+import { changeCandidateCompListIdx } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
 
 function HighlightText(props) {
@@ -19,9 +19,9 @@ class CompanyTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
-  genRow(obj) {
-    return (<tr key={obj.ID} onClick={()=>{
-      this.props.changeCandidateCompID(obj.ID);
+  genRow(idx, obj) {
+    return (<tr key={idx} onClick={()=>{
+      this.props.changeCandidateCompListIdx(idx);
       }}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
@@ -50,9 +50,9 @@ class CompanyTable extends React.Component {
     let content = [];
     let companyList = this.props.companyManager.companyList;
     for(let i=0; i<=companyList.length-1; i++) {
-      content.push(this.genRow(companyList[i]));
+      content.push(this.genRow(i, companyList[i]));
     }
-    content.push(this.genLastRow(companyList));
+    // content.push(this.genLastRow(companyList));
 
     return (
     <div className="scrollTable">
@@ -74,6 +74,6 @@ class CompanyTable extends React.Component {
 const mapStateToProps = (state, props) => ({
   companyManager: state.companyManager
 });
-const mapDispatch = { changeCandidateCompID };
+const mapDispatch = { changeCandidateCompListIdx };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(CompanyTable));

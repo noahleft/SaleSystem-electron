@@ -8,7 +8,8 @@ class FormID extends React.Component {
   }
 
   render() {
-    const id = this.props.companyManager.candidateCompID;
+    const idx = this.props.companyManager.candidateCompListIdx;
+    const id = idx==-1?"":this.props.companyManager.originalList[idx].ID;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formCompId">
     <Form.Label column sm={2}>ID:</Form.Label>
