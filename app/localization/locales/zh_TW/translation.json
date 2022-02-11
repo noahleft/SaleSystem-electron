@@ -76,5 +76,7 @@
   "Database": "資料庫",
   "Import": "匯入",
   "Export": "匯出",
-  "Save": "儲存"
+  "Save": "儲存",
+  "Clear": "清除",
+  "NewRecord": "新增"
 }

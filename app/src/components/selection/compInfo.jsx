@@ -50,7 +50,7 @@ class CompInfo extends React.Component {
     <Card>
       <Card.Title>{t("CompanyInfo")}</Card.Title>
       <Card.Body>
-      <Button onClick={this.handleNewRecord}>New Record</Button>
+      <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
         <Form onSubmit={this.handleSubmit}>
           <FormID/>
           <FormName orig={orig} name={name} disabled={idx==-1} onNameChange={this.handleNameChange}/>

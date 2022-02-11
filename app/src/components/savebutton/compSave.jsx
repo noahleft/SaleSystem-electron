@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { updateCompanyList } from "Redux/components/companyManager/companyManagerSlice";
-import { Button } from "react-bootstrap";
+import { Button, Stack } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 
 class CompSave extends React.Component {
@@ -9,6 +9,7 @@ class CompSave extends React.Component {
     super(props);
 
     this.saveAction = this.saveAction.bind(this);
+    this.clearAction = this.clearAction.bind(this);
   }
 
   saveAction() {
@@ -26,6 +27,10 @@ class CompSave extends React.Component {
     });
     myAPI.handleCompanyChangeRequest(CRList);
 
+    this.clearAction();
+  }
+
+  clearAction() {
     let companylist = myAPI.listCompany().map(function(obj){
       obj.DIRTY = false;
       return obj;
@@ -35,7 +40,12 @@ class CompSave extends React.Component {
 
   render() {
     const { t } = this.props;
-    return <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
+    return (
+      <Stack direction="horizontal" gap={3}>
+        <Button onClick={this.saveAction}  disabled={!this.props.enable}>{t("Save")}</Button>
+        <Button variant="danger" onClick={this.clearAction} disabled={!this.props.enable}>{t("Clear")}</Button>
+      </Stack>
+    )
   }
 }
 
