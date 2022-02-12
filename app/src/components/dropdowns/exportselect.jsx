@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavDropdown } from "react-bootstrap";
 import { changeSelectedCompID } from "Redux/components/exportManager/exportManagerSlice";
+import { changeNeedTax } from "Redux/components/exportManager/exportManagerSlice";
 import { withTranslation } from "react-i18next";
 
 class ExportSelect extends React.Component {
@@ -27,12 +28,16 @@ class ExportSelect extends React.Component {
   render() {
     const { t } = this.props;
     let title = t("AllCompany");
-    let content = [<NavDropdown.Item key='0' onClick={()=>{this.props.changeSelectedCompID(0);}}>{title}</NavDropdown.Item>];
+    let content = [<NavDropdown.Item key='0' onClick={()=>{
+      this.props.changeSelectedCompID(0);
+      this.props.changeNeedTax(false);}
+    }>{title}</NavDropdown.Item>];
     const companyList = this.extractCompIDSet();
     for(let i=0; i<=companyList.length-1; i++) {
       content.push(
         <NavDropdown.Item key={companyList[i].ID} onClick={()=>{
           this.props.changeSelectedCompID(companyList[i].ID);
+          this.props.changeNeedTax(companyList[i].PRINTTAX);
         }}>
         {companyList[i].NAME}
         </NavDropdown.Item>)
@@ -53,6 +58,6 @@ const mapStateToProps = (state, props) => ({
   exportManager: state.exportManager,
   companyManager: state.companyManager,
 });
-const mapDispatch = { changeSelectedCompID };
+const mapDispatch = { changeSelectedCompID, changeNeedTax };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(ExportSelect));

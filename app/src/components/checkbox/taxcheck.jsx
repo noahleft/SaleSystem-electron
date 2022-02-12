@@ -26,7 +26,7 @@ class TaxCheck extends React.Component {
   render() {
     const { t } = this.props;
     return (
-        <Form.Check type="checkbox" label={t("PrintTax")} defaultChecked={this.props.exportManager.needTax} onChange={this.handleChange} />
+        <Form.Check type="checkbox" label={t("PrintTax")} checked={this.props.exportManager.needTax} onChange={this.handleChange} />
     );
   }
 }

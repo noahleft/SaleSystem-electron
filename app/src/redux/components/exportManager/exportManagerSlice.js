@@ -15,7 +15,6 @@ const exportManagerSlice = createSlice({
     },
     changeSelectedCompID(state, action) {
       state.selectedCompID = action.payload;
-      state.needTax = false;
     },
     changeNeedTax(state, action) {
       state.needTax = action.payload;
