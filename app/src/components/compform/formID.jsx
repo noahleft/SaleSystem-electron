@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form, Row, Col } from "react-bootstrap";
 
-class FormID extends React.Component {
+class CompID extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -26,4 +26,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { };
 
-export default connect(mapStateToProps, mapDispatch)(FormID);
+export default connect(mapStateToProps, mapDispatch)(CompID);

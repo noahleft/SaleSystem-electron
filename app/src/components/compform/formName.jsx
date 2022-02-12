@@ -4,7 +4,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { changeCandidateCompName } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
 
-class FormName extends React.Component {
+class CompName extends React.Component {
   constructor(props) {
     super(props);
 
@@ -42,4 +42,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { changeCandidateCompName };
 
-export default connect(mapStateToProps, mapDispatch)(withTranslation()(FormName));
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(CompName));

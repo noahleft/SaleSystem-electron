@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button, Container } from "react-bootstrap";
 import { addDummyCompany, changeCandidateCompListIdx } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
-import FormID from "Components/compform/formID";
-import FormName from "Components/compform/formName";
-import FormBusinessNum from "Components/compform/FormBusinessNum";
+import CompID from "Components/compform/formID";
+import CompName from "Components/compform/formName";
+import CompBusinessNum from "Components/compform/FormBusinessNum";
 
 class CompInfo extends React.Component {
   constructor(props) {
@@ -47,12 +47,12 @@ class CompInfo extends React.Component {
             <Col><Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button></Col>
           </Row>
           <Row>
-            <Col><FormID/></Col>
+            <Col><CompID/></Col>
             <Col></Col>
           </Row>
           <Row>
-            <Col><FormName/></Col>
-            <Col><FormBusinessNum/></Col>
+            <Col><CompName/></Col>
+            <Col><CompBusinessNum/></Col>
           </Row>
           <Row>
           
