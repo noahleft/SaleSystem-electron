@@ -1,17 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button } from "react-bootstrap";
-import { addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName } from "Redux/components/companyManager/companyManagerSlice";
+import { addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName, changeCandidateCompBusNum } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
 import FormID from "Components/compform/formID";
 import FormName from "Components/compform/formName";
+import FormBusinessNum from "Components/compform/FormBusinessNum";
 
 class CompInfo extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleNameChange = this.handleNameChange.bind(this);
-
+    this.handleBusNumChange = this.handleBusNumChange.bind(this);
     this.handleNewRecord = this.handleNewRecord.bind(this);
   }
 
@@ -35,6 +36,14 @@ class CompInfo extends React.Component {
       value: name});
   }
 
+  handleBusNumChange(e) {
+    const num = e.target.value;
+    const idx = this.props.companyManager.candidateCompListIdx;
+    this.props.changeCandidateCompBusNum({
+      idx:   idx,
+      value: num});
+  }
+
   getCompanyName(id) {
     if(id == -1) return "";
     return this.props.companyManager.originalList[id].NAME;
@@ -43,8 +52,10 @@ class CompInfo extends React.Component {
   render() {
     const { t } = this.props;
     const idx = this.props.companyManager.candidateCompListIdx;
-    const name = (idx!=-1)?this.props.companyManager.companyList[idx].NAME:"";
+    const curr = (idx!=-1)?this.props.companyManager.companyList[idx].NAME:"";
     const orig = (idx!=-1)?this.props.companyManager.originalList[idx].NAME:"";
+    const bnum = (idx!=-1)?this.props.companyManager.companyList[idx].BUSINESSNUM:"";
+    const orig_bnum = (idx!=-1)?this.props.companyManager.originalList[idx].BUSINESSNUM:"";
     
     return (
     <Card>
@@ -53,11 +64,8 @@ class CompInfo extends React.Component {
       <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
         <Form>
           <FormID/>
-          <FormName orig={orig} name={name} disabled={idx==-1} onNameChange={this.handleNameChange}/>
-          <Form.Group as={Row} className="mb-3">
-            <Col sm={{span: 10, offset:2}}>
-            </Col>
-          </Form.Group>
+          <FormName orig={orig} name={curr} disabled={idx==-1} onNameChange={this.handleNameChange}/>
+          <FormBusinessNum orig={orig_bnum} name={bnum} disabled={idx==-1} onBusNumChange={this.handleBusNumChange}/>
         </Form>
       </Card.Body>
     </Card>
@@ -68,6 +76,6 @@ class CompInfo extends React.Component {
 const mapStateToProps = (state, props) => ({
   companyManager: state.companyManager
 });
-const mapDispatch = { addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName };
+const mapDispatch = { addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName, changeCandidateCompBusNum };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(CompInfo));

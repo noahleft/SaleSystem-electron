@@ -82,14 +82,14 @@ class DbManager {
         return row;
     }
     addCompany(compList) {
-        const insert = this.db.prepare('INSERT INTO company (name, hide) VALUES (@name, @hide);');
+        const insert = this.db.prepare('INSERT INTO company (name) VALUES (@name);');
         const insertMany = this.db.transaction((compList) => {
             for (const comp of compList) insert.run(comp);
           });
         insertMany(compList);
     }
     updateCompany(compList) {
-        const update = this.db.prepare('UPDATE company SET name = (@name) WHERE id = (@id);');
+        const update = this.db.prepare('UPDATE company SET name = (@name), printtax = (@printtax), businessnum = (@businessnum) WHERE id = (@id);');
         const updateMany = this.db.transaction((compList) => {
             for (const comp of compList) update.run(comp);
         });

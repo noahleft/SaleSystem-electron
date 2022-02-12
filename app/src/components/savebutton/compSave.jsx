@@ -21,7 +21,9 @@ class CompSave extends React.Component {
       var rObj = {
         id: obj.ID,
         name: obj.NAME,
-        hide: "false",
+        hide: false,
+        printtax: obj.PRINTTAX,
+        businessnum: obj.BUSINESSNUM
       };
       return rObj;
     });

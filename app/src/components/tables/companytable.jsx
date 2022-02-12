@@ -25,8 +25,8 @@ class CompanyTable extends React.Component {
       this.props.changeCandidateCompListIdx(idx);
       }}>
     <th scope="row">{obj.ID}</th>
-    <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
-    <td>{obj.BUSINESSNUM}</td>
+    <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}/></td>
+    <td><HighlightText name={obj.BUSINESSNUM} highlight={obj.DIRTY}/></td>
     <td>{obj.PHONE}</td>
     <td>{obj.CONTACT}</td>
     <td><Form.Check type="checkbox" aria-label="PrintTax" defaultChecked={obj.PRINTTAX} disabled/></td>
