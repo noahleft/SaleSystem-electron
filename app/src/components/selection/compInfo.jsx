@@ -8,6 +8,7 @@ import CompName from "Components/compform/compName";
 import CompBusinessNum from "Components/compform/compBusinessNum";
 import CompPhone from "Components/compform/compPhone";
 import CompContact from "Components/compform/compContact";
+import CompTax from "Components/compform/compTax";
 
 class CompInfo extends React.Component {
   constructor(props) {
@@ -59,6 +60,10 @@ class CompInfo extends React.Component {
           <Row>
             <Col><CompPhone/></Col>
             <Col><CompContact/></Col>
+          </Row>
+          <Row>
+            <Col><CompTax/></Col>
+            <Col></Col>
           </Row>
         </Container></Form>
       </Card.Body>
