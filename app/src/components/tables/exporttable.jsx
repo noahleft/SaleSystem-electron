@@ -45,7 +45,7 @@ class ExportTable extends React.Component {
         <td>{recordList[i].QUANTITY}{this.props.home.quantity_unit}</td>
         <td>{recordList[i].UNIT_PRICE}</td>
         <td>{sum}</td>
-        <td></td>
+        <td>{recordList[i].NOTE}</td>
         </tr>)
     }
     let tax = Math.round(total * 0.05);
