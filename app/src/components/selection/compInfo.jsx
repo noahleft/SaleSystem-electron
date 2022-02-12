@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button, Container } from "react-bootstrap";
 import { addDummyCompany, changeCandidateCompListIdx } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
-import CompID from "Components/compform/formID";
-import CompName from "Components/compform/formName";
-import CompBusinessNum from "Components/compform/FormBusinessNum";
+import CompID from "Components/compform/compID";
+import CompName from "Components/compform/compName";
+import CompBusinessNum from "Components/compform/compBusinessNum";
 
 class CompInfo extends React.Component {
   constructor(props) {
