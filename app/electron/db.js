@@ -194,6 +194,13 @@ class DbManager {
         this.addForm(insertList);
         this.updateForm(formList);
     }
+    handleFormSummary(formList) {
+        const update = this.db.prepare('UPDATE form SET quantity = (@quantity), sum = (@sum) WHERE id = (@id);');
+        const updateMany = this.db.transaction((formList) => {
+            for (const form of formList) update.run(form);
+        });
+        updateMany(formList);
+    }
     listRecord(formId) {
         const row = this.db.prepare('SELECT * FROM record WHERE form_id = ?').all(formId);
         return row;

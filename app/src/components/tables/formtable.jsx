@@ -38,6 +38,8 @@ class FormTable extends React.Component {
     }}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
+    <td>{obj.QUANTITY}</td>
+    <td>{obj.SUM}</td>
     <td>
       <Button variant="primary" size="sm"
         onClick={() => {
@@ -67,6 +69,8 @@ class FormTable extends React.Component {
       <tr>
         <th scope="col" className="thID">#</th>
         <th scope="col" className="thText">{t("Name")}</th>
+        <th scope="col" className="thNum">{t("Quantity")}</th>
+        <th scope="col" className="thNum">{t("Total")}</th>
         <th scope="col"></th>
       </tr>
     </thead>

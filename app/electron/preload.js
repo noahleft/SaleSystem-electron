@@ -33,6 +33,7 @@ contextBridge.exposeInMainWorld("myAPI", {
   listForm: () => manager.listForm(),
   getForm: (id) => manager.getForm(id),
   handleFormChangeRequest: (formList) => manager.handleFormChangeRequest(formList),
+  handleFormSummary: (formList) => manager.handleFormSummary(formList),
   listRecord: (formId) => manager.listRecord(formId),
   handleRecordChangeRequest: (recordList) => manager.handleRecordChangeRequest(recordList),
 });

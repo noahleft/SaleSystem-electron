@@ -30,11 +30,18 @@ const formManagerSlice = createSlice({
       state.formList[idx].DIRTY = true;
       state.requireSaving = true;
     },
+    changeCandidateFormSummary(state, action) {
+      const idx = action.payload.idx;
+      const quantity = action.payload.quantity;
+      const sum = action.payload.sum;
+      state.formList[idx].QUANTITY = quantity;
+      state.formList[idx].SUM = sum;
+    }
   }
 });
 
 // Export actions
-export const { updateFormList, addDummyForm, changeCandidateFormListIdx, changeCandidateFormName } = formManagerSlice.actions;
+export const { updateFormList, addDummyForm, changeCandidateFormListIdx, changeCandidateFormName, changeCandidateFormSummary } = formManagerSlice.actions;
 
 // Export reducer
 export default formManagerSlice.reducer;

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { updateRecordList } from "Redux/components/recordManager/recordManagerSlice";
+import { changeCandidateFormSummary } from "Redux/components/formManager/formManagerSlice";
 import { Button } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 
@@ -35,6 +36,24 @@ class RecordSave extends React.Component {
 
     const idx = this.props.formManager.candidateFormListIdx;
     let formId = this.props.formManager.formList[idx].ID;
+    let quantity = this.props.recordManager.recordList.map(function(obj){
+      return obj.QUANTITY;
+    }).reduce((partial, a)=> partial+a, 0);
+    let sum = this.props.recordManager.recordList.map(function(obj){
+      return obj.QUANTITY*obj.UNIT_PRICE;
+    }).reduce((partial, a)=> partial+a, 0);
+    let formSummary = {
+      id: formId,
+      quantity: quantity,
+      sum: sum,
+    }
+    myAPI.handleFormSummary([formSummary]);
+    this.props.changeCandidateFormSummary({
+      idx: idx,
+      quantity: quantity,
+      sum: sum,
+    });
+
     let recordlist = myAPI.listRecord(formId).map(function(obj){
       obj.DIRTY = false;
       return obj;
@@ -52,6 +71,6 @@ const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
   recordManager: state.recordManager
 });
-const mapDispatch = { updateRecordList };
+const mapDispatch = { updateRecordList, changeCandidateFormSummary };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(RecordSave));
