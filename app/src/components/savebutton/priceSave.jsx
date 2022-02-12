@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { updatePriceList } from "Redux/components/priceManager/priceManagerSlice";
-import { Button } from "react-bootstrap";
+import { Button, Stack } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 
 class PriceSave extends React.Component {
@@ -9,6 +9,7 @@ class PriceSave extends React.Component {
     super(props);
 
     this.saveAction = this.saveAction.bind(this);
+    this.clearAction = this.clearAction.bind(this);
   }
 
   saveAction() {
@@ -23,6 +24,10 @@ class PriceSave extends React.Component {
     });
     myAPI.handlePriceChangeRequest(CRList);
 
+    this.clearAction();
+  }
+
+  clearAction() {
     let pricelist = myAPI.listPrice().map(function(obj){
       obj.DIRTY = false;
       return obj;
@@ -32,7 +37,12 @@ class PriceSave extends React.Component {
 
   render() {
     const { t } = this.props;
-    return <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
+    return (
+      <Stack direction="horizontal" gap={3}>
+        <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
+        <Button variant="danger" onClick={this.clearAction} disabled={!this.props.enable}>{t("Clear")}</Button>
+      </Stack>
+      )
   }
 }
 
