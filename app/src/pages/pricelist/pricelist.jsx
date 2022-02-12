@@ -5,6 +5,7 @@ import PriceTable from "Components/tables/pricetable";
 import PriceFooter from "Components/footer/priceFooter";
 import ShowProductCheck from "Components/checkbox/showProdCheck";
 import { withTranslation } from "react-i18next";
+import "./print.css";
 
 class PriceList extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class PriceList extends React.Component {
     return (
       <section className="section">
         <Container fluid>
+          <div className="section-to-print">
           <Row>
             <Stack direction="horizontal" gap={3}>
               <div className="is-1 title">{t("PriceTitle")}</div>
@@ -20,6 +22,7 @@ class PriceList extends React.Component {
             </Stack>
           </Row>
           <Row><PriceTable></PriceTable></Row>
+          </div>
         </Container>
         <PriceFooter></PriceFooter>
       </section>
