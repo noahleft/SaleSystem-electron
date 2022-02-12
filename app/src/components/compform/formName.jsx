@@ -1,10 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Form, Row, Col } from "react-bootstrap";
+import { changeCandidateCompName } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
 
 class FormName extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleNameChange = this.handleNameChange.bind(this);
+  }
+
+  handleNameChange(e) {
+    const name = e.target.value;
+    const idx = this.props.companyManager.candidateCompListIdx;
+    this.props.changeCandidateCompName({
+      idx:   idx,
+      value: name});
   }
 
   render() {
@@ -14,11 +26,16 @@ class FormName extends React.Component {
     <Form.Label column sm={4}>{t("CompanyName")}:</Form.Label>
     <Col sm={6}>
       <Form.Control className="me-auto" placeholder={this.props.orig} disabled={this.props.disabled}
-      type="text" value={this.props.val} onChange={this.props.onNameChange} />
+      type="text" value={this.props.val} onChange={this.handleNameChange} />
     </Col>
     </Form.Group>
     );
   }
 }
 
-export default withTranslation()(FormName);
+const mapStateToProps = (state, props) => ({
+  companyManager: state.companyManager
+});
+const mapDispatch = { changeCandidateCompName };
+
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(FormName));

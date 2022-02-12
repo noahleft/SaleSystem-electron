@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button, Container } from "react-bootstrap";
-import { addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName, changeCandidateCompBusNum } from "Redux/components/companyManager/companyManagerSlice";
+import { addDummyCompany, changeCandidateCompListIdx } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
 import FormID from "Components/compform/formID";
 import FormName from "Components/compform/formName";
@@ -10,9 +10,7 @@ import FormBusinessNum from "Components/compform/FormBusinessNum";
 class CompInfo extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleBusNumChange = this.handleBusNumChange.bind(this);
+    
     this.handleNewRecord = this.handleNewRecord.bind(this);
   }
 
@@ -31,22 +29,6 @@ class CompInfo extends React.Component {
     }
     this.props.addDummyCompany(dummy);
     this.props.changeCandidateCompListIdx(len);
-  }
-
-  handleNameChange(e) {
-    const name = e.target.value;
-    const idx = this.props.companyManager.candidateCompListIdx;
-    this.props.changeCandidateCompName({
-      idx:   idx,
-      value: name});
-  }
-
-  handleBusNumChange(e) {
-    const num = e.target.value;
-    const idx = this.props.companyManager.candidateCompListIdx;
-    this.props.changeCandidateCompBusNum({
-      idx:   idx,
-      value: num});
   }
 
   getCompanyName(id) {
@@ -80,8 +62,8 @@ class CompInfo extends React.Component {
             <Col></Col>
           </Row>
           <Row>
-            <Col><FormName orig={orig.NAME} val={curr.NAME} disabled={defaultVal} onNameChange={this.handleNameChange}/></Col>
-            <Col><FormBusinessNum orig={orig.BNUM} val={curr.BNUM} disabled={defaultVal} onBusNumChange={this.handleBusNumChange}/></Col>
+            <Col><FormName orig={orig.NAME} val={curr.NAME} disabled={defaultVal}/></Col>
+            <Col><FormBusinessNum orig={orig.BNUM} val={curr.BNUM} disabled={defaultVal}/></Col>
           </Row>
           <Row>
           
@@ -96,6 +78,6 @@ class CompInfo extends React.Component {
 const mapStateToProps = (state, props) => ({
   companyManager: state.companyManager
 });
-const mapDispatch = { addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName, changeCandidateCompBusNum };
+const mapDispatch = { addDummyCompany, changeCandidateCompListIdx };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(CompInfo));
