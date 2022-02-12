@@ -86,5 +86,10 @@
   "PrintTax": "印出稅金",
   "BusinessNum": "統編",
   "Phone": "電話",
-  "Contact": "聯絡人"
+  "Contact": "聯絡人",
+  "Settings": "設定",
+  "QuantityUnit": "數量單位",
+  "Key": "鍵",
+  "Value": "值",
+  "EditValue": "修改鍵值"
 }

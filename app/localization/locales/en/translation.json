@@ -86,5 +86,10 @@
   "PrintTax": "Print Tax",
   "BusinessNum": "Business Number",
   "Phone": "Phone",
-  "Contact": "Contact"
+  "Contact": "Contact",
+  "Settings": "Settings",
+  "QuantityUnit": "Quantity Unit",
+  "Key": "Key",
+  "Value": "Value",
+  "EditValue": "Edit Value"
 }
