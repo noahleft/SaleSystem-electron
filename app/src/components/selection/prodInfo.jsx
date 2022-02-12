@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Form, Row, Col, Button } from "react-bootstrap";
+import { Card, Form, Row, Col, Button, Container } from "react-bootstrap";
 import { addDummyProduct, changeCandidateProdListIdx, changeCandidateProdName } from "Redux/components/productManager/productManagerSlice";
 import { withTranslation } from "react-i18next";
 
@@ -48,8 +48,10 @@ class ProdInfo extends React.Component {
     <Card>
       <Card.Title>{t("ProductInfo")}</Card.Title>
       <Card.Body>
-      <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
-        <Form>
+        <Form><Container>
+          <Row>
+            <Col><Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button></Col>
+          </Row>
           <Form.Group as={Row} className="mb-3" controlId="formProdId">
             <Form.Label column sm={2}>ID:</Form.Label>
             <Col sm={10}>
@@ -63,7 +65,7 @@ class ProdInfo extends React.Component {
               type="text" value={name} onChange={this.handleNameChange} />
             </Col>
           </Form.Group>
-        </Form>
+        </Container></Form>
       </Card.Body>
     </Card>
     );

@@ -46,8 +46,10 @@ class RecordInfo extends React.Component {
     <Card>
       <Card.Title>{t("RecordInfo")}</Card.Title>
       <Card.Body>
-        <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
         <Form><Container>
+          <Row>
+            <Col><Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button></Col>
+          </Row>
           <Row>
             <Col><FormID /></Col>
             <Col>{t("DeliverDate")}:</Col>

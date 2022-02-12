@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Form, Row, Col, Button } from "react-bootstrap";
+import { Card, Form, Row, Col, Button, Container } from "react-bootstrap";
 import { addDummyForm, changeCandidateFormListIdx, changeCandidateFormName } from "Redux/components/formManager/formManagerSlice";
 import { withTranslation } from "react-i18next";
 
@@ -43,8 +43,10 @@ class FormInfo extends React.Component {
     <Card>
       <Card.Title>{t("FormInfo")}</Card.Title>
       <Card.Body>
-      <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}><Container>
+          <Row>
+            <Col><Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button></Col>
+          </Row>
           <Form.Group as={Row} className="mb-3" controlId="formFormId">
             <Form.Label column sm={2}>ID:</Form.Label>
             <Col sm={10}>
@@ -58,7 +60,7 @@ class FormInfo extends React.Component {
               type="text" value={name} onChange={this.handleNameChange} />
             </Col>
           </Form.Group>
-        </Form>
+        </Container></Form>
       </Card.Body>
     </Card>
     );
