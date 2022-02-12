@@ -44,11 +44,11 @@ class RecordInfo extends React.Component {
     <Card>
       <Card.Title>{t("RecordInfo")}</Card.Title>
       <Card.Body>
-        <Button onClick={this.handleNewRecord}>New Record</Button>
+        <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
         <Form><Container>
           <Row>
             <Col><FormID /></Col>
-            <Col>Deliver Date:</Col>
+            <Col>{t("DeliverDate")}:</Col>
           </Row>
           <Row>
             <Col>

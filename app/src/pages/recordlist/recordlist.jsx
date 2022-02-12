@@ -6,6 +6,7 @@ import RecordTable from "Components/tables/recordtable";
 import RecordFooter from "Components/footer/recordFooter";
 import { Container, Row, Stack, Button } from "react-bootstrap";
 import { updateExportList } from "Redux/components/exportManager/exportManagerSlice";
+import { withTranslation } from "react-i18next";
 
 class RecordList extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class RecordList extends React.Component {
   }
   
   render() {
+    const { t } = this.props;
     const idx = this.props.formManager.candidateFormListIdx;
     let message = this.props.formManager.formList[idx].NAME;
     let disableExport = this.props.recordManager.requireSaving;
@@ -41,7 +43,7 @@ class RecordList extends React.Component {
                     this.props.updateExportList(exportList);
                     this.navigate(ROUTES.RECORDEXPORT);
                   }} disabled={disableExport}>
-                  Export
+                  {t("Export")}
                 </Button>
               </div>
             </Stack>
@@ -62,4 +64,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { updateExportList };
 
-export default connect(mapStateToProps, mapDispatch)(RecordList);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(RecordList));

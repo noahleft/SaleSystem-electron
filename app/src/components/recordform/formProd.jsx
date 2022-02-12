@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form, Row, Col } from "react-bootstrap";
 import { changeCandidateRecordProdId, changeCandidateRecordUnitPrice } from "Redux/components/recordManager/recordManagerSlice";
+import { withTranslation } from "react-i18next";
 
 class FormProd extends React.Component {
   constructor(props) {
@@ -70,16 +71,17 @@ class FormProd extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     const idx = this.props.recordManager.candidateRecordListIdx;
     const comp_id = (idx!=-1)?this.props.recordManager.recordList[idx].COMP_ID:0;
     const prod_id = (idx!=-1)?this.props.recordManager.recordList[idx].PROD_ID:0;
     const content = this.getProductOptions(comp_id);
     return (
     <Form.Group as={Row} className="mb-3" controlId="formProdName" ref="formProdName">
-    <Form.Label column sm={4}>Product:</Form.Label>
+    <Form.Label column sm={4}>{t("ProductName")}:</Form.Label>
     <Col sm={6}>
     <Form.Select aria-label="Select" value={prod_id} onChange={this.handleChange} disabled={idx==-1}>
-      <option key="0" value="0" disabled>Select</option>
+      <option key="0" value="0" disabled>{t("Select")}</option>
       {content}
     </Form.Select>
     </Col>
@@ -95,4 +97,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { changeCandidateRecordProdId, changeCandidateRecordUnitPrice };
 
-export default connect(mapStateToProps, mapDispatch)(FormProd);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(FormProd));

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form, Row, Col } from "react-bootstrap";
 import { changeCandidateRecordCompId, changeCandidateRecordUnitPrice } from "Redux/components/recordManager/recordManagerSlice";
+import { withTranslation } from "react-i18next";
 
 class FormComp extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class FormComp extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     const content = this.props.companyManager.companyList.map(function(obj){
       return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
     });
@@ -38,10 +40,10 @@ class FormComp extends React.Component {
     const comp_id = (idx!=-1)?this.props.recordManager.recordList[idx].COMP_ID:0;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
-    <Form.Label column sm={4}>Company:</Form.Label>
+    <Form.Label column sm={4}>{t("CompanyName")}:</Form.Label>
     <Col sm={6}>
     <Form.Select value={comp_id} onChange={this.handleChange} disabled={idx==-1}>
-      <option key="0" value="0" disabled>Select</option>
+      <option key="0" value="0" disabled>{t("Select")}</option>
       {content}
     </Form.Select>
     </Col>
@@ -57,4 +59,4 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatch = { changeCandidateRecordCompId, changeCandidateRecordUnitPrice };
 
-export default connect(mapStateToProps, mapDispatch)(FormComp);
+export default connect(mapStateToProps, mapDispatch)(withTranslation()(FormComp));
