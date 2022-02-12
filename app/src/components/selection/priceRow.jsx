@@ -42,7 +42,7 @@ class PriceRow extends React.Component {
       UNIT_PRICE: this.props.compPrice.UNIT_PRICE,
       DIRTY: this.props.compPrice.DIRTY,
     };
-    return (<tr key={display.ID}>
+    return (<tr key={display.ID} hidden={this.props.hidden && display.UNIT_PRICE==""}>
     <th scope="row">{display.ID}</th>
     <td>{display.NAME}</td>
     <td><HighlightText name={display.UNIT_PRICE} highlight={display.DIRTY}></HighlightText></td>

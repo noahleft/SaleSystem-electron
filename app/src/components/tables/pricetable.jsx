@@ -41,8 +41,9 @@ class PriceTable extends React.Component {
       compPriceList[i].DIRTY = priceItem.DIRTY;
     }
     const disable = this.props.priceManager.selectedCompID==0;
+    const hidden = !disable && !this.props.priceManager.showAllProduct;
     for(let i=0; i< compPriceList.length; i++) {
-      content.push(<PriceRow key={compPriceList[i].ID} compPrice={compPriceList[i]} disabled={disable} />);
+      content.push(<PriceRow key={compPriceList[i].ID} compPrice={compPriceList[i]} disabled={disable} hidden={hidden}/>);
     }
 
     return (
