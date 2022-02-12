@@ -31,6 +31,7 @@ class FormTable extends React.Component {
   }
 
   genRow(idx, obj) {
+    const { t } = this.props;
     return (<tr key={idx} onClick={()=>{
       this.props.changeCandidateFormListIdx(idx);
     }}>
@@ -43,7 +44,7 @@ class FormTable extends React.Component {
           this.updateRecord(obj.ID);
           this.props.onNavigate(ROUTES.RECORDLIST);
         }} disabled={obj.DISABLE || this.props.formManager.requireSaving}>
-        OpenIt!
+        {t("OpenIt")}
       </Button>
     </td>
     </tr>
