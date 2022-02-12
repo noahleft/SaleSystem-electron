@@ -42,7 +42,7 @@ class ExportTable extends React.Component {
       content.push(<tr key={recordList[i].ID}>
         <td>{this.getDisplayDate(recordList[i].DELIVER_DATE)}</td>
         <td>{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
-        <td>{recordList[i].QUANTITY}</td>
+        <td>{recordList[i].QUANTITY}{this.props.home.quantity_unit}</td>
         <td>{recordList[i].UNIT_PRICE}</td>
         <td>{sum}</td>
         <td></td>
@@ -50,6 +50,7 @@ class ExportTable extends React.Component {
     }
     let tax = Math.round(total * 0.05);
     let posttax = tax + total;
+    let QuantityUnit = this.props.home.quantity_unit==""?"":"("+this.props.home.quantity_unit+")";
     return (
     <div>
       <div>
@@ -58,7 +59,7 @@ class ExportTable extends React.Component {
             <tr>
               <th scope="col" className="thName">{t("DeliverDate")}</th>
               <th scope="col" className="thText">{t("Item")}</th>
-              <th scope="col" className="thNum">{t("Quantity")}</th>
+              <th scope="col" className="thNum">{t("Quantity")}{QuantityUnit}</th>
               <th scope="col" className="thNum">{t("UnitPrice")}</th>
               <th scope="col" className="thNum">{t("Sum")}</th>
               <th scope="col">{t("Note")}</th>
@@ -93,6 +94,7 @@ class ExportTable extends React.Component {
 const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
   exportManager: state.exportManager,
+  home: state.home,
 });
 const mapDispatch = { };
 
