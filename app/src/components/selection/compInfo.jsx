@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Form, Row, Col, Button } from "react-bootstrap";
+import { Card, Form, Row, Col, Button, Container } from "react-bootstrap";
 import { addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName, changeCandidateCompBusNum } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
 import FormID from "Components/compform/formID";
@@ -67,11 +67,19 @@ class CompInfo extends React.Component {
       <Card.Title>{t("CompanyInfo")}</Card.Title>
       <Card.Body>
       <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
-        <Form>
-          <FormID/>
-          <FormName orig={orig.NAME} val={curr.NAME} disabled={defaultVal} onNameChange={this.handleNameChange}/>
-          <FormBusinessNum orig={orig.BNUM} val={curr.BNUM} disabled={defaultVal} onBusNumChange={this.handleBusNumChange}/>
-        </Form>
+        <Form><Container>
+          <Row>
+            <Col><FormID/></Col>
+            <Col></Col>
+          </Row>
+          <Row>
+            <Col><FormName orig={orig.NAME} val={curr.NAME} disabled={defaultVal} onNameChange={this.handleNameChange}/></Col>
+            <Col><FormBusinessNum orig={orig.BNUM} val={curr.BNUM} disabled={defaultVal} onBusNumChange={this.handleBusNumChange}/></Col>
+          </Row>
+          <Row>
+          
+          </Row>
+        </Container></Form>
       </Card.Body>
     </Card>
     );

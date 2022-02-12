@@ -20,13 +20,13 @@ class CompanyTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
-  genRow(idx, obj) {
+  genRow(idx, obj, orig) {
     return (<tr key={idx} onClick={()=>{
       this.props.changeCandidateCompListIdx(idx);
       }}>
     <th scope="row">{obj.ID}</th>
-    <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}/></td>
-    <td><HighlightText name={obj.BUSINESSNUM} highlight={obj.DIRTY}/></td>
+    <td><HighlightText name={obj.NAME} highlight={obj.NAME!=orig.NAME}/></td>
+    <td><HighlightText name={obj.BUSINESSNUM} highlight={obj.BUSINESSNUM!=orig.BUSINESSNUM}/></td>
     <td>{obj.PHONE}</td>
     <td>{obj.CONTACT}</td>
     <td><Form.Check type="checkbox" aria-label="PrintTax" defaultChecked={obj.PRINTTAX} disabled/></td>
@@ -39,8 +39,9 @@ class CompanyTable extends React.Component {
     const { t } = this.props;
     let content = [];
     let companyList = this.props.companyManager.companyList;
+    let originalList = this.props.companyManager.originalList;
     for(let i=0; i<=companyList.length-1; i++) {
-      content.push(this.genRow(i, companyList[i]));
+      content.push(this.genRow(i, companyList[i], originalList[i]));
     }
 
     return (

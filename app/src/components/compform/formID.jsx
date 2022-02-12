@@ -12,8 +12,8 @@ class FormID extends React.Component {
     const id = idx==-1?"":this.props.companyManager.originalList[idx].ID;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formCompId">
-    <Form.Label column sm={2}>ID:</Form.Label>
-    <Col sm={10}>
+    <Form.Label column sm={4}>ID:</Form.Label>
+    <Col sm={6}>
     <Form.Control className="me-auto" placeholder={id} readOnly />
     </Col>
     </Form.Group>
