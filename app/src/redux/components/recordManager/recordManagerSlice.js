@@ -58,13 +58,20 @@ const recordManagerSlice = createSlice({
       state.recordList[idx].DIRTY = true;
       state.requireSaving = true;
     },
+    changeCandidateRecordNote(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.recordList[idx].NOTE = val;
+      state.recordList[idx].DIRTY = true;
+      state.requireSaving = true;
+    },
   }
 });
 
 // Export actions
 export const { updateRecordList, changeCandidateRecordListIdx, changeCandidateRecordCompId,
   changeCandidateRecordProdId, changeCandidateRecordDeliverDate, changeCandidateRecordUnitPrice, 
-  changeCandidateRecordQuantity, addDummyRecord } = recordManagerSlice.actions;
+  changeCandidateRecordQuantity, changeCandidateRecordNote, addDummyRecord } = recordManagerSlice.actions;
 
 // Export reducer
 export default recordManagerSlice.reducer;

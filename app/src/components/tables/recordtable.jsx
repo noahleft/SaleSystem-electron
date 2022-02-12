@@ -58,7 +58,7 @@ class RecordTable extends React.Component {
     <td><HighlightText name={this.getDisplayDate(obj.DELIVER_DATE)} highlight={obj.DELIVER_DATE!=ori.DELIVER_DATE} /></td>
     <td><HighlightText name={obj.UNIT_PRICE} highlight={obj.UNIT_PRICE!=ori.UNIT_PRICE} /></td>
     <td><HighlightText name={obj.QUANTITY} highlight={obj.QUANTITY!=ori.QUANTITY} /></td>
-    <td></td>
+    <td><HighlightText name={obj.NOTE} highlight={obj.NOTE!=ori.NOTE} /></td>
     </tr>
     );
   }

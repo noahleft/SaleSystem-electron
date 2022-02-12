@@ -8,6 +8,7 @@ import FormProd from "Components/recordform/formProd";
 import FormPrice from "Components/recordform/formPrice";
 import FormQuan from "Components/recordform/formQuan";
 import FormDate from "Components/recordform/formDate";
+import FormNote from "Components/recordform/formNote";
 import PriceCard from "Components/shortcut/priceCard";
 import moment from 'moment';
 import { withTranslation } from "react-i18next";
@@ -33,6 +34,7 @@ class RecordInfo extends React.Component {
       QUANTITY: "",
       DIRTY: false,
       INSERT: true,
+      NOTE: "",
     }
     this.props.addDummyRecord(dummy);
     this.props.changeCandidateRecordListIdx(len);
@@ -72,6 +74,7 @@ class RecordInfo extends React.Component {
             <Col>
             </Col>
             <Col>
+              <FormNote />
             </Col>
           </Row>
           </Container></Form>

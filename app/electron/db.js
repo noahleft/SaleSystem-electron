@@ -206,7 +206,11 @@ class DbManager {
         insertMany(recordList);
     }
     updateRecord(recordList) {
-        const update = this.db.prepare('UPDATE record SET comp_id = (@comp_id), prod_id = (@prod_id), form_id = (@form_id), created_date = (@created_date), deliver_date = (@deliver_date), unit_price = (@unit_price), quantity = (@quantity), hide = (@hide) WHERE id = (@id);');
+        const update = this.db.prepare('UPDATE record SET\
+            comp_id = (@comp_id), prod_id = (@prod_id), form_id = (@form_id),\
+            created_date = (@created_date), deliver_date = (@deliver_date),\
+            unit_price = (@unit_price), quantity = (@quantity), note = (@note),\
+            hide = (@hide) WHERE id = (@id);');
         const updateMany = this.db.transaction((recordList) => {
             for (const record of recordList) update.run(record);
         });

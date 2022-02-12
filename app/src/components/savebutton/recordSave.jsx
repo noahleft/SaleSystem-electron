@@ -26,6 +26,7 @@ class RecordSave extends React.Component {
         deliver_date: obj.DELIVER_DATE,
         unit_price: obj.UNIT_PRICE,
         quantity: obj.QUANTITY,
+        note: obj.NOTE,
         hide: "false",
       };
       return rObj;
