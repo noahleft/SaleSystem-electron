@@ -23,6 +23,11 @@ class CompInfo extends React.Component {
       NAME: "",
       DIRTY: false,
       INSERT: true,
+      BUSINESSNUM: "",
+      PHONE: "",
+      CONTACT: "",
+      PRINTTAX: 0,
+      NOTE: "",
     }
     this.props.addDummyCompany(dummy);
     this.props.changeCandidateCompListIdx(len);
@@ -66,8 +71,10 @@ class CompInfo extends React.Component {
     <Card>
       <Card.Title>{t("CompanyInfo")}</Card.Title>
       <Card.Body>
-      <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
         <Form><Container>
+          <Row>
+            <Col><Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button></Col>
+          </Row>
           <Row>
             <Col><FormID/></Col>
             <Col></Col>
