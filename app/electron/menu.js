@@ -30,6 +30,16 @@ const MenuBuilder = function(mainWindow, appName) {
     }
   }
 
+  function handleClickPurge(menuItem, browserWindow, event) {
+    const dbPath = app.getPath("userData");
+    const dataPath = path.join(dbPath, "data.db");
+    fs.unlink(dataPath, (err) => {
+      if (err) throw err;
+    });
+    app.relaunch();
+    app.exit();
+  }
+
   function handleClickPrint(menuItem, browserWindow, event) {
     var options = {
       silent: false,
@@ -111,6 +121,11 @@ const MenuBuilder = function(mainWindow, appName) {
                 role: "export...",
                 click: handleClickExport,
                 label: i18nextMainBackend.t("Export")
+              },
+              {
+                role: "purge",
+                click: handleClickPurge,
+                label: i18nextMainBackend.t("Purge")
               },
             ]
           },

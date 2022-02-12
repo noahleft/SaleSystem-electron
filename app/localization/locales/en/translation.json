@@ -76,6 +76,7 @@
   "Database": "Database",
   "Import": "Import",
   "Export": "Export",
+  "Purge": "Purge",
   "Save": "Save",
   "Clear": "Clear",
   "NewRecord": "New Record",
