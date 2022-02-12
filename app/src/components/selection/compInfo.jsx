@@ -38,17 +38,6 @@ class CompInfo extends React.Component {
 
   render() {
     const { t } = this.props;
-    const idx = this.props.companyManager.candidateCompListIdx;
-    let defaultVal = idx==-1;
-    let curr = {
-      NAME: (defaultVal)?"":this.props.companyManager.companyList[idx].NAME,
-      BNUM: (defaultVal)?"":this.props.companyManager.companyList[idx].BUSINESSNUM,
-    };
-    let orig = {
-      NAME: (defaultVal)?"":this.props.companyManager.originalList[idx].NAME,
-      BNUM: (defaultVal)?"":this.props.companyManager.originalList[idx].BUSINESSNUM,
-    };
-    
     return (
     <Card>
       <Card.Title>{t("CompanyInfo")}</Card.Title>
@@ -62,8 +51,8 @@ class CompInfo extends React.Component {
             <Col></Col>
           </Row>
           <Row>
-            <Col><FormName orig={orig.NAME} val={curr.NAME} disabled={defaultVal}/></Col>
-            <Col><FormBusinessNum orig={orig.BNUM} val={curr.BNUM} disabled={defaultVal}/></Col>
+            <Col><FormName/></Col>
+            <Col><FormBusinessNum/></Col>
           </Row>
           <Row>
           

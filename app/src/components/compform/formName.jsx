@@ -21,12 +21,16 @@ class FormName extends React.Component {
 
   render() {
     const { t } = this.props;
+    const idx = this.props.companyManager.candidateCompListIdx;
+    let defaultVal = idx==-1;
+    let curr = (defaultVal)?"":this.props.companyManager.companyList[idx].NAME;
+    let orig = (defaultVal)?"":this.props.companyManager.originalList[idx].NAME;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formCompName" ref="formCompName">
     <Form.Label column sm={4}>{t("CompanyName")}:</Form.Label>
     <Col sm={6}>
-      <Form.Control className="me-auto" placeholder={this.props.orig} disabled={this.props.disabled}
-      type="text" value={this.props.val} onChange={this.handleNameChange} />
+      <Form.Control className="me-auto" placeholder={orig} disabled={defaultVal}
+      type="text" value={curr} onChange={this.handleNameChange} />
     </Col>
     </Form.Group>
     );

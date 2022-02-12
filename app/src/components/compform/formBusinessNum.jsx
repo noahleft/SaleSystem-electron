@@ -21,12 +21,16 @@ class FormBusinessNum extends React.Component {
 
   render() {
     const { t } = this.props;
+    const idx = this.props.companyManager.candidateCompListIdx;
+    let defaultVal = idx==-1;
+    let curr = (defaultVal)?"":this.props.companyManager.companyList[idx].BUSINESSNUM;
+    let orig = (defaultVal)?"":this.props.companyManager.originalList[idx].BUSINESSNUM;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formCompBnum" ref="formCompBnum">
     <Form.Label column sm={4}>{t("BusinessNum")}:</Form.Label>
     <Col sm={6}>
-      <Form.Control className="me-auto" placeholder={this.props.orig} disabled={this.props.disabled}
-      type="text" value={this.props.val} onChange={this.handleBusNumChange} />
+      <Form.Control className="me-auto" placeholder={orig} disabled={defaultVal}
+      type="text" value={curr} onChange={this.handleBusNumChange} />
     </Col>
     </Form.Group>
     );
