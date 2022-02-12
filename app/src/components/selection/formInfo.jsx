@@ -54,7 +54,7 @@ class FormInfo extends React.Component {
           <Form.Group as={Row} className="mb-3" controlId="formFormName" ref="formFormName">
             <Form.Label column sm={2}>{t("FormName")}:</Form.Label>
             <Col sm={10}>
-              <Form.Control className="me-auto" placeholder={orig} 
+              <Form.Control className="me-auto" placeholder={orig} disabled={idx==-1}
               type="text" value={name} onChange={this.handleNameChange} />
             </Col>
           </Form.Group>
