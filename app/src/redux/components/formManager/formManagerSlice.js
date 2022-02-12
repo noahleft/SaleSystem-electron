@@ -4,41 +4,37 @@ const formManagerSlice = createSlice({
   name: "formManager",
   initialState: {
     formList: [],
-    candidateFormID: 1,
-    changeRequests: [],
+    originalList: [],
+    candidateFormListIdx: -1,
+    requireSaving: false,
   },
   reducers: {
     updateFormList(state, action) {
       state.formList = action.payload;
-      state.changeRequests = [];
+      state.originalList = action.payload;
+      state.candidateFormListIdx = -1;
+      state.requireSaving = false;
     },
-    changeCandidateFormID(state, action) {
-      state.candidateFormID = action.payload;
+    addDummyForm(state, action) {
+      state.formList = [...state.formList, action.payload];
+      state.originalList = [...state.originalList, action.payload];
+      state.requireSaving = true;
     },
-    addChangeRequest(state, action) {
-      let CR = action.payload;
-      state.changeRequests.push(CR);
-      if(state.formList.length < Number(CR.ID)) {
-        let formItem = {
-          ID: Number(CR.ID),
-          NAME: CR.NAME,
-          DIRTY: false,
-          DISABLE: true,
-        }
-        state.formList.push(formItem);
-      }
-      state.formList.forEach(function(obj) {
-        if(obj.ID == CR.ID) {
-          obj.NAME = CR.NAME;
-          obj.DIRTY = true;
-        }
-      });
+    changeCandidateFormListIdx(state, action) {
+      state.candidateFormListIdx = action.payload;
+    },
+    changeCandidateFormName(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.formList[idx].NAME = val;
+      state.formList[idx].DIRTY = true;
+      state.requireSaving = true;
     },
   }
 });
 
 // Export actions
-export const { updateFormList, changeCandidateFormID, addChangeRequest } = formManagerSlice.actions;
+export const { updateFormList, addDummyForm, changeCandidateFormListIdx, changeCandidateFormName } = formManagerSlice.actions;
 
 // Export reducer
 export default formManagerSlice.reducer;

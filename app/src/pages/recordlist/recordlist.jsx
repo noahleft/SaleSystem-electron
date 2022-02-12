@@ -25,7 +25,8 @@ class RecordList extends React.Component {
   }
   
   render() {
-    let message = myAPI.getForm(this.props.formManager.candidateFormID).NAME;
+    const idx = this.props.formManager.candidateFormListIdx;
+    let message = this.props.formManager.formList[idx].NAME;
     let disableExport = this.props.recordManager.requireSaving;
     return (
       <section className="section">
@@ -36,7 +37,7 @@ class RecordList extends React.Component {
               <div className="ms-auto">
                 <Button variant="primary"
                   onClick={() => {
-                    let exportList = myAPI.listRecord(this.props.formManager.candidateFormID);
+                    let exportList = myAPI.listRecord(this.props.formManager.formList[idx].ID);
                     this.props.updateExportList(exportList);
                     this.navigate(ROUTES.RECORDEXPORT);
                   }} disabled={disableExport}>

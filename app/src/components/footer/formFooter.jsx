@@ -5,7 +5,7 @@ import FormSave from "Components/savebutton/formSave";
 
 class FormFooter extends React.Component {
   render() {
-    let enableSave = this.props.formManager.changeRequests.length != 0;
+    let enableSave = this.props.formManager.requireSaving;
     return(
       <Navbar fixed="bottom" bg="dark">
         <Container>

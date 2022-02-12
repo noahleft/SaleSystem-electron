@@ -32,7 +32,8 @@ class RecordSave extends React.Component {
     });
     myAPI.handleRecordChangeRequest(CRList);
 
-    let formId = this.props.formManager.candidateFormID;
+    const idx = this.props.formManager.candidateFormListIdx;
+    let formId = this.props.formManager.formList[idx].ID;
     let recordlist = myAPI.listRecord(formId).map(function(obj){
       obj.DIRTY = false;
       return obj;

@@ -1,67 +1,61 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button } from "react-bootstrap";
-import { addChangeRequest } from "Redux/components/formManager/formManagerSlice";
+import { addDummyForm, changeCandidateFormListIdx, changeCandidateFormName } from "Redux/components/formManager/formManagerSlice";
 import { withTranslation } from "react-i18next";
 
 class FormInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+
+    this.handleNewRecord = this.handleNewRecord.bind(this);
   }
 
-  handleSubmit(e) {
-    if (this.state.value != '') {
-      let CR = {ID:   e.target.formFormId.placeholder,
-                NAME: this.state.value};
-      this.props.addChangeRequest(CR);
+  handleNewRecord(e) {
+    const len = this.props.formManager.formList.length;
+    let dummy = {
+      ID: len+1,
+      NAME: "",
+      DIRTY: false,
+      INSERT: true,
     }
-    // reset
-    this.state.value = '';
+    this.props.addDummyForm(dummy);
+    this.props.changeCandidateFormListIdx(len);
   }
 
-  handleChange(e) {
-    this.setState({value: e.target.value});
-  }
-
-  getFormName(id) {
-    let formList = this.props.formManager.formList;
-    for(let i=0; i<formList.length; i++) {
-      if(formList[i].ID == id) return formList[i].NAME;
-    }
-    return "";
+  handleNameChange(e) {
+    const name = e.target.value;
+    const idx = this.props.formManager.candidateFormListIdx;
+    this.props.changeCandidateFormName({
+      idx:   idx,
+      value: name});
   }
 
   render() {
     const { t } = this.props;
-    let display = {
-      ID: this.props.formManager.candidateFormID,
-      NAME: this.getFormName(this.props.formManager.candidateFormID),
-    };
+    const idx = this.props.formManager.candidateFormListIdx;
+    const id = idx==-1?"":this.props.formManager.formList[idx].ID;
+    const name = idx==-1?"":this.props.formManager.formList[idx].NAME;
+    const orig = idx==-1?"":this.props.formManager.originalList[idx].NAME;
     return (
     <Card>
       <Card.Title>{t("FormInfo")}</Card.Title>
       <Card.Body>
+      <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formFormId">
             <Form.Label column sm={2}>ID:</Form.Label>
             <Col sm={10}>
-            <Form.Control className="me-auto" placeholder={display.ID} readOnly />
+            <Form.Control className="me-auto" placeholder={id} readOnly />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formFormName" ref="formFormName">
             <Form.Label column sm={2}>{t("FormName")}:</Form.Label>
             <Col sm={10}>
-              <Form.Control className="me-auto" placeholder={display.NAME} 
-              type="text" value={this.state.value} onChange={this.handleChange} />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3">
-            <Col sm={{span: 10, offset:2}}>
-              <Button type="submit">{t("Submit")}</Button>
+              <Form.Control className="me-auto" placeholder={orig} 
+              type="text" value={name} onChange={this.handleNameChange} />
             </Col>
           </Form.Group>
         </Form>
@@ -74,6 +68,6 @@ class FormInfo extends React.Component {
 const mapStateToProps = (state, props) => ({
   formManager: state.formManager
 });
-const mapDispatch = { addChangeRequest };
+const mapDispatch = { addDummyForm, changeCandidateFormListIdx, changeCandidateFormName };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(FormInfo));

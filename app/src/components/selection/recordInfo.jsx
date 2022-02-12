@@ -21,11 +21,12 @@ class RecordInfo extends React.Component {
 
   handleNewRecord(e) {
     const len = this.props.recordManager.recordList.length;
+    const idx = this.props.formManager.candidateFormListIdx;
     let dummy = {
       ID: len+1,
       COMP_ID: 0,
       PROD_ID: 0,
-      FORM_ID: this.props.formManager.candidateFormID,
+      FORM_ID: this.props.formManager.formList[idx].ID,
       UNIT_PRICE: "",
       CREATED_DATE: moment().format('YYYY-MM-DD'),
       DELIVER_DATE: moment().format('YYYY-MM-DD'),

@@ -1,6 +1,6 @@
 import React from "react";
 import ROUTES from "Constants/routes";
-import { changeCandidateFormID } from "Redux/components/formManager/formManagerSlice";
+import { changeCandidateFormListIdx } from "Redux/components/formManager/formManagerSlice";
 import { updateRecordList } from "Redux/components/recordManager/recordManagerSlice";
 import { connect } from "react-redux";
 import { Table, Button } from "react-bootstrap";
@@ -30,19 +30,19 @@ class FormTable extends React.Component {
     this.props.updateRecordList(recordlist);
   }
 
-  genRow(obj) {
-    return (<tr key={obj.ID} onClick={()=>{
-      this.props.changeCandidateFormID(obj.ID);
+  genRow(idx, obj) {
+    return (<tr key={idx} onClick={()=>{
+      this.props.changeCandidateFormListIdx(idx);
     }}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
     <td>
       <Button variant="primary" size="sm"
         onClick={() => {
-          this.props.changeCandidateFormID(obj.ID);
+          this.props.changeCandidateFormListIdx(obj.ID);
           this.updateRecord(obj.ID);
           this.props.onNavigate(ROUTES.RECORDLIST);
-        }} disabled={obj.DISABLE || this.props.formManager.changeRequests.length!=0}>
+        }} disabled={obj.DISABLE || this.props.formManager.requireSaving}>
         OpenIt!
       </Button>
     </td>
@@ -50,32 +50,13 @@ class FormTable extends React.Component {
     );
   }
 
-  genLastRow(formList) {
-    var obj = {};
-    if(formList.length == 0) {
-      obj.ID= 1 ;
-      obj.NAME = "";
-      obj.DIRTY = false;
-      obj.DISABLE = true;
-    }
-    else {
-      let lastItem = formList.slice(-1)[0];
-      obj.ID= lastItem.ID+1 ;
-      obj.NAME = "";
-      obj.DIRTY = false;
-      obj.DISABLE = true;
-    }
-    return this.genRow(obj);
-  }
-
   render() {
     const { t } = this.props;
     let content = [];
     let formList = this.props.formManager.formList;
     for(let i=0; i<=formList.length-1; i++) {
-      content.push(this.genRow(formList[i]));
+      content.push(this.genRow(i, formList[i]));
     }
-    content.push(this.genLastRow(formList));
 
     return (
     <div className="scrollTable">
@@ -99,6 +80,6 @@ const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
   recordManager: state.recordManager,
 });
-const mapDispatch = { changeCandidateFormID, updateRecordList };
+const mapDispatch = { changeCandidateFormListIdx, updateRecordList };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(FormTable));

@@ -99,7 +99,7 @@ class Nav extends React.Component {
     if(this.props.priceManager.changeRequests.length!=0) {
       return true;
     }
-    if(this.props.formManager.changeRequests.length!=0) {
+    if(this.props.formManager.requireSaving) {
       return true;
     }
     if(this.props.recordManager.requireSaving) {

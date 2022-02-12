@@ -13,7 +13,8 @@ class RecordExport extends React.Component {
     return myAPI.getCompany(this.props.exportManager.selectedCompID).NAME;
   }
   getFormName() {
-    return myAPI.getForm(this.props.formManager.candidateFormID).NAME;
+    const idx = this.props.formManager.candidateFormListIdx;
+    return this.props.formManager.formList[idx].NAME;
   }
 
   render() {
