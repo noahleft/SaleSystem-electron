@@ -73,16 +73,16 @@ class ExportTable extends React.Component {
       <Stack direction="horizontal">
         <div className="ms-auto">
           <Stack>
-            <div className="right-side" hidden={!this.props.exportManager.needTax}>{t("PreTax")}:</div>
-            <div className="right-side" hidden={!this.props.exportManager.needTax}>{t("Tax")}:</div>
-            <div className="right-side">{t("Total")}:</div>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}><h4>{t("PreTax")}:</h4></div>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}><h4>{t("Tax")}:</h4></div>
+            <div className="right-side"><h4>{t("Total")}:</h4></div>
           </Stack>
         </div>
         <div>
           <Stack>
-            <div className="right-side">{total}</div>
-            <div className="right-side" hidden={!this.props.exportManager.needTax}>{tax}</div>
-            <div className="right-side" hidden={!this.props.exportManager.needTax}>{posttax}</div>
+            <div className="right-side"><h4>{total}</h4></div>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}><h4>{tax}</h4></div>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}><h4>{posttax}</h4></div>
           </Stack>
         </div>
       </Stack>
