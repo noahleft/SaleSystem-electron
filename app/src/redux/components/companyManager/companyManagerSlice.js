@@ -36,12 +36,28 @@ const companyManagerSlice = createSlice({
       state.companyList[idx].BUSINESSNUM = val;
       state.companyList[idx].DIRTY = true;
       state.requireSaving = true;
+    },
+    changeCandidateCompPhone(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.companyList[idx].PHONE = val;
+      state.companyList[idx].DIRTY = true;
+      state.requireSaving = true;
+    },
+    changeCandidateCompContact(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.companyList[idx].CONTACT = val;
+      state.companyList[idx].DIRTY = true;
+      state.requireSaving = true;
     }
   }
 });
 
 // Export actions
-export const { updateCompanyList, addDummyCompany, changeCandidateCompListIdx, changeCandidateCompName, changeCandidateCompBusNum } = companyManagerSlice.actions;
+export const { updateCompanyList, addDummyCompany, changeCandidateCompListIdx, 
+  changeCandidateCompName, changeCandidateCompBusNum, changeCandidateCompPhone,
+  changeCandidateCompContact } = companyManagerSlice.actions;
 
 // Export reducer
 export default companyManagerSlice.reducer;

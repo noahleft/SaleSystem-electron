@@ -6,6 +6,8 @@ import { withTranslation } from "react-i18next";
 import CompID from "Components/compform/compID";
 import CompName from "Components/compform/compName";
 import CompBusinessNum from "Components/compform/compBusinessNum";
+import CompPhone from "Components/compform/compPhone";
+import CompContact from "Components/compform/compContact";
 
 class CompInfo extends React.Component {
   constructor(props) {
@@ -55,7 +57,8 @@ class CompInfo extends React.Component {
             <Col><CompBusinessNum/></Col>
           </Row>
           <Row>
-          
+            <Col><CompPhone/></Col>
+            <Col><CompContact/></Col>
           </Row>
         </Container></Form>
       </Card.Body>
