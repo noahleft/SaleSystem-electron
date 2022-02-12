@@ -52,10 +52,15 @@ class CompInfo extends React.Component {
   render() {
     const { t } = this.props;
     const idx = this.props.companyManager.candidateCompListIdx;
-    const curr = (idx!=-1)?this.props.companyManager.companyList[idx].NAME:"";
-    const orig = (idx!=-1)?this.props.companyManager.originalList[idx].NAME:"";
-    const bnum = (idx!=-1)?this.props.companyManager.companyList[idx].BUSINESSNUM:"";
-    const orig_bnum = (idx!=-1)?this.props.companyManager.originalList[idx].BUSINESSNUM:"";
+    let defaultVal = idx==-1;
+    let curr = {
+      NAME: (defaultVal)?"":this.props.companyManager.companyList[idx].NAME,
+      BNUM: (defaultVal)?"":this.props.companyManager.companyList[idx].BUSINESSNUM,
+    };
+    let orig = {
+      NAME: (defaultVal)?"":this.props.companyManager.originalList[idx].NAME,
+      BNUM: (defaultVal)?"":this.props.companyManager.originalList[idx].BUSINESSNUM,
+    };
     
     return (
     <Card>
@@ -64,8 +69,8 @@ class CompInfo extends React.Component {
       <Button onClick={this.handleNewRecord}>{t("NewRecord")}</Button>
         <Form>
           <FormID/>
-          <FormName orig={orig} name={curr} disabled={idx==-1} onNameChange={this.handleNameChange}/>
-          <FormBusinessNum orig={orig_bnum} name={bnum} disabled={idx==-1} onBusNumChange={this.handleBusNumChange}/>
+          <FormName orig={orig.NAME} val={curr.NAME} disabled={defaultVal} onNameChange={this.handleNameChange}/>
+          <FormBusinessNum orig={orig.BNUM} val={curr.BNUM} disabled={defaultVal} onBusNumChange={this.handleBusNumChange}/>
         </Form>
       </Card.Body>
     </Card>

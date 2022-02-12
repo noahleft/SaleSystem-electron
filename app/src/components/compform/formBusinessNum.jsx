@@ -14,7 +14,7 @@ class FormBusinessNum extends React.Component {
     <Form.Label column sm={2}>{t("BusinessNum")}:</Form.Label>
     <Col sm={10}>
       <Form.Control className="me-auto" placeholder={this.props.orig} disabled={this.props.disabled}
-      type="text" value={this.props.name} onChange={this.props.onBusNumChange} />
+      type="text" value={this.props.val} onChange={this.props.onBusNumChange} />
     </Col>
     </Form.Group>
     );
