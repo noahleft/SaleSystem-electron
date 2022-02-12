@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import { changeCandidateProdListIdx } from "Redux/components/productManager/productManagerSlice";
 import { withTranslation } from "react-i18next";
+import "./tablesize.css";
 
 function HighlightText(props) {
   if(props.highlight)
@@ -29,22 +30,6 @@ class ProductTable extends React.Component {
     );
   }
 
-  // genLastRow(productList) {
-  //   var obj = {};
-  //   if(productList.length == 0) {
-  //     obj.ID= 1 ;
-  //     obj.NAME = "";
-  //     obj.DIRTY = false;
-  //   }
-  //   else {
-  //     let lastItem = productList.slice(-1)[0];
-  //     obj.ID= lastItem.ID+1 ;
-  //     obj.NAME = "";
-  //     obj.DIRTY = false;
-  //   }
-  //   return this.genRow(obj);
-  // }
-
   render() {
     const { t } = this.props;
     let content = [];
@@ -58,7 +43,7 @@ class ProductTable extends React.Component {
     <Table striped bordered hover size="sm">
     <thead>
       <tr>
-        <th scope="col" width="80px">#</th>
+        <th scope="col" className="thID">#</th>
         <th scope="col">{t("Name")}</th>
       </tr>
     </thead>

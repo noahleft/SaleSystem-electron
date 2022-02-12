@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import PriceRow from "Components/selection/priceRow";
 import { withTranslation } from "react-i18next";
+import "./tablesize.css";
 
 class PriceTable extends React.Component {
   componentWillUnmount() {
@@ -51,9 +52,9 @@ class PriceTable extends React.Component {
     <Table striped bordered hover size="sm">
     <thead>
       <tr>
-        <th scope="col" width="80px">#</th>
-        <th scope="col">{t("Product")}</th>
-        <th scope="col">{t("UnitPrice")}</th>
+        <th scope="col" className="thID">#</th>
+        <th scope="col" className="thText">{t("Product")}</th>
+        <th scope="col" className="thNum">{t("UnitPrice")}</th>
         <th scope="col">{t("EditPrice")}</th>
       </tr>
     </thead>

@@ -5,6 +5,7 @@ import { updateRecordList } from "Redux/components/recordManager/recordManagerSl
 import { connect } from "react-redux";
 import { Table, Button } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
+import "./tablesize.css";
 
 function HighlightText(props) {
   if(props.highlight)
@@ -64,8 +65,8 @@ class FormTable extends React.Component {
     <Table striped bordered hover size="sm">
     <thead>
       <tr>
-        <th scope="col" width="80px">#</th>
-        <th scope="col">{t("Name")}</th>
+        <th scope="col" className="thID">#</th>
+        <th scope="col" className="thText">{t("Name")}</th>
         <th scope="col"></th>
       </tr>
     </thead>

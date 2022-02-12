@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Table } from "react-bootstrap";
+import { Table, Form } from "react-bootstrap";
 import { changeCandidateCompListIdx } from "Redux/components/companyManager/companyManagerSlice";
 import { withTranslation } from "react-i18next";
+import "./tablesize.css";
 
 function HighlightText(props) {
   if(props.highlight)
@@ -25,6 +26,11 @@ class CompanyTable extends React.Component {
       }}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
+    <td>{obj.BUSINESSNUM}</td>
+    <td>{obj.PHONE}</td>
+    <td>{obj.CONTACT}</td>
+    <td><Form.Check type="checkbox" aria-label="PrintTax" defaultChecked={obj.PRINTTAX} disabled/></td>
+    <td>{obj.NOTE}</td>
     </tr>
     );
   }
@@ -39,11 +45,16 @@ class CompanyTable extends React.Component {
 
     return (
     <div className="scrollTable">
-    <Table striped bordered hover size="sm">
+    <Table striped bordered hover responsive size="sm">
     <thead>
       <tr>
-        <th scope="col" width="80px">#</th>
-        <th scope="col">{t("Name")}</th>
+        <th scope="col" className="thID">#</th>
+        <th scope="col" className="thName">{t("Name")}</th>
+        <th scope="col" className="thNum">{t("BusinessNum")}</th>
+        <th scope="col" className="thNum">{t("Phone")}</th>
+        <th scope="col" className="thNum">{t("Contact")}</th>
+        <th scope="col" width="80px">{t("PrintTax")}</th>
+        <th scope="col">{t("Note")}</th>
       </tr>
     </thead>
     <tbody>

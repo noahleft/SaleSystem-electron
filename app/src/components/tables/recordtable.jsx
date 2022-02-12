@@ -4,6 +4,7 @@ import { Table } from "react-bootstrap";
 import { changeCandidateRecordListIdx } from "Redux/components/recordManager/recordManagerSlice";
 import { withTranslation } from "react-i18next";
 import i18n from "I18n/i18n.config";
+import "./tablesize.css";
 
 function HighlightText(props) {
   if(props.highlight)
@@ -75,12 +76,12 @@ class RecordTable extends React.Component {
     <Table striped bordered hover size="sm">
       <thead>
         <tr>
-          <th scope="col" width="80px">#</th>
-          <th scope="col">{t("CompanyName")}</th>
-          <th scope="col">{t("ProductName")}</th>
-          <th scope="col">{t("DeliverDate")}</th>
-          <th scope="col">{t("UnitPrice")}</th>
-          <th scope="col">{t("Quantity")}</th>
+          <th scope="col" className="thID">#</th>
+          <th scope="col" className="thName">{t("CompanyName")}</th>
+          <th scope="col" className="thText">{t("ProductName")}</th>
+          <th scope="col" className="thName">{t("DeliverDate")}</th>
+          <th scope="col" className="thNum">{t("UnitPrice")}</th>
+          <th scope="col" className="thNum">{t("Quantity")}</th>
           <th scope="col">{t("Note")}</th>
         </tr>
       </thead>

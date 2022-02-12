@@ -82,5 +82,8 @@
   "ShowAllProduct": "顯示所有",
   "OpenIt": "開啟",
   "Select": "選擇",
-  "PrintTax": "印出稅金"
+  "PrintTax": "印出稅金",
+  "BusinessNum": "統編",
+  "Phone": "電話",
+  "Contact": "聯絡人"
 }

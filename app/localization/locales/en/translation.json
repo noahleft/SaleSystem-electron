@@ -82,5 +82,8 @@
   "ShowAllProduct": "Show all product",
   "OpenIt": "Open It",
   "Select": "Select",
-  "PrintTax": "Print Tax"
+  "PrintTax": "Print Tax",
+  "BusinessNum": "Business Number",
+  "Phone": "Phone",
+  "Contact": "Contact"
 }
