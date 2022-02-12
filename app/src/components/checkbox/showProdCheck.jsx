@@ -26,7 +26,7 @@ class ShowProductCheck extends React.Component {
   render() {
     const { t } = this.props;
     return (
-        <Form.Check type="checkbox" label="show all product" defaultChecked={this.props.priceManager.showAllProduct} onChange={this.handleChange} />
+        <Form.Check type="checkbox" label={t("ShowAllProduct")} defaultChecked={this.props.priceManager.showAllProduct} onChange={this.handleChange} />
     );
   }
 }
