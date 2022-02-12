@@ -89,7 +89,9 @@ class DbManager {
         insertMany(compList);
     }
     updateCompany(compList) {
-        const update = this.db.prepare('UPDATE company SET name = (@name), printtax = (@printtax), businessnum = (@businessnum) WHERE id = (@id);');
+        const update = this.db.prepare('UPDATE company SET \
+            name = (@name), printtax = (@printtax), businessnum = (@businessnum),\
+            phone = (@phone), contact = (@contact), note = (@note) WHERE id = (@id);');
         const updateMany = this.db.transaction((compList) => {
             for (const comp of compList) update.run(comp);
         });

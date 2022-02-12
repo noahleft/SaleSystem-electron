@@ -23,7 +23,10 @@ class CompSave extends React.Component {
         name: obj.NAME,
         hide: false,
         printtax: obj.PRINTTAX,
-        businessnum: obj.BUSINESSNUM
+        businessnum: obj.BUSINESSNUM,
+        phone: obj.PHONE,
+        contact: obj.CONTACT,
+        note: obj.NOTE,
       };
       return rObj;
     });

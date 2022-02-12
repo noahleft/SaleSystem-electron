@@ -24,11 +24,11 @@ class CompanyTable extends React.Component {
     return (<tr key={idx} onClick={()=>{
       this.props.changeCandidateCompListIdx(idx);
       }}>
-    <th scope="row">{obj.ID}</th>
+    <th scope="row"><HighlightText name={obj.ID} highlight={obj.DIRTY}/></th>
     <td><HighlightText name={obj.NAME} highlight={obj.NAME!=orig.NAME}/></td>
     <td><HighlightText name={obj.BUSINESSNUM} highlight={obj.BUSINESSNUM!=orig.BUSINESSNUM}/></td>
-    <td>{obj.PHONE}</td>
-    <td>{obj.CONTACT}</td>
+    <td><HighlightText name={obj.PHONE} highlight={obj.PHONE!=orig.PHONE}/></td>
+    <td><HighlightText name={obj.CONTACT} highlight={obj.CONTACT!=orig.CONTACT}/></td>
     <td><Form.Check type="checkbox" aria-label="PrintTax" defaultChecked={obj.PRINTTAX} disabled/></td>
     <td>{obj.NOTE}</td>
     </tr>
