@@ -6,50 +6,50 @@ class FakeDb {
     constructor(dbPath) {
         console.log(`creating fake db on ${dbPath}`);
         this.db = Sqlite3(dbPath);
-        const compTbl = "CREATE TABLE company(\
-                        ID          INTEGER PRIMARY KEY AUTOINCREMENT,\
-                        NAME        TEXT    NOT NULL,\
-                        HIDE        BOOLEAN NOT NULL DEFAULT FALSE,\
-                        PRINTTAX    BOOLEAN NOT NULL DEFAULT FALSE,\
-                        ADDRESS     TEXT    NOT NULL DEFAULT '', \
-                        PHONE       TEXT    NOT NULL DEFAULT '', \
-                        CONTACT     TEXT    NOT NULL DEFAULT '', \
-                        BUSINESSNUM TEXT    NOT NULL DEFAULT '', \
-                        NOTE        TEXT    NOT NULL DEFAULT '', \
-                        INTERNAL    TEXT    NOT NULL DEFAULT '', \
-                        UNIQUE(NAME));";
+        const compTbl = "CREATE TABLE company(\n\
+            ID          INTEGER PRIMARY KEY AUTOINCREMENT,\n\
+            NAME        TEXT    NOT NULL,\n\
+            HIDE        BOOLEAN NOT NULL DEFAULT FALSE,\n\
+            PRINTTAX    BOOLEAN NOT NULL DEFAULT FALSE,\n\
+            ADDRESS     TEXT    NOT NULL DEFAULT '', \n\
+            PHONE       TEXT    NOT NULL DEFAULT '', \n\
+            CONTACT     TEXT    NOT NULL DEFAULT '', \n\
+            BUSINESSNUM TEXT    NOT NULL DEFAULT '', \n\
+            NOTE        TEXT    NOT NULL DEFAULT '', \n\
+            INTERNAL    TEXT    NOT NULL DEFAULT '', \n\
+            UNIQUE(NAME));";
         this.db.exec(compTbl);
-        const prodTbl = "CREATE TABLE product(\
-                        ID    INTEGER PRIMARY KEY AUTOINCREMENT,\
-                        NAME  TEXT NOT NULL,\
-                        HIDE  BOOLEAN NOT NULL DEFAULT FALSE,\
-                        UNIQUE(NAME));";
+        const prodTbl = "CREATE TABLE product(\n\
+            ID    INTEGER PRIMARY KEY AUTOINCREMENT,\n\
+            NAME  TEXT NOT NULL,\n\
+            HIDE  BOOLEAN NOT NULL DEFAULT FALSE,\n\
+            UNIQUE(NAME));";
         this.db.exec(prodTbl);
-        const priceTbl = "CREATE TABLE unitprice(\
-                        ID         INTEGER PRIMARY KEY AUTOINCREMENT,\
-                        COMP_ID    INTEGER NOT NULL,\
-                        PROD_ID    INTEGER NOT NULL,\
-                        UNIT_PRICE REAL  NOT NULL);";
+        const priceTbl = "CREATE TABLE unitprice(\n\
+            ID         INTEGER PRIMARY KEY AUTOINCREMENT,\n\
+            COMP_ID    INTEGER NOT NULL,\n\
+            PROD_ID    INTEGER NOT NULL,\n\
+            UNIT_PRICE REAL  NOT NULL);";
         this.db.exec(priceTbl);
-        const formTbl = "CREATE TABLE form(\
-                        ID       INTEGER PRIMARY KEY AUTOINCREMENT,\
-                        NAME     TEXT    NOT NULL,\
-                        HIDE     BOOLEAN NOT NULL DEFAULT FALSE,\
-                        QUANTITY INTEGER NOT NULL DEFAULT 0,\
-                        SUM      INTEGER NOT NULL DEFAULT 0,\
-                        UNIQUE(NAME));";
+        const formTbl = "CREATE TABLE form(\n\
+            ID       INTEGER PRIMARY KEY AUTOINCREMENT,\n\
+            NAME     TEXT    NOT NULL,\n\
+            HIDE     BOOLEAN NOT NULL DEFAULT FALSE,\n\
+            QUANTITY INTEGER NOT NULL DEFAULT 0,\n\
+            SUM      INTEGER NOT NULL DEFAULT 0,\n\
+            UNIQUE(NAME));";
         this.db.exec(formTbl);
-        const recordTbl = "CREATE TABLE record(\
-                        ID           INTEGER  PRIMARY KEY AUTOINCREMENT,\
-                        COMP_ID      INTEGER  NOT NULL,\
-                        PROD_ID      INTEGER  NOT NULL,\
-                        FORM_ID      INTEGER  NOT NULL,\
-                        CREATED_DATE DATETIME NOT NULL,\
-                        DELIVER_DATE DATETIME NOT NULL,\
-                        UNIT_PRICE   REAL     NOT NULL,\
-                        QUANTITY     INTEGER  NOT NULL,\
-                        NOTE         TEXT     NOT NULL DEFAULT '',\
-                        HIDE  BOOLEAN NOT NULL DEFAULT FALSE);";
+        const recordTbl = "CREATE TABLE record(\n\
+            ID           INTEGER  PRIMARY KEY AUTOINCREMENT,\n\
+            COMP_ID      INTEGER  NOT NULL,\n\
+            PROD_ID      INTEGER  NOT NULL,\n\
+            FORM_ID      INTEGER  NOT NULL,\n\
+            CREATED_DATE DATETIME NOT NULL,\n\
+            DELIVER_DATE DATETIME NOT NULL,\n\
+            UNIT_PRICE   REAL     NOT NULL,\n\
+            QUANTITY     INTEGER  NOT NULL,\n\
+            NOTE         TEXT     NOT NULL DEFAULT '',\n\
+            HIDE  BOOLEAN NOT NULL DEFAULT FALSE);";
         this.db.exec(recordTbl);
     }
 };
