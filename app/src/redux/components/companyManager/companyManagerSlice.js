@@ -57,6 +57,13 @@ const companyManagerSlice = createSlice({
       state.companyList[idx].PRINTTAX = val;
       state.companyList[idx].DIRTY = true;
       state.requireSaving = true;
+    },
+    changeCandidateCompNote(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.companyList[idx].NOTE = val;
+      state.companyList[idx].DIRTY = true;
+      state.requireSaving = true;
     }
   }
 });
@@ -64,7 +71,7 @@ const companyManagerSlice = createSlice({
 // Export actions
 export const { updateCompanyList, addDummyCompany, changeCandidateCompListIdx, 
   changeCandidateCompName, changeCandidateCompBusNum, changeCandidateCompPhone,
-  changeCandidateCompContact, changeCandidateCompTax } = companyManagerSlice.actions;
+  changeCandidateCompContact, changeCandidateCompTax, changeCandidateCompNote } = companyManagerSlice.actions;
 
 // Export reducer
 export default companyManagerSlice.reducer;

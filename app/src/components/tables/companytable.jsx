@@ -30,7 +30,7 @@ class CompanyTable extends React.Component {
     <td><HighlightText name={obj.PHONE} highlight={obj.PHONE!=orig.PHONE}/></td>
     <td><HighlightText name={obj.CONTACT} highlight={obj.CONTACT!=orig.CONTACT}/></td>
     <td><Form.Check type="checkbox" aria-label="PrintTax" checked={obj.PRINTTAX!=0} disabled/></td>
-    <td>{obj.NOTE}</td>
+    <td><HighlightText name={obj.NOTE} highlight={obj.NOTE!=orig.NOTE}/></td>
     </tr>
     );
   }
