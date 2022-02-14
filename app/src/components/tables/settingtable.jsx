@@ -48,7 +48,6 @@ class SettingTable extends React.Component {
   render() {
     const { t } = this.props;
     return (
-    <div className="scrollTable">
     <Table striped bordered hover size="sm">
     <thead>
       <tr>
@@ -64,7 +63,7 @@ class SettingTable extends React.Component {
         <td><EditForm updateFunc={this.props.updateQuantityUnit}/></td>
       </tr>
     </tbody>
-    </Table></div>
+    </Table>
     );
   }
 }
