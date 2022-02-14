@@ -91,5 +91,11 @@
   "QuantityUnit": "Quantity Unit",
   "Key": "Key",
   "Value": "Value",
-  "EditValue": "Edit Value"
+  "EditValue": "Edit Value",
+  "UnitConverter": "Unit Converter",
+  "Utility": "Utility",
+  "Unit":"Unit",
+  "Length":"Length",
+  "Width":"Width",
+  "Weight":"Weight"
 }

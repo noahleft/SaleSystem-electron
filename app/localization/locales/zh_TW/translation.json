@@ -91,5 +91,11 @@
   "QuantityUnit": "數量單位",
   "Key": "鍵",
   "Value": "值",
-  "EditValue": "修改鍵值"
+  "EditValue": "修改鍵值",
+  "UnitConverter": "單位換算",
+  "Utility": "小工具",
+  "Unit":"單位",
+  "Length":"長",
+  "Width":"寬",
+  "Weight":"重量"
 }

@@ -8,6 +8,7 @@ import { withTranslation } from "react-i18next";
 import { readConfigRequest, readConfigResponse } from "secure-electron-store";
 import { updateQuantityUnit } from "Redux/components/home/homeSlice";
 import SettingTable from "Components/tables/settingtable";
+import UtilCard from "Components/shortcut/utilCard";
 
 class Welcome extends React.Component {
   componentDidMount() {
@@ -66,6 +67,15 @@ class Welcome extends React.Component {
                 <p className="subtitle">
                   Contact noahleft@gmail.com
                 </p>
+              </div>
+            </section>
+            <hr/>
+            <section className="hero">
+              <div className="hero-body">
+                <p className="subtitle">
+                  {t("Utility")}
+                </p>
+                <UtilCard/>
               </div>
             </section>
             <hr/>
