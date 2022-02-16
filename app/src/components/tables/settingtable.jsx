@@ -48,7 +48,7 @@ class SettingTable extends React.Component {
   render() {
     const { t } = this.props;
     return (
-    <Table striped bordered hover size="sm">
+    <Table bordered hover size="sm">
     <thead>
       <tr>
         <th scope="col" className="thName">{t("Key")}</th>

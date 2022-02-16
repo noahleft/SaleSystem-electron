@@ -54,7 +54,7 @@ class ExportTable extends React.Component {
     return (
     <div>
       <div>
-        <Table striped bordered hover size="sm">
+        <Table bordered hover size="sm">
           <thead>
             <tr>
               <th scope="col" className="thName">{t("DeliverDate")}</th>

@@ -46,7 +46,7 @@ class CompanyTable extends React.Component {
 
     return (
     <div className="scrollTable">
-    <Table striped bordered hover responsive size="sm">
+    <Table bordered hover responsive size="sm">
     <thead>
       <tr>
         <th scope="col" className="thID">#</th>
