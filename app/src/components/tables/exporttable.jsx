@@ -7,6 +7,10 @@ import { Math } from "globalthis/implementation";
 import "./textalign.css";
 import "./tablesize.css";
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 class ExportTable extends React.Component {
   componentWillUnmount() {
     // Clear any existing bindings;
@@ -44,7 +48,7 @@ class ExportTable extends React.Component {
         <td>{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
         <td>{recordList[i].QUANTITY}{this.props.home.quantity_unit}</td>
         <td>{recordList[i].UNIT_PRICE}</td>
-        <td>{sum}</td>
+        <td>{numberWithCommas(sum)}</td>
         <td>{recordList[i].NOTE}</td>
         </tr>)
     }
