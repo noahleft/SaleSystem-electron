@@ -6,11 +6,16 @@ class UtilCard extends React.Component {
   constructor(props) {
       super(props);
 
-      this.state = { select: 0, width: 91.44, length: 91.44}
-      this.arr = [
-        {title:"60g/y2", eventKey:"0", value: 60}, 
-        {title:"80g/y2", eventKey:"1", value: 80},
-        {title:"100g/y2",eventKey:"2", value:100}];
+      this.state = { select: 0, width: 91.44, length: 91.44};
+      let styles = [40, 50, 60, 65, 80, 90, 100, 110, 120, 140, 150, 170, 180, 200];
+      this.arr = styles.map(function(obj, idx) {
+        var rObj = {
+          title: obj.toString()+"g/y2",
+          eventKey: idx,
+          value: obj,
+        }
+        return rObj;
+      });
 
       this.handleSelect = this.handleSelect.bind(this);
       this.handleLengthChange = this.handleLengthChange.bind(this);
