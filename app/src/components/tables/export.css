@@ -1,0 +1,50 @@
+
+table.export {
+    width:100%;
+}
+
+table.export, th.export , td.export {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+td.dateTime th.dateTime{
+  border: 1px solid;
+  border-collapse: collapse;
+  width: 100px;
+  height: 5px;
+  padding: 0px;
+}
+
+td.productName th.productName{
+  border: 1px solid;
+  border-collapse: collapse;
+  width: 200px;
+  height: 5px;
+  padding: 0px;
+}
+
+td.quantity th.quantity{
+  border: 1px solid;
+  border-collapse: collapse;
+  width: 100px;
+  height: 5px;
+  padding: 0px;
+}
+
+td.price th.price{
+  border: 1px solid;
+  border-collapse: collapse;
+  width: 100px;
+  height: 5px;
+  padding: 0px;
+}
+
+td.note th.note{
+  border: 1px solid;
+  border-collapse: collapse;
+  width: 100px;
+  height: 5px;
+  padding: 0px;
+}

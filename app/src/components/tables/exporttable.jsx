@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Table, Stack } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import i18n from "I18n/i18n.config";
 import { Math } from "globalthis/implementation";
 import "./textalign.css";
-import "./tablesize.css";
+import "./export.css";
 
 function numberWithCommas(x) {
   return x.toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -44,12 +44,12 @@ class ExportTable extends React.Component {
       let sum = Math.round(recordList[i].UNIT_PRICE * recordList[i].QUANTITY * 10)/10;
       total += sum;
       content.push(<tr key={recordList[i].ID}>
-        <td>{this.getDisplayDate(recordList[i].DELIVER_DATE)}</td>
-        <td>{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
-        <td>{recordList[i].QUANTITY}{this.props.home.quantity_unit}</td>
-        <td>{recordList[i].UNIT_PRICE}</td>
-        <td>{numberWithCommas(sum)}</td>
-        <td>{recordList[i].NOTE}</td>
+        <td className="export dateTime">{this.getDisplayDate(recordList[i].DELIVER_DATE)}</td>
+        <td className="export productName">{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
+        <td className="export quantity">{recordList[i].QUANTITY}{this.props.home.quantity_unit}</td>
+        <td className="export price">{recordList[i].UNIT_PRICE.toFixed(1).toString()}</td>
+        <td className="export price">{numberWithCommas(sum)}</td>
+        <td className="export note">{recordList[i].NOTE}</td>
         </tr>)
     }
     total = Math.round(total);
@@ -59,21 +59,21 @@ class ExportTable extends React.Component {
     return (
     <div>
       <div>
-        <Table bordered hover size="sm">
+        <table className="export">
           <thead>
             <tr>
-              <th scope="col" className="thName">{t("DeliverDate")}</th>
-              <th scope="col" className="thText">{t("Item")}</th>
-              <th scope="col" className="thNum">{t("Quantity")}{QuantityUnit}</th>
-              <th scope="col" className="thNum">{t("UnitPrice")}</th>
-              <th scope="col" className="thNum">{t("Sum")}</th>
-              <th scope="col">{t("Note")}</th>
+              <th scope="col" className="export dateTime">{t("DeliverDate")}</th>
+              <th scope="col" className="export productName">{t("Item")}</th>
+              <th scope="col" className="export quantity">{t("Quantity")}{QuantityUnit}</th>
+              <th scope="col" className="export price">{t("UnitPrice")}</th>
+              <th scope="col" className="export price">{t("Sum")}</th>
+              <th scope="col" className="export note">{t("Note")}</th>
             </tr>
           </thead>
           <tbody> 
           {content}
           </tbody>
-        </Table>
+        </table>
       </div>
       <Stack direction="horizontal">
         <div className="ms-auto">
