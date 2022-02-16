@@ -42,7 +42,7 @@ class FormTable extends React.Component {
     }}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
-    <td>{numberWithCommas(obj.QUANTITY)}</td>
+    <td>{numberWithCommas(obj.QUANTITY)+this.props.home.quantity_unit}</td>
     <td>{numberWithCommas(obj.SUM)}</td>
     <td>
       <Button variant="primary" size="sm"
@@ -59,6 +59,7 @@ class FormTable extends React.Component {
   }
 
   render() {
+    let QuantityUnit = this.props.home.quantity_unit==""?"":"("+this.props.home.quantity_unit+")";
     const { t } = this.props;
     let content = [];
     let formList = this.props.formManager.formList;
@@ -73,7 +74,7 @@ class FormTable extends React.Component {
       <tr>
         <th scope="col" className="thID">#</th>
         <th scope="col" className="thText">{t("Name")}</th>
-        <th scope="col" className="thNum">{t("Quantity")}</th>
+        <th scope="col" className="thNum">{t("Quantity")+QuantityUnit}</th>
         <th scope="col" className="thNum">{t("Total")}</th>
         <th scope="col"></th>
       </tr>
@@ -89,6 +90,7 @@ class FormTable extends React.Component {
 const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
   recordManager: state.recordManager,
+  home: state.home,
 });
 const mapDispatch = { changeCandidateFormListIdx, updateRecordList };
 
