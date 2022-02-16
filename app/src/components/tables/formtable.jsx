@@ -14,6 +14,10 @@ function HighlightText(props) {
     return <span>{props.name}</span>;
 }
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 class FormTable extends React.Component {
   componentWillUnmount() {
     // Clear any existing bindings;
@@ -38,8 +42,8 @@ class FormTable extends React.Component {
     }}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
-    <td>{obj.QUANTITY}</td>
-    <td>{obj.SUM}</td>
+    <td>{numberWithCommas(obj.QUANTITY)}</td>
+    <td>{numberWithCommas(obj.SUM)}</td>
     <td>
       <Button variant="primary" size="sm"
         onClick={() => {
