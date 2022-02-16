@@ -37,10 +37,10 @@ class RecordSave extends React.Component {
     const idx = this.props.formManager.candidateFormListIdx;
     let formId = this.props.formManager.formList[idx].ID;
     let quantity = this.props.recordManager.recordList.map(function(obj){
-      return obj.QUANTITY;
+      return Number(obj.QUANTITY);
     }).reduce((partial, a)=> partial+a, 0);
     let sum = this.props.recordManager.recordList.map(function(obj){
-      return obj.QUANTITY*obj.UNIT_PRICE;
+      return Number(obj.QUANTITY)*obj.UNIT_PRICE;
     }).reduce((partial, a)=> partial+a, 0);
     let formSummary = {
       id: formId,
