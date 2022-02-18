@@ -20,6 +20,8 @@ class FormInfo extends React.Component {
       NAME: "",
       DIRTY: false,
       INSERT: true,
+      QUANTITY: 0,
+      SUM: 0,
     }
     this.props.addDummyForm(dummy);
     this.props.changeCandidateFormListIdx(len);
