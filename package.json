@@ -1,6 +1,6 @@
 {
   "name": "Invoice",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Simple sale system to generate invoice.",
   "private": true,
   "main": "app/electron/main.js",
@@ -21,7 +21,7 @@
     "test": "mocha"
   },
   "build": {
-    "productName": "Sale System",
+    "productName": "SaleSystem",
     "appId": "noahleft.SaleSystem",
     "directories": {
       "buildResources": "resources"
@@ -50,6 +50,8 @@
         "snap",
         "AppImage"
       ]
+    },
+    "mac": {
     }
   },
   "repository": {
@@ -117,8 +119,10 @@
     "bootstrap": "^5.1.3",
     "bulma": "^0.9.3",
     "connected-react-router": "^6.9.1",
+    "dotenv": "^16.0.0",
     "easy-redux-undo": "^1.0.5",
     "electron-devtools-installer": "^3.2.0",
+    "electron-notarize": "^1.1.1",
     "i18next": "^20.6.1",
     "i18next-electron-fs-backend": "^2.0.0",
     "i18next-fs-backend": "^1.1.1",
