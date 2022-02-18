@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { updateRecordList } from "Redux/components/recordManager/recordManagerSlice";
 import { changeCandidateFormSummary } from "Redux/components/formManager/formManagerSlice";
-import { Button } from "react-bootstrap";
+import { Button, Stack } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 
 class RecordSave extends React.Component {
@@ -10,6 +10,7 @@ class RecordSave extends React.Component {
     super(props);
 
     this.saveAction = this.saveAction.bind(this);
+    this.clearAction = this.clearAction.bind(this);
   }
 
   saveAction() {
@@ -54,6 +55,12 @@ class RecordSave extends React.Component {
       sum: sum,
     });
 
+    this.clearAction();
+  }
+
+  clearAction() {
+    const idx = this.props.formManager.candidateFormListIdx;
+    let formId = this.props.formManager.formList[idx].ID;
     let recordlist = myAPI.listRecord(formId).map(function(obj){
       obj.DIRTY = false;
       return obj;
@@ -63,7 +70,12 @@ class RecordSave extends React.Component {
 
   render() {
     const { t } = this.props;
-    return <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
+    return (
+    <Stack direction="horizontal" gap={3}>
+      <Button onClick={this.saveAction} disabled={!this.props.enable}>{t("Save")}</Button>
+      <Button variant="danger" onClick={this.clearAction} disabled={!this.props.enable}>{t("Clear")}</Button>
+    </Stack>
+    )
   }
 }
 
