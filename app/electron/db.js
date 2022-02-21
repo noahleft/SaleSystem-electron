@@ -9,8 +9,8 @@ class FakeDb {
         const compTbl = "CREATE TABLE company(\n\
             ID          INTEGER PRIMARY KEY AUTOINCREMENT,\n\
             NAME        TEXT    NOT NULL,\n\
-            HIDE        BOOLEAN NOT NULL DEFAULT FALSE,\n\
-            PRINTTAX    BOOLEAN NOT NULL DEFAULT FALSE,\n\
+            HIDE        BOOLEAN NOT NULL DEFAULT 0,\n\
+            PRINTTAX    BOOLEAN NOT NULL DEFAULT 0,\n\
             ADDRESS     TEXT    NOT NULL DEFAULT '', \n\
             PHONE       TEXT    NOT NULL DEFAULT '', \n\
             CONTACT     TEXT    NOT NULL DEFAULT '', \n\
@@ -22,7 +22,7 @@ class FakeDb {
         const prodTbl = "CREATE TABLE product(\n\
             ID    INTEGER PRIMARY KEY AUTOINCREMENT,\n\
             NAME  TEXT NOT NULL,\n\
-            HIDE  BOOLEAN NOT NULL DEFAULT FALSE,\n\
+            HIDE  BOOLEAN NOT NULL DEFAULT 0,\n\
             UNIQUE(NAME));";
         this.db.exec(prodTbl);
         const priceTbl = "CREATE TABLE unitprice(\n\
@@ -34,7 +34,7 @@ class FakeDb {
         const formTbl = "CREATE TABLE form(\n\
             ID       INTEGER PRIMARY KEY AUTOINCREMENT,\n\
             NAME     TEXT    NOT NULL,\n\
-            HIDE     BOOLEAN NOT NULL DEFAULT FALSE,\n\
+            HIDE     BOOLEAN NOT NULL DEFAULT 0,\n\
             QUANTITY INTEGER NOT NULL DEFAULT 0,\n\
             SUM      INTEGER NOT NULL DEFAULT 0,\n\
             UNIQUE(NAME));";
@@ -49,7 +49,7 @@ class FakeDb {
             UNIT_PRICE   REAL     NOT NULL,\n\
             QUANTITY     INTEGER  NOT NULL,\n\
             NOTE         TEXT     NOT NULL DEFAULT '',\n\
-            HIDE  BOOLEAN NOT NULL DEFAULT FALSE);";
+            HIDE  BOOLEAN NOT NULL DEFAULT 0);";
         this.db.exec(recordTbl);
     }
 };
@@ -115,14 +115,14 @@ class DbManager {
         return row;
     }
     addProduct(prodList) {
-        const insert = this.db.prepare('INSERT INTO product (name, hide) VALUES (@name, @hide);');
+        const insert = this.db.prepare('INSERT INTO product (name) VALUES (@name);');
         const insertMany = this.db.transaction((prodList) => {
             for (const prod of prodList) insert.run(prod);
           });
         insertMany(prodList);
     }
     updateProduct(prodList) {
-        const update = this.db.prepare('UPDATE product SET name = (@name) WHERE id = (@id);');
+        const update = this.db.prepare('UPDATE product SET name = (@name), hide = (@hide) WHERE id = (@id);');
         const updateMany = this.db.transaction((prodList) => {
             for (const prod of prodList) update.run(prod);
         });
