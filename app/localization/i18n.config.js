@@ -9,6 +9,7 @@ const whitelist = require("./whitelist");
 const isMac = window.api.i18nextElectronBackend.clientOptions.platform === "darwin";
 const isDev = window.api.i18nextElectronBackend.clientOptions.environment === "development";
 const prependPath = isMac && !isDev ? window.api.i18nextElectronBackend.clientOptions.resourcesPath : ".";
+const lngs = navigator.language=='zh-TW'?'zh_TW':'en';
 
 i18n
   .use(i18nBackend)
@@ -23,7 +24,7 @@ i18n
     namespace: "translation",
     saveMissing: true,
     saveMissingTo: "current",
-    lng: "en",
+    lng: lngs,
     fallbackLng: false, // set to false when generating translation files locally
     whitelist: whitelist.langs
   });

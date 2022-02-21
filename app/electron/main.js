@@ -177,7 +177,8 @@ async function createWindow() {
   // Set up necessary bindings to update the menu items
   // based on the current language selected
   i18nextMainBackend.on("loaded", (loaded) => {
-    i18nextMainBackend.changeLanguage("en");
+    const lngs = app.getLocale().toLowerCase()=='zh-tw'?'zh_TW':'en';
+    i18nextMainBackend.changeLanguage(lngs);
     i18nextMainBackend.off("loaded");
   });
 
