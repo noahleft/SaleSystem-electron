@@ -3,7 +3,7 @@ import { Container, Row, Stack } from "react-bootstrap";
 import CompSelect from "Components/dropdowns/compselect";
 import PriceTable from "Components/tables/pricetable";
 import PriceFooter from "Components/footer/priceFooter";
-import ShowProductCheck from "Components/checkbox/showProdCheck";
+import ShowPriceCheck from "Components/checkbox/showPriceCheck";
 import { withTranslation } from "react-i18next";
 import "./print.css";
 
@@ -18,7 +18,7 @@ class PriceList extends React.Component {
             <Stack direction="horizontal" gap={3}>
               <div className="is-1 title">{t("PriceTitle")}</div>
               <div className="ms-auto"><CompSelect/></div>
-              <div><ShowProductCheck/></div>
+              <div><ShowPriceCheck/></div>
             </Stack>
           </Row>
           <Row><PriceTable></PriceTable></Row>
