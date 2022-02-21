@@ -8,7 +8,7 @@ import "./textalign.css";
 import "./export.css";
 
 function numberWithCommas(x) {
-  return x.toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 class ExportTable extends React.Component {
@@ -41,7 +41,7 @@ class ExportTable extends React.Component {
     let recordList = this.props.exportManager.exportList.filter(isSelectedCompID(this.props.exportManager.selectedCompID));
     let total = 0;
     for(let i=0; i<=recordList.length-1; i++) {
-      let sum = Math.round(recordList[i].UNIT_PRICE * recordList[i].QUANTITY * 10)/10;
+      let sum = Math.round(recordList[i].UNIT_PRICE * recordList[i].QUANTITY);
       total += sum;
       content.push(<tr key={recordList[i].ID}>
         <td className="export dateTime">{this.getDisplayDate(recordList[i].DELIVER_DATE)}</td>
@@ -85,9 +85,9 @@ class ExportTable extends React.Component {
         </div>
         <div>
           <Stack>
-            <div className="right-side"><h4>{total}</h4></div>
-            <div className="right-side" hidden={!this.props.exportManager.needTax}><h4>{tax}</h4></div>
-            <div className="right-side" hidden={!this.props.exportManager.needTax}><h4>{posttax}</h4></div>
+            <div className="right-side"><h4>{numberWithCommas(total)}</h4></div>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}><h4>{numberWithCommas(tax)}</h4></div>
+            <div className="right-side" hidden={!this.props.exportManager.needTax}><h4>{numberWithCommas(posttax)}</h4></div>
           </Stack>
         </div>
       </Stack>
