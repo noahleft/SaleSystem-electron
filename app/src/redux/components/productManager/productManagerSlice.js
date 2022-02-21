@@ -7,6 +7,7 @@ const productManagerSlice = createSlice({
     originalList: [],
     candidateProdListIdx: -1,
     requireSaving: false,
+    showAllProduct: true,
   },
   reducers: {
     updateProductList(state, action) {
@@ -30,11 +31,15 @@ const productManagerSlice = createSlice({
       state.productList[idx].DIRTY = true;
       state.requireSaving = true;
     },
+    changeShowAllProduct(state, action) {
+      state.showAllProduct = action.payload;
+    }
   }
 });
 
 // Export actions
-export const { updateProductList, addDummyProduct, changeCandidateProdListIdx, changeCandidateProdName } = productManagerSlice.actions;
+export const { updateProductList, addDummyProduct, changeCandidateProdListIdx,
+  changeCandidateProdName, changeShowAllProduct } = productManagerSlice.actions;
 
 // Export reducer
 export default productManagerSlice.reducer;

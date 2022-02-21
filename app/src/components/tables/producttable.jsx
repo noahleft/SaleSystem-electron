@@ -23,7 +23,7 @@ class ProductTable extends React.Component {
   genRow(idx, obj) {
     return (<tr key={idx} onClick={()=>{
       this.props.changeCandidateProdListIdx(idx);
-      }}>
+      }} hidden={this.props.productManager.showAllProduct?false:obj.HIDE}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
     <td><Form.Check type="checkbox" aria-label="Hide" checked={obj.HIDE} disabled/></td>

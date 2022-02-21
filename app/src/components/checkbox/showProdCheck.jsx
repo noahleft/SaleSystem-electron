@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Form } from "react-bootstrap";
-import { changeShowAllProduct } from "Redux/components/priceManager/priceManagerSlice";
+import { changeShowAllProduct } from "Redux/components/productManager/productManagerSlice";
 import { withTranslation } from "react-i18next";
 
 class ShowProductCheck extends React.Component {
@@ -26,13 +26,13 @@ class ShowProductCheck extends React.Component {
   render() {
     const { t } = this.props;
     return (
-        <Form.Check type="checkbox" label={t("ShowAllProduct")} defaultChecked={this.props.priceManager.showAllProduct} onChange={this.handleChange} />
+        <Form.Check type="checkbox" label={t("ShowAllProduct")} defaultChecked={this.props.productManager.showAllProduct} onChange={this.handleChange} />
     );
   }
 }
 
 const mapStateToProps = (state, props) => ({
-  priceManager: state.priceManager,
+  productManager: state.productManager,
 });
 const mapDispatch = { changeShowAllProduct };
 
