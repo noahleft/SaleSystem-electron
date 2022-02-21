@@ -38,8 +38,14 @@ class PriceTable extends React.Component {
     });
     for(let i=0; i<compPriceList.length; i++) {
       let priceItem = this.getPrice(this.props.priceManager.selectedCompID, compPriceList[i].ID);
-      compPriceList[i].UNIT_PRICE = priceItem.UNIT_PRICE;
-      compPriceList[i].DIRTY = priceItem.DIRTY;
+      if(priceItem.UNIT_PRICE=="") {
+        compPriceList[i].UNIT_PRICE = "";
+        compPriceList[i].DIRTY = false;
+      }
+      else {
+        compPriceList[i].UNIT_PRICE = priceItem.UNIT_PRICE.toFixed(1);
+        compPriceList[i].DIRTY = priceItem.DIRTY;
+      }
     }
     const disable = this.props.priceManager.selectedCompID==0;
     const hidden = !disable && !this.props.priceManager.showAllProduct;
