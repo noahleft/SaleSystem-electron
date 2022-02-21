@@ -20,6 +20,7 @@ class ProdInfo extends React.Component {
       NAME: "",
       DIRTY: false,
       INSERT: true,
+      HIDE: 0,
     }
     this.props.addDummyProduct(dummy);
     this.props.changeCandidateProdListIdx(len);
