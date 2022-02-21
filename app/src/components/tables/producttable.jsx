@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Table } from "react-bootstrap";
+import { Table, Form } from "react-bootstrap";
 import { changeCandidateProdListIdx } from "Redux/components/productManager/productManagerSlice";
 import { withTranslation } from "react-i18next";
 import "./tablesize.css";
@@ -26,6 +26,7 @@ class ProductTable extends React.Component {
       }}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
+    <td><Form.Check type="checkbox" aria-label="Hide" checked={obj.HIDE} disabled/></td>
     </tr>
     );
   }
@@ -45,6 +46,7 @@ class ProductTable extends React.Component {
       <tr>
         <th scope="col" className="thID">#</th>
         <th scope="col">{t("Name")}</th>
+        <th scope="col" width="80px">{t("Hide")}</th>
       </tr>
     </thead>
     <tbody>
