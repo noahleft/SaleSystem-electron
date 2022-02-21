@@ -26,6 +26,7 @@ class CompInfo extends React.Component {
       NAME: "",
       DIRTY: false,
       INSERT: true,
+      HIDE: 0,
       BUSINESSNUM: "",
       PHONE: "",
       CONTACT: "",
