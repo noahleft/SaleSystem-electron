@@ -58,6 +58,13 @@ const companyManagerSlice = createSlice({
       state.companyList[idx].DIRTY = true;
       state.requireSaving = true;
     },
+    changeCandidateCompHide(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.companyList[idx].HIDE = val;
+      state.companyList[idx].DIRTY = true;
+      state.requireSaving = true;
+    },
     changeCandidateCompNote(state, action) {
       const idx = action.payload.idx;
       const val = action.payload.value;
@@ -71,7 +78,8 @@ const companyManagerSlice = createSlice({
 // Export actions
 export const { updateCompanyList, addDummyCompany, changeCandidateCompListIdx, 
   changeCandidateCompName, changeCandidateCompBusNum, changeCandidateCompPhone,
-  changeCandidateCompContact, changeCandidateCompTax, changeCandidateCompNote } = companyManagerSlice.actions;
+  changeCandidateCompContact, changeCandidateCompTax, changeCandidateCompHide,
+  changeCandidateCompNote } = companyManagerSlice.actions;
 
 // Export reducer
 export default companyManagerSlice.reducer;
