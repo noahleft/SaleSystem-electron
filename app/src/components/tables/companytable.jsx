@@ -23,7 +23,7 @@ class CompanyTable extends React.Component {
   genRow(idx, obj, orig) {
     return (<tr key={idx} onClick={()=>{
       this.props.changeCandidateCompListIdx(idx);
-      }}>
+      }} hidden={this.props.companyManager.showAllCompany?false:obj.HIDE}>
     <th scope="row"><HighlightText name={obj.ID} highlight={obj.DIRTY}/></th>
     <td><HighlightText name={obj.NAME} highlight={obj.NAME!=orig.NAME}/></td>
     <td><HighlightText name={obj.BUSINESSNUM} highlight={obj.BUSINESSNUM!=orig.BUSINESSNUM}/></td>

@@ -3,6 +3,7 @@ import { Container, Row, Stack } from "react-bootstrap";
 import CompInfo from "Components/selection/compInfo";
 import CompanyTable from "Components/tables/companytable";
 import CompFooter from "Components/footer/compFooter";
+import ShowCompanyCheck from "Components/checkbox/showCompCheck";
 import { withTranslation } from "react-i18next";
 
 class CompanyList extends React.Component {
@@ -11,9 +12,10 @@ class CompanyList extends React.Component {
     return (
       <section className="section">
           <Container fluid>
-            <Row className="title is-1">
+            <Row>
               <Stack direction="horizontal">
-                <div>{t("CompanyTitle")}</div>
+                <div className="is-1 title">{t("CompanyTitle")}</div>
+                <div className="ms-auto"><ShowCompanyCheck/></div>
               </Stack>
             </Row>
             <Row><CompanyTable></CompanyTable></Row>
