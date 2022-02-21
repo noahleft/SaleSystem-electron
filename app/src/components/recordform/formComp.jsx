@@ -34,7 +34,7 @@ class FormComp extends React.Component {
   render() {
     const { t } = this.props;
     const content = this.props.companyManager.companyList.map(function(obj){
-      return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
+      return (<option key={obj.ID} value={obj.ID} hidden={obj.HIDE}>{obj.NAME}</option>)
     });
     const idx = this.props.recordManager.candidateRecordListIdx;
     const comp_id = (idx!=-1)?this.props.recordManager.recordList[idx].COMP_ID:0;
