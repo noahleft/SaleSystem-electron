@@ -21,7 +21,7 @@ class ProdSave extends React.Component {
       var rObj = {
         id: obj.ID,
         name: obj.NAME,
-        hide: "false",
+        hide: obj.HIDE,
       };
       return rObj;
     });
