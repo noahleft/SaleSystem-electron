@@ -8,9 +8,9 @@ import { withTranslation } from "react-i18next";
 import "./print.css";
 
 class RecordExport extends React.Component {
-  getCompanyName() {
-    if(this.props.exportManager.selectedCompID==0) return "";
-    return myAPI.getCompany(this.props.exportManager.selectedCompID).NAME;
+  getCompany() {
+    if(this.props.exportManager.selectedCompID==0) return {};
+    return myAPI.getCompany(this.props.exportManager.selectedCompID);
   }
   getFormName() {
     const idx = this.props.formManager.candidateFormListIdx;
@@ -20,7 +20,8 @@ class RecordExport extends React.Component {
   render() {
     const { t } = this.props;
     let formName = this.getFormName();
-    let message = t("PrintableTitle") + this.getCompanyName() + formName;
+    let message = t("PrintableTitle") + " " + formName;
+    const comp = this.getCompany();
     return (
       <section className="section">
         <Navbar bg="light">
@@ -37,9 +38,10 @@ class RecordExport extends React.Component {
         <Card>
         <Container fluid>
           <div className="section-to-print">
-            <Row className="title is-1">{message}</Row>
+            <Row><h1>{message}</h1></Row>
+            <Row><h2>{comp.NAME}</h2></Row>
             <Row>
-              <ExportTable></ExportTable>
+              <ExportTable/>
             </Row>
           </div>
         </Container>
