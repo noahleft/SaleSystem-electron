@@ -132,7 +132,7 @@ class DbManager {
                 deliver_date: obj.DELIVER_DATE,
                 unit_price: obj.UNIT_PRICE,
                 quantity: obj.QUANTITY,
-                note: obj.NOTE,
+                note: obj.NOTE?obj.NOTE:"",
                 hide: obj.HIDE.toLowerCase()=="false"?0:1,
             }
             return rObj;
