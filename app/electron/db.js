@@ -121,6 +121,7 @@ class DbManager {
             return rObj;
         })
         this.handleFormChangeRequest(formList);
+        this.handleFormSummary(formList);
         const recordList = source.prepare('SELECT * FROM record').all().map(function(obj){
             var rObj = {
                 id: 0, // 0 means insertion
@@ -131,6 +132,7 @@ class DbManager {
                 deliver_date: obj.DELIVER_DATE,
                 unit_price: obj.UNIT_PRICE,
                 quantity: obj.QUANTITY,
+                note: obj.NOTE,
                 hide: obj.HIDE.toLowerCase()=="false"?0:1,
             }
             return rObj;
@@ -270,7 +272,9 @@ class DbManager {
         return row;
     }
     addRecord(recordList) {
-        const insert = this.db.prepare('INSERT INTO record (comp_id, prod_id, form_id, created_date, deliver_date, unit_price, quantity, hide) VALUES (@comp_id, @prod_id, @form_id, @created_date, @deliver_date, @unit_price, @quantity, @hide);');
+        const insert = this.db.prepare('INSERT INTO record \
+        ( comp_id,  prod_id,  form_id,  created_date,  deliver_date,  unit_price,  quantity,  note,  hide) VALUES \
+        (@comp_id, @prod_id, @form_id, @created_date, @deliver_date, @unit_price, @quantity, @note, @hide);');
         const insertMany = this.db.transaction((recordList) => {
             for (const record of recordList) insert.run(record);
           });

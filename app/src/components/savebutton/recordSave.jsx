@@ -29,7 +29,7 @@ class RecordSave extends React.Component {
         unit_price: obj.UNIT_PRICE,
         quantity: obj.QUANTITY,
         note: obj.NOTE,
-        hide: "false",
+        hide: 0,
       };
       return rObj;
     });

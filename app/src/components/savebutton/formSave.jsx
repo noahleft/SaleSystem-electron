@@ -21,7 +21,7 @@ class FormSave extends React.Component {
       var rObj = {
         id: obj.ID,
         name: obj.NAME,
-        hide: "false",
+        hide: 0,
       };
       return rObj;
     });
