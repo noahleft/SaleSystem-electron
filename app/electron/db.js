@@ -73,6 +73,70 @@ class DbManager {
 
         this.db = Sqlite3(dbPath);
     }
+    dbMigration(importDbPath) {
+        const source = Sqlite3(importDbPath);
+        const compList = source.prepare('SELECT * FROM company').all().map(function(obj){
+            var rObj = {
+                id: obj.ID,
+                name : obj.NAME,
+                hide: obj.HIDE.toLowerCase()=="false"?0:1,
+                printtax: obj.PRINTTAX?obj.PRINTTAX:0,
+                address: obj.ADDRESS?obj.ADDRESS:"",
+                phone: obj.PHONE?obj.PHONE:"",
+                contact: obj.CONTACT?obj.CONTACT:"",
+                businessnum: obj.BUSINESSNUM?obj.BUSINESSNUM:"",
+                note: obj.NOTE?obj.NOTE:"",
+                internal: obj.INTERNAL?obj.INTERNAL:"",
+            }
+            return rObj;
+        });
+        this.handleCompanyChangeRequest(compList);
+        const prodList = source.prepare('SELECT * FROM product').all().map(function(obj){
+            var rObj = {
+                id: obj.ID,
+                name : obj.NAME,
+                hide: obj.HIDE.toLowerCase()=="false"?0:1,
+            }
+            return rObj;
+        })
+        this.handleProductChangeRequest(prodList);
+        const priceList = source.prepare('SELECT * FROM unitprice').all().map(function(obj){
+            var rObj = {
+                id: 0, // 0 means insertion
+                comp_id: obj.COMP_ID,
+                prod_id: obj.PROD_ID,
+                unit_price: obj.UNIT_PRICE,
+            }
+            return rObj;
+        })
+        this.handlePriceChangeRequest(priceList);
+        const formList = source.prepare('SELECT * FROM form').all().map(function(obj){
+            var rObj = {
+                id: obj.ID,
+                name: obj.NAME,
+                hide: obj.HIDE,
+                quantity: obj.QUANTITY?obj.QUANTITY:0,
+                sum: obj.SUM?obj.SUM:0,
+            }
+            return rObj;
+        })
+        this.handleFormChangeRequest(formList);
+        const recordList = source.prepare('SELECT * FROM record').all().map(function(obj){
+            var rObj = {
+                id: 0, // 0 means insertion
+                comp_id: obj.COMP_ID,
+                prod_id: obj.PROD_ID,
+                form_id: obj.FORM_ID,
+                created_date: obj.CREATED_DATE,
+                deliver_date: obj.DELIVER_DATE,
+                unit_price: obj.UNIT_PRICE,
+                quantity: obj.QUANTITY,
+                hide: obj.HIDE.toLowerCase()=="false"?0:1,
+            }
+            return rObj;
+        });
+        this.handleRecordChangeRequest(recordList);
+    }
     listCompany() {
         const row = this.db.prepare('SELECT * FROM company').all();
         return row;

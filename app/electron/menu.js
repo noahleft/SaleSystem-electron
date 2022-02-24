@@ -4,6 +4,7 @@ const whitelist = require("../localization/whitelist");
 const isMac = process.platform === "darwin";
 const path = require("path");
 const fs = require("fs");
+const {DbManager} = require("./db");
 
 const MenuBuilder = function(mainWindow, appName) {
 
@@ -12,7 +13,10 @@ const MenuBuilder = function(mainWindow, appName) {
     const dataPath = path.join(dbPath, "data.db");
     const importFiles = dialog.showOpenDialogSync({ properties: ['openFile'] });
     if(importFiles){
-      fs.copyFileSync(importFiles[0], dataPath);
+      fs.unlinkSync(dataPath); // purge database
+      const dbManager = new DbManager({
+        path: app.getPath("userData")
+      }).dbMigration(importFiles[0]);
       app.relaunch();
       app.exit();
     }
