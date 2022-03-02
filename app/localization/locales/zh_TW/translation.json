@@ -98,5 +98,6 @@
   "Unit":"單位",
   "Length":"長",
   "Width":"寬",
-  "Weight":"重量"
+  "Weight":"重量",
+  "Address":"地址"
 }

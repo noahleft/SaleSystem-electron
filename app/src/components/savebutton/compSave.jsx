@@ -27,6 +27,7 @@ class CompSave extends React.Component {
         phone: obj.PHONE,
         contact: obj.CONTACT,
         note: obj.NOTE,
+        address: obj.ADDRESS,
       };
       return rObj;
     });

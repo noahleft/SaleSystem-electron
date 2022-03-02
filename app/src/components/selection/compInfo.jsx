@@ -11,6 +11,7 @@ import CompContact from "Components/compform/compContact";
 import CompTax from "Components/compform/compTax";
 import CompHide from "Components/compform/compHide";
 import CompNote from "Components/compform/compNote";
+import CompAddress from "Components/compform/compAddress";
 
 class CompInfo extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class CompInfo extends React.Component {
       PHONE: "",
       CONTACT: "",
       PRINTTAX: 0,
+      ADDRESS: "",
       NOTE: "",
     }
     this.props.addDummyCompany(dummy);
@@ -67,6 +69,10 @@ class CompInfo extends React.Component {
           <Row>
             <Col><CompTax/></Col>
             <Col><CompHide/></Col>
+          </Row>
+          <Row>
+            <Col><CompAddress/></Col>
+            <Col></Col>
           </Row>
           <Row>
             <Col><CompNote/></Col>
