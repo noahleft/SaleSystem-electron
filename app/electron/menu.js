@@ -36,6 +36,10 @@ const MenuBuilder = function(mainWindow, appName) {
 
   function handleClickPurge(menuItem, browserWindow, event) {
     const dbPath = app.getPath("userData");
+    const configPath = path.join(dbPath, "data.json");
+    fs.unlink(configPath, (err) => {
+      if (err) throw err;
+    });
     const dataPath = path.join(dbPath, "data.db");
     fs.unlink(dataPath, (err) => {
       if (err) throw err;
