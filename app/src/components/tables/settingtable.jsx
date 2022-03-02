@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import EditQuantityUnit from "Components/config/configQuantityUnit";
+import EditCompanyTitle from "Components/config/configCompanyTitle";
 import "./tablesize.css";
 
 class SettingTable extends React.Component {
@@ -22,6 +23,11 @@ class SettingTable extends React.Component {
         <th scope="row">{t("QuantityUnit")}</th>
         <td>{this.props.home.quantity_unit}</td>
         <td><EditQuantityUnit/></td>
+      </tr>
+      <tr key={2}>
+        <th scope="row">{t("CompanyName")}</th>
+        <td>{this.props.home.company_title}</td>
+        <td><EditCompanyTitle/></td>
       </tr>
     </tbody>
     </Table>
