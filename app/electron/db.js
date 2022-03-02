@@ -74,12 +74,20 @@ class DbManager {
         this.db = Sqlite3(dbPath);
     }
     dbMigration(importDbPath) {
+        function getHideVal(obj) {
+            if(obj.HIDE){
+                if(obj.HIDE === "0") return 0;
+                if(obj.HIDE === "1") return 1;
+                return obj.toLowerCase()=="false"?0:1;
+            }
+            return 0;
+        }
         const source = Sqlite3(importDbPath);
         const compList = source.prepare('SELECT * FROM company').all().map(function(obj){
             var rObj = {
                 id: obj.ID,
                 name : obj.NAME,
-                hide: obj.HIDE.toLowerCase()=="false"?0:1,
+                hide: getHideVal(obj.HIDE),
                 printtax: obj.PRINTTAX?obj.PRINTTAX:0,
                 address: obj.ADDRESS?obj.ADDRESS:"",
                 phone: obj.PHONE?obj.PHONE:"",
@@ -95,7 +103,7 @@ class DbManager {
             var rObj = {
                 id: obj.ID,
                 name : obj.NAME,
-                hide: obj.HIDE.toLowerCase()=="false"?0:1,
+                hide: getHideVal(obj.HIDE),
             }
             return rObj;
         })
@@ -133,7 +141,7 @@ class DbManager {
                 unit_price: obj.UNIT_PRICE,
                 quantity: obj.QUANTITY,
                 note: obj.NOTE?obj.NOTE:"",
-                hide: obj.HIDE.toLowerCase()=="false"?0:1,
+                hide: getHideVal(obj.HIDE),
             }
             return rObj;
         });
