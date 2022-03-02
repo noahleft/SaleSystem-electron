@@ -27,8 +27,8 @@ class CompNote extends React.Component {
     let orig = (defaultVal)?"":this.props.companyManager.originalList[idx].NOTE;
     return (
     <Form.Group as={Row} className="mb-3" controlId="formCompNote" ref="formCompNote">
-    <Form.Label column sm={4}>{t("Note")}:</Form.Label>
-    <Col sm={6}>
+    <Form.Label column sm={2}>{t("Note")}:</Form.Label>
+    <Col sm={9}>
       <Form.Control className="me-auto" placeholder={orig} disabled={defaultVal}
       type="text" value={curr} onChange={this.handleChange} />
     </Col>

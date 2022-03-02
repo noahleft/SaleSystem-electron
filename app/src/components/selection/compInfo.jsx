@@ -72,11 +72,9 @@ class CompInfo extends React.Component {
           </Row>
           <Row>
             <Col><CompAddress/></Col>
-            <Col></Col>
           </Row>
           <Row>
             <Col><CompNote/></Col>
-            <Col></Col>
           </Row>
         </Container></Form>
       </Card.Body>
