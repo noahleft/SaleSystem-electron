@@ -6,7 +6,7 @@ import { withTranslation } from "react-i18next";
 import { writeConfigRequest } from "secure-electron-store";
 import "./tablesize.css";
 
-class EditForm extends React.Component {
+class EditQantityUnit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +60,7 @@ class SettingTable extends React.Component {
       <tr key={1}>
         <th scope="row">{t("QuantityUnit")}</th>
         <td>{this.props.home.quantity_unit}</td>
-        <td><EditForm updateFunc={this.props.updateQuantityUnit}/></td>
+        <td><EditQantityUnit updateFunc={this.props.updateQuantityUnit}/></td>
       </tr>
     </tbody>
     </Table>
