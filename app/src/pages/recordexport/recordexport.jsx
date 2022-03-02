@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import ExportTable from "Components/tables/exporttable";
-import { Container, Row, Card, Navbar, Nav } from "react-bootstrap";
+import { Container, Row, Col, Stack, Card, Navbar, Nav } from "react-bootstrap";
 import ExportSelect from "Components/dropdowns/exportselect";
 import TaxCheck from "Components/checkbox/taxcheck";
 import { withTranslation } from "react-i18next";
@@ -9,7 +9,11 @@ import "./print.css";
 
 class RecordExport extends React.Component {
   getCompany() {
-    if(this.props.exportManager.selectedCompID==0) return {};
+    if(this.props.exportManager.selectedCompID==0) return {
+      NAME: "",
+      CONTACT: "",
+      PHONE: "",
+    };
     return myAPI.getCompany(this.props.exportManager.selectedCompID);
   }
   getFormName() {
@@ -17,11 +21,29 @@ class RecordExport extends React.Component {
     return this.props.formManager.formList[idx].NAME;
   }
 
+  getCompanyText(comp) {
+    const { t } = this.props;
+    if(comp.NAME==="") return "";
+    const compText = comp.NAME!=""?comp.NAME:"";
+    return t("CompanyName")+":"+compText;
+  }
+
+  getContactText(comp) {
+    const { t } = this.props;
+    if(comp.PHONE==="" && comp.CONTACT==="") return "";
+    const phoneText = comp.PHONE!=""?comp.PHONE:"";
+    const windowText = comp.CONTACT!=""?comp.CONTACT:"";
+    if(phoneText==="")
+      return t("Contact")+":"+windowText;
+    return t("Contact")+":"+phoneText+" ("+windowText+")";
+  }
+
   render() {
     const { t } = this.props;
     let formName = this.getFormName();
-    let message = t("PrintableTitle") + " " + formName;
     const comp = this.getCompany();
+    let companyText = this.getCompanyText(comp);
+    let contactText = this.getContactText(comp);
     return (
       <section className="section">
         <Navbar bg="light">
@@ -38,8 +60,19 @@ class RecordExport extends React.Component {
         <Card>
         <Container fluid>
           <div className="section-to-print">
-            <Row><h1>{message}</h1></Row>
-            <Row><h2>{comp.NAME}</h2></Row>
+            <Row>
+              <Stack direction="horizontal" gap={3}>
+                <div><h1>{this.props.home.config.company_title}</h1></div>
+                <div><h1>{t("PrintableTitle")}</h1></div>
+                <div className="ms-auto"><h1>{formName}</h1></div>
+              </Stack>
+            </Row>
+            <Row>
+            <Stack direction="horizontal" gap={3}>
+                <div><h3>{companyText}</h3></div>
+                <div className="ms-auto"><h3>{contactText}</h3></div>
+              </Stack>
+            </Row>
             <Row>
               <ExportTable/>
             </Row>
@@ -54,6 +87,7 @@ class RecordExport extends React.Component {
 const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
   exportManager: state.exportManager,
+  home: state.home,
 });
 const mapDispatch = { };
 
