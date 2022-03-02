@@ -44,7 +44,7 @@ class FormTable extends React.Component {
     }}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
-    <td>{numberWithCommas(obj.QUANTITY)+this.props.home.quantity_unit}</td>
+    <td>{numberWithCommas(obj.QUANTITY)+this.props.home.config.quantity_unit}</td>
     <td>{numberWithCommas(obj.SUM)}</td>
     <td>
       <Button variant="primary" size="sm"
@@ -79,7 +79,7 @@ class FormTable extends React.Component {
       idx: idx,
       id: obj.ID,
       name: (<HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText>),
-      quantity: numberWithCommas(obj.QUANTITY)+this.props.home.quantity_unit,
+      quantity: numberWithCommas(obj.QUANTITY)+this.props.home.config.quantity_unit,
       total: numberWithCommas(obj.SUM),
       navi: this.renderNaviButton(obj),
     };
@@ -87,7 +87,7 @@ class FormTable extends React.Component {
   }
 
   render() {
-    let QuantityUnit = this.props.home.quantity_unit==""?"":"("+this.props.home.quantity_unit+")";
+    let QuantityUnit = this.props.home.config.quantity_unit==""?"":"("+this.props.home.config.quantity_unit+")";
     const { t } = this.props;
     let formList = this.props.formManager.formList;
 

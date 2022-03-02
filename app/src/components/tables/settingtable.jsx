@@ -21,13 +21,13 @@ class SettingTable extends React.Component {
     <tbody>
       <tr key={1}>
         <th scope="row">{t("QuantityUnit")}</th>
-        <td>{this.props.home.quantity_unit}</td>
-        <td><EditQuantityUnit/></td>
+        <td>{this.props.home.config.quantity_unit}</td>
+        <td><EditQuantityUnit writeFunc={this.props.writeFunc}/></td>
       </tr>
       <tr key={2}>
         <th scope="row">{t("CompanyName")}</th>
-        <td>{this.props.home.company_title}</td>
-        <td><EditCompanyTitle/></td>
+        <td>{this.props.home.config.company_title}</td>
+        <td><EditCompanyTitle writeFunc={this.props.writeFunc}/></td>
       </tr>
     </tbody>
     </Table>

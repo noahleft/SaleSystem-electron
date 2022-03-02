@@ -15,8 +15,8 @@ class EditCompanyTitle extends React.Component {
     }
   
     handleSubmit(e) {
-      window.api.store.send(writeConfigRequest, "company_title", this.state.value);
       this.props.updateCompanyTitle(this.state.value);
+      this.props.writeFunc(this.props.home.config);
       e.preventDefault();
     }
   

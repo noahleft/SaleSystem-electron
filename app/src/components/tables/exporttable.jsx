@@ -46,7 +46,7 @@ class ExportTable extends React.Component {
       content.push(<tr key={recordList[i].ID}>
         <td className="export dateTime">{this.getDisplayDate(recordList[i].DELIVER_DATE)}</td>
         <td className="export productName">{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
-        <td className="export quantity">{recordList[i].QUANTITY}{this.props.home.quantity_unit}</td>
+        <td className="export quantity">{recordList[i].QUANTITY}{this.props.home.config.quantity_unit}</td>
         <td className="export price">{recordList[i].UNIT_PRICE.toFixed(1).toString()}</td>
         <td className="export price">{numberWithCommas(sum)}</td>
         <td className="export note">{recordList[i].NOTE}</td>
@@ -55,7 +55,7 @@ class ExportTable extends React.Component {
     total = Math.round(total);
     let tax = Math.round(total * 0.05);
     let posttax = tax + total;
-    let QuantityUnit = this.props.home.quantity_unit==""?"":"("+this.props.home.quantity_unit+")";
+    let QuantityUnit = this.props.home.config.quantity_unit==""?"":"("+this.props.home.config.quantity_unit+")";
     return (
     <div>
       <div>

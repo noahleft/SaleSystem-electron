@@ -5,8 +5,8 @@ import { updateProductList } from "Redux/components/productManager/productManage
 import { updatePriceList } from "Redux/components/priceManager/priceManagerSlice";
 import { updateFormList } from "Redux/components/formManager/formManagerSlice";
 import { withTranslation } from "react-i18next";
-import { readConfigRequest, readConfigResponse } from "secure-electron-store";
-import { updateQuantityUnit } from "Redux/components/home/homeSlice";
+import { readConfigRequest, readConfigResponse, writeConfigRequest } from "secure-electron-store";
+import { loadConfig } from "Redux/components/home/homeSlice";
 import SettingTable from "Components/tables/settingtable";
 import UtilCard from "Components/shortcut/utilCard";
 
@@ -36,6 +36,10 @@ class Welcome extends React.Component {
     });
     this.props.updateFormList(formlist);
 
+    this.readConfig();
+  }
+
+  readConfig() {
     function loadSettings(func) {
       return function(args) {
         if (args.success) {
@@ -47,10 +51,14 @@ class Welcome extends React.Component {
     }
     // Clears all listeners
     window.api.store.clearRendererBindings();
-    window.api.store.onReceive(readConfigResponse, loadSettings(this.props.updateQuantityUnit));
+    window.api.store.onReceive(readConfigResponse, loadSettings(this.props.loadConfig));
 
     // Read from file as soon as this component is rendered
-    window.api.store.send(readConfigRequest, "quantity_unit");
+    window.api.store.send(readConfigRequest, "config");
+  }
+
+  writeConfig(config) {
+    window.api.store.send(writeConfigRequest, "config", config);  
   }
 
   render() {
@@ -84,7 +92,7 @@ class Welcome extends React.Component {
                 <p className="subtitle">
                   {t("Settings")}
                 </p>
-                <SettingTable/>
+                <SettingTable writeFunc={this.writeConfig}/>
               </div>
             </section>
           </div>
@@ -101,7 +109,7 @@ const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
   home: state.home,
 });
-const mapDispatch = { updateCompanyList, updateProductList, updatePriceList, updateFormList, updateQuantityUnit };
+const mapDispatch = { updateCompanyList, updateProductList, updatePriceList, updateFormList, loadConfig };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(Welcome));
 

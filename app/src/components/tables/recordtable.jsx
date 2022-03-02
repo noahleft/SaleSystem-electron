@@ -57,14 +57,14 @@ class RecordTable extends React.Component {
     <td><HighlightText name={this.getProductName(obj.PROD_ID)} highlight={obj.PROD_ID!=ori.PROD_ID} /></td>
     <td><HighlightText name={this.getDisplayDate(obj.DELIVER_DATE)} highlight={obj.DELIVER_DATE!=ori.DELIVER_DATE} /></td>
     <td><HighlightText name={obj.UNIT_PRICE} highlight={obj.UNIT_PRICE!=ori.UNIT_PRICE} /></td>
-    <td><HighlightText name={obj.QUANTITY.toString()+this.props.home.quantity_unit} highlight={obj.QUANTITY!=ori.QUANTITY} /></td>
+    <td><HighlightText name={obj.QUANTITY.toString()+this.props.home.config.quantity_unit} highlight={obj.QUANTITY!=ori.QUANTITY} /></td>
     <td><HighlightText name={obj.NOTE} highlight={obj.NOTE!=ori.NOTE} /></td>
     </tr>
     );
   }
 
   render() {
-    let QuantityUnit = this.props.home.quantity_unit==""?"":"("+this.props.home.quantity_unit+")";
+    let QuantityUnit = this.props.home.config.quantity_unit==""?"":"("+this.props.home.config.quantity_unit+")";
     const { t } = this.props;
     let content = [];
     const recordList = this.props.recordManager.recordList;

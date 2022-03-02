@@ -15,8 +15,8 @@ class EditQuantityUnit extends React.Component {
     }
   
     handleSubmit(e) {
-      window.api.store.send(writeConfigRequest, "quantity_unit", this.state.value);
       this.props.updateQuantityUnit(this.state.value);
+      this.props.writeFunc(this.props.home.config);
       e.preventDefault();
     }
   
