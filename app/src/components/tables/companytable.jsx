@@ -31,6 +31,7 @@ class CompanyTable extends React.Component {
     <td><HighlightText name={obj.CONTACT} highlight={obj.CONTACT!=orig.CONTACT}/></td>
     <td><Form.Check type="checkbox" aria-label="PrintTax" checked={obj.PRINTTAX!=0} disabled/></td>
     <td><Form.Check type="checkbox" aria-label="Hide" checked={obj.HIDE} disabled/></td>
+    <td><HighlightText name={obj.ADDRESS} highlight={obj.ADDRESS!=orig.ADDRESS}/></td>
     <td><HighlightText name={obj.NOTE} highlight={obj.NOTE!=orig.NOTE}/></td>
     </tr>
     );
@@ -57,6 +58,7 @@ class CompanyTable extends React.Component {
         <th scope="col" className="thNum">{t("Contact")}</th>
         <th scope="col" width="80px">{t("PrintTax")}</th>
         <th scope="col" width="80px">{t("Hide")}</th>
+        <th scope="col">{t("Address")}</th>
         <th scope="col">{t("Note")}</th>
       </tr>
     </thead>
