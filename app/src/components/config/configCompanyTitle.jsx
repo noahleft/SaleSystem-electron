@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form } from "react-bootstrap";
 import { updateCompanyTitle } from "Redux/components/home/homeSlice";
-import { writeConfigRequest } from "secure-electron-store";
 
 class EditCompanyTitle extends React.Component {
     constructor(props) {
@@ -16,7 +15,9 @@ class EditCompanyTitle extends React.Component {
   
     handleSubmit(e) {
       this.props.updateCompanyTitle(this.state.value);
-      this.props.writeFunc(this.props.home.config);
+      this.props.writeFunc({
+        ...this.props.home.config,
+        company_title: this.state.value});
       e.preventDefault();
     }
   
