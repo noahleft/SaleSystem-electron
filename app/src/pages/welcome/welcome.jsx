@@ -70,7 +70,7 @@ class Welcome extends React.Component {
             <section className="hero is-info">
               <div className="hero-body">
                 <p className="title">
-                  {t("WelcomeTitle")}
+                  {t("WelcomeTitle")} {this.props.home.config.company_title}
                 </p>
                 <p className="subtitle">
                   Contact noahleft@gmail.com
