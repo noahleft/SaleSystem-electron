@@ -13,6 +13,7 @@ class RecordExport extends React.Component {
       NAME: "",
       CONTACT: "",
       PHONE: "",
+      ADDRESS: "",
     };
     return myAPI.getCompany(this.props.exportManager.selectedCompID);
   }
@@ -38,12 +39,20 @@ class RecordExport extends React.Component {
     return t("Contact")+":"+phoneText+" ("+windowText+")";
   }
 
+  getAddressText(comp) {
+    const { t } = this.props;
+    if(comp.ADDRESS==="") return "";
+    const compAddress = comp.ADDRESS!=""?comp.ADDRESS:"";
+    return t("Address")+":"+compAddress;
+  }
+
   render() {
     const { t } = this.props;
     let formName = this.getFormName();
     const comp = this.getCompany();
     let companyText = this.getCompanyText(comp);
     let contactText = this.getContactText(comp);
+    let addressText = this.getAddressText(comp);
     return (
       <section className="section">
         <Navbar bg="light">
@@ -68,10 +77,13 @@ class RecordExport extends React.Component {
               </Stack>
             </Row>
             <Row>
-            <Stack direction="horizontal" gap={3}>
+              <Stack direction="horizontal" gap={3}>
                 <div><h3>{companyText}</h3></div>
                 <div className="ms-auto"><h3>{contactText}</h3></div>
               </Stack>
+            </Row>
+            <Row>
+              <h3>{addressText}</h3>
             </Row>
             <Row>
               <ExportTable/>
