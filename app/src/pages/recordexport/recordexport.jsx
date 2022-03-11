@@ -26,7 +26,7 @@ class RecordExport extends React.Component {
     const { t } = this.props;
     if(comp.NAME==="") return "";
     const compText = comp.NAME!=""?comp.NAME:"";
-    return t("CompanyName")+":"+compText;
+    return t("CustomerName")+":"+compText;
   }
 
   getContactText(comp) {

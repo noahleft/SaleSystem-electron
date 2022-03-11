@@ -99,5 +99,6 @@
   "Length":"Length",
   "Width":"Width",
   "Weight":"Weight",
+  "CustomerName":"Customer Name",
   "Address":"Address"
 }
