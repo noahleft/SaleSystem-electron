@@ -1,6 +1,6 @@
 {
   "name": "Invoice",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Simple sale system to generate invoice.",
   "private": true,
   "main": "app/electron/main.js",
