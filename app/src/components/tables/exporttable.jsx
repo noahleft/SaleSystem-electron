@@ -39,6 +39,21 @@ class ExportTable extends React.Component {
       }
     }
     let recordList = this.props.exportManager.exportList.filter(isSelectedCompID(this.props.exportManager.selectedCompID));
+    recordList.sort(function(a, b) {
+      if(a.DELIVER_DATE < b.DELIVER_DATE) {
+        return -1;
+      }
+      if(a.DELIVER_DATE > b.DELIVER_DATE) {
+        return 1;
+      }
+      if(a.ID < b.ID) {
+        return -1;
+      }
+      if(a.ID > b.ID) {
+        return 1;
+      }
+      return 0;
+    });
     let total = 0;
     for(let i=0; i<=recordList.length-1; i++) {
       let sum = Math.round(recordList[i].UNIT_PRICE * recordList[i].QUANTITY);
