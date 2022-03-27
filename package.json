@@ -1,6 +1,6 @@
 {
   "name": "Invoice",
-  "version": "0.2.8",
+  "version": "1.0.0",
   "description": "Simple sale system to generate invoice.",
   "private": true,
   "main": "app/electron/main.js",
@@ -55,7 +55,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reZach/secure-electron-template.git"
+    "url": "git+https://github.com/noahleft/SaleSystem-electron.git"
   },
   "keywords": [
     "electron",
@@ -69,12 +69,12 @@
     "i18n",
     "boilerplate"
   ],
-  "author": "reZach",
+  "author": "noahleft",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reZach/secure-electron-template/issues"
+    "url": "https://github.com/noahleft/SaleSystem-electron/issues"
   },
-  "homepage": "https://github.com/reZach/secure-electron-template#readme",
+  "homepage": "https://github.com/noahleft/SaleSystem-electron/blob/master/README.md",
   "browserslist": [
     "last 2 Chrome versions"
   ],
