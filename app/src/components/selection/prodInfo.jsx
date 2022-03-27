@@ -5,6 +5,7 @@ import { addDummyProduct, changeCandidateProdListIdx } from "Redux/components/pr
 import { withTranslation } from "react-i18next";
 import ProdID from "Components/prodform/prodID";
 import ProdName from "Components/prodform/prodName";
+import ProdHide from "Components/prodform/prodHide";
 
 class ProdInfo extends React.Component {
   constructor(props) {
@@ -42,6 +43,10 @@ class ProdInfo extends React.Component {
           </Row>
           <Row>
             <Col><ProdName/></Col>
+            <Col></Col>
+          </Row>
+          <Row>
+            <Col><ProdHide/></Col>
             <Col></Col>
           </Row>
         </Container></Form>

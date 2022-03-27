@@ -31,6 +31,13 @@ const productManagerSlice = createSlice({
       state.productList[idx].DIRTY = true;
       state.requireSaving = true;
     },
+    changeCandidateProdHide(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.productList[idx].HIDE = val;
+      state.productList[idx].DIRTY = true;
+      state.requireSaving = true;
+    },
     changeShowAllProduct(state, action) {
       state.showAllProduct = action.payload;
     }
@@ -39,7 +46,7 @@ const productManagerSlice = createSlice({
 
 // Export actions
 export const { updateProductList, addDummyProduct, changeCandidateProdListIdx,
-  changeCandidateProdName, changeShowAllProduct } = productManagerSlice.actions;
+  changeCandidateProdName, changeCandidateProdHide, changeShowAllProduct } = productManagerSlice.actions;
 
 // Export reducer
 export default productManagerSlice.reducer;
