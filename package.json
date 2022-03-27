@@ -32,10 +32,12 @@
       "app/localization/!(locales)",
       "LICENSE"
     ],
+    "extraResources": [
+      "lic/public.key",
+      "lic/license.data"
+    ],
     "extraFiles": [
-      "app/localization/locales/**/*",
-      "license.data",
-      "public.key"
+      "app/localization/locales/**/*"
     ],
     "win": {
       "target": [
@@ -51,7 +53,12 @@
         "AppImage"
       ]
     },
-    "mac": {}
+    "mac": {
+      "hardenedRuntime" : true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    }
   },
   "repository": {
     "type": "git",

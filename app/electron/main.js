@@ -104,7 +104,7 @@ async function createWindow() {
 
   // Setup bindings for offline license verification
   SecureElectronLicenseKeys.mainBindings(ipcMain, win, fs, crypto, {
-    root: process.cwd(),
+    root: process.resourcesPath+"/lic/",
     version: app.getVersion()
   });
 
