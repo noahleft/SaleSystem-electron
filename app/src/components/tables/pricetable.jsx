@@ -27,12 +27,16 @@ class PriceTable extends React.Component {
   render() {
     const { t } = this.props;
     let content = [];
-    let compPriceList = this.props.productManager.productList.map(function(obj){
+    let compPriceList = this.props.productManager.productList.filter(function(obj){
+      if(obj.HIDE == 1) return false;
+      return true;
+    }).map(function(obj){
       var rObj = {
         ID: obj.ID,
         NAME: obj.NAME,
         UNIT_PRICE: "",
         DIRTY: false,
+        HIDE: obj.HIDE,
       };
       return rObj;
     });

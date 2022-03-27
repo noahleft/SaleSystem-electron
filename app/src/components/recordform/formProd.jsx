@@ -33,8 +33,12 @@ class FormProd extends React.Component {
   }
 
   getProductOptions(compId) {
+    const prodList = this.props.productManager.productList.filter(function(obj){
+      if(obj.HIDE==1) return false;
+      return true;
+    });
     if(compId==0) {
-      return this.props.productManager.productList.map(function(obj){
+      return prodList.map(function(obj){
         return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
       });
     }
@@ -57,8 +61,8 @@ class FormProd extends React.Component {
           return ! prodSet.has(obj.ID);
         }
       }
-      let inSetProductList = this.props.productManager.productList.filter(inProdSet(prodSet));
-      let restProductList = this.props.productManager.productList.filter(notInProdSet(prodSet));
+      let inSetProductList = prodList.filter(inProdSet(prodSet));
+      let restProductList =  prodList.filter(notInProdSet(prodSet));
       let content = inSetProductList.map(function(obj){
         return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
       });
