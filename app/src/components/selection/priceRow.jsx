@@ -52,7 +52,7 @@ class PriceRow extends React.Component {
     <Form.Control size="sm" className="me-auto" type="hidden" value={display.ID}/>
     </Form.Group>
     <Form.Group className="sm" controlId="formUnitPrice">
-    <Form.Control size="sm" className="me-auto" type="text" value={this.state.value}
+    <Form.Control size="sm" className="me-auto" type="number" step="0.1" value={this.state.value}
     onChange={this.handleChange} disabled={this.props.disabled} prod_id={display.ID}/>
     </Form.Group>
     </Form></td>

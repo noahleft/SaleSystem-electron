@@ -29,7 +29,7 @@ class FormPrice extends React.Component {
     <Form.Label column sm={4}>{t("UnitPrice")}:</Form.Label>
     <Col sm={6}>
         <Form.Control className="me-auto" placeholder={price} disabled={idx==-1}
-        type="text" value={price} onChange={this.handleChange} />
+        type="number" step="0.1" value={price} onChange={this.handleChange} />
     </Col>
     </Form.Group>
     );

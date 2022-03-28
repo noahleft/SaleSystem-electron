@@ -29,7 +29,7 @@ class FormQuan extends React.Component {
     <Form.Label column sm={4}>{t("Quantity")}:</Form.Label>
     <Col sm={6}>
         <Form.Control className="me-auto" placeholder={quantity} disabled={idx==-1}
-        type="text" value={quantity} onChange={this.handleChange} />
+        type="number" step="0.1" value={quantity} onChange={this.handleChange} />
     </Col>
     </Form.Group>
     );
