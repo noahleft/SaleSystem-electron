@@ -7,6 +7,7 @@ const homeSlice = createSlice({
       quantity_unit: "",
       company_title: "",
       form_title_template: "",
+      required_user_db_version: 1, /* version number to track user db */
     },
   },
   reducers: {

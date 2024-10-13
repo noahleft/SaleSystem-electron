@@ -36,4 +36,5 @@ contextBridge.exposeInMainWorld("myAPI", {
   handleFormSummary: (formList) => manager.handleFormSummary(formList),
   listRecord: (formId) => manager.listRecord(formId),
   handleRecordChangeRequest: (recordList) => manager.handleRecordChangeRequest(recordList),
+  getDBUserVersion: () => manager.getDBUserVersion(),
 });

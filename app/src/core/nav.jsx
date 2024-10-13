@@ -16,6 +16,7 @@ class Nav extends React.Component {
       mobileMenuActive: false,
       licenseModalActive: false,
       naviModalActive: false,
+      naviModalActiveOnDBMigration: this.props.companyManager.requireDBMigration,
 
       // license-specific
       licenseValid: false,
@@ -28,6 +29,7 @@ class Nav extends React.Component {
     this.toggleMenu = this.toggleMenu.bind(this);
     this.toggleLicenseModal = this.toggleLicenseModal.bind(this);
     this.toggleNaviModal = this.toggleNaviModal.bind(this);
+    this.toggleNaviModalOnDBMigration = this.toggleNaviModalOnDBMigration.bind(this);
     this.navigate = this.navigate.bind(this);
   }
 
@@ -87,7 +89,13 @@ class Nav extends React.Component {
     this.setState({
       naviModalActive: !this.state.naviModalActive,
     });
-  } 
+  }
+  
+  toggleNaviModalOnDBMigration(event) {
+    this.setState({
+      naviModalActiveOnDBMigration: !this.state.naviModalActiveOnDBMigration,
+    });
+  }
 
   hasUnsavedChangeRequest() {
     if(this.props.companyManager.requireSaving) {
@@ -108,12 +116,22 @@ class Nav extends React.Component {
     return false;
   }
 
+  needDBMigration() {
+    if(this.props.companyManager.requireDBMigration) {
+      return true;
+    }
+    return false;
+  }
+
   // Using a custom method to navigate because we
   // need to close the mobile menu if we navigate to
   // another page
   navigate(url) {
     if(this.hasUnsavedChangeRequest()) {
       this.toggleNaviModal();
+    }
+    else if (this.needDBMigration()) {
+      this.toggleNaviModalOnDBMigration();
     }
     else {
       this.setState(
@@ -217,6 +235,28 @@ class Nav extends React.Component {
     );
   }
 
+  renderNaviModalOnDBMigrationNeeded() {
+    return (
+      <div
+        className={`modal ${this.state.naviModalActiveOnDBMigration ? "is-active" : ""}`}>
+        <div className="modal-background"></div>
+        <div className="modal-content">
+        <div className="box">
+        <div>You DB version is out-of-date.</div>
+        <div>
+          (1) Export current database.
+          (2) Purge database.
+          (3) Import database to migrate.</div>
+        </div>
+        </div>
+        <button
+          className="modal-close is-large"
+          aria-label="close"
+          onClick={this.toggleNaviModalOnDBMigration}></button>
+      </div>
+    );
+  }
+
   render() {
     const { t } = this.props;
     return (
@@ -274,6 +314,7 @@ class Nav extends React.Component {
           </div>
           {this.renderLicenseModal()}
           {this.renderNaviModal()}
+          {this.renderNaviModalOnDBMigrationNeeded()}
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">

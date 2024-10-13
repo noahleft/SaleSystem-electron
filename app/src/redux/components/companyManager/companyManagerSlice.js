@@ -8,6 +8,7 @@ const companyManagerSlice = createSlice({
     candidateCompListIdx: -1,
     requireSaving: false,
     showAllCompany: true,
+    requireDBMigration: false,
   },
   reducers: {
     updateCompanyList(state, action) {
@@ -82,7 +83,10 @@ const companyManagerSlice = createSlice({
     },
     changeShowAllCompany(state, action) {
       state.showAllCompany = action.payload;
-    }
+    },
+    setDBMigrationNeeded(state, action) {
+      state.requireDBMigration = true;
+    },
   }
 });
 
@@ -90,7 +94,8 @@ const companyManagerSlice = createSlice({
 export const { updateCompanyList, addDummyCompany, changeCandidateCompListIdx, 
   changeCandidateCompName, changeCandidateCompBusNum, changeCandidateCompPhone,
   changeCandidateCompContact, changeCandidateCompTax, changeCandidateCompHide,
-  changeCandidateCompNote, changeCandidateCompAddress, changeShowAllCompany } = companyManagerSlice.actions;
+  changeCandidateCompNote, changeCandidateCompAddress, changeShowAllCompany,
+  setDBMigrationNeeded } = companyManagerSlice.actions;
 
 // Export reducer
 export default companyManagerSlice.reducer;

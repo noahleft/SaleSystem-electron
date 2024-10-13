@@ -23,6 +23,7 @@ class FakeDb {
             ID    INTEGER PRIMARY KEY AUTOINCREMENT,\n\
             NAME  TEXT NOT NULL,\n\
             HIDE  BOOLEAN NOT NULL DEFAULT 0,\n\
+            TYPE  INTEGER NOT NULL DEFAULT 0,\n\
             UNIQUE(NAME));";
         this.db.exec(prodTbl);
         const priceTbl = "CREATE TABLE unitprice(\n\
@@ -51,6 +52,8 @@ class FakeDb {
             NOTE         TEXT     NOT NULL DEFAULT '',\n\
             HIDE  BOOLEAN NOT NULL DEFAULT 0);";
         this.db.exec(recordTbl);
+        const userVersion = "PRAGMA user_version=1;";
+        this.db.exec(userVersion);
     }
 };
 
@@ -103,7 +106,8 @@ class DbManager {
             var rObj = {
                 id: obj.ID,
                 name : obj.NAME,
-                hide: getHideVal(obj.HIDE),
+                hide : getHideVal(obj.HIDE),
+                type : obj.TYPE?obj.TYPE:0,
             }
             return rObj;
         })
@@ -196,7 +200,7 @@ class DbManager {
         insertMany(prodList);
     }
     updateProduct(prodList) {
-        const update = this.db.prepare('UPDATE product SET name = (@name), hide = (@hide) WHERE id = (@id);');
+        const update = this.db.prepare('UPDATE product SET name = (@name), hide = (@hide), type = (@type) WHERE id = (@id);');
         const updateMany = this.db.transaction((prodList) => {
             for (const prod of prodList) update.run(prod);
         });
@@ -310,6 +314,10 @@ class DbManager {
             return false;
         });
         this.updateRecord(updateList);
+    }
+    getDBUserVersion() {
+        const version = this.db.pragma('user_version', { simple: true});
+        return version;
     }
 }
 

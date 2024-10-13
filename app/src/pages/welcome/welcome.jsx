@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateCompanyList } from "Redux/components/companyManager/companyManagerSlice";
+import { updateCompanyList, setDBMigrationNeeded } from "Redux/components/companyManager/companyManagerSlice";
 import { updateProductList } from "Redux/components/productManager/productManagerSlice";
 import { updatePriceList } from "Redux/components/priceManager/priceManagerSlice";
 import { updateFormList } from "Redux/components/formManager/formManagerSlice";
@@ -37,6 +37,11 @@ class Welcome extends React.Component {
     this.props.updateFormList(formlist);
 
     this.readConfig();
+
+    this.user_db_version = myAPI.getDBUserVersion();
+    if (this.user_db_version < this.props.home.config.required_user_db_version) {
+      this.props.setDBMigrationNeeded();
+    }
   }
 
   readConfig() {
@@ -75,6 +80,9 @@ class Welcome extends React.Component {
                 <p className="subtitle">
                   Contact noahleft@gmail.com
                 </p>
+                <p className="body">
+                  User DB Version: {this.user_db_version}
+                </p>
               </div>
             </section>
             <hr/>
@@ -109,7 +117,7 @@ const mapStateToProps = (state, props) => ({
   formManager: state.formManager,
   home: state.home,
 });
-const mapDispatch = { updateCompanyList, updateProductList, updatePriceList, updateFormList, loadConfig };
+const mapDispatch = { updateCompanyList, updateProductList, updatePriceList, updateFormList, loadConfig, setDBMigrationNeeded };
 
 export default connect(mapStateToProps, mapDispatch)(withTranslation()(Welcome));
 
