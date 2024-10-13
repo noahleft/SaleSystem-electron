@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Card, Form, Row, Col, Button, Container } from "react-bootstrap";
 import { addDummyForm, changeCandidateFormListIdx, changeCandidateFormName } from "Redux/components/formManager/formManagerSlice";
 import { withTranslation } from "react-i18next";
+import i18n from "I18n/i18n.config";
+import { template } from "lodash";
 
 class FormInfo extends React.Component {
   constructor(props) {
@@ -11,6 +13,29 @@ class FormInfo extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
 
     this.handleNewRecord = this.handleNewRecord.bind(this);
+  }
+
+  getYearIdx(e) {
+    const template = this.props.home.config.form_title_template;
+    if(i18n.language=="zh_TW") {
+      return template.search("yyy");
+    }
+    return template.search("yyyy");
+  }
+
+  getYearCount(e) {
+    if(i18n.language=="zh_TW") {
+      return 3;
+    }
+    return 4;
+  }
+
+  fillTemplateName(year, month) {
+    const template = this.props.home.config.form_title_template;
+    if(i18n.language=="zh_TW") {
+      return template.replace("yyy", year).replace("mm", month);
+    }
+    return template.replace("yyyy", year).replace("mm", month);
   }
 
   getNewFormName(e) {
@@ -22,13 +47,14 @@ class FormInfo extends React.Component {
     if (len == 0) {
       return template;
     }
-    const yearIdx = template.search("yyyy");
+    const yearIdx = this.getYearIdx();
+    const yearCount = this.getYearCount();
     const monthIdx = template.search("mm");
     if (yearIdx == -1 || monthIdx == -1) {
       return template;
     }
     const lastFormName = this.props.formManager.formList[len-1].NAME;
-    const year = parseInt(lastFormName.substr(yearIdx, 4));
+    const year = parseInt(lastFormName.substr(yearIdx, yearCount));
     const month = parseInt(lastFormName.substr(monthIdx, 2));
     if (isNaN(year) || isNaN(month)) {
       return template;
@@ -36,12 +62,12 @@ class FormInfo extends React.Component {
     if (month == 12) {
       const newYear = year+1;
       const newMonth = 1;
-      return template.replace("yyyy", newYear.toString()).replace("mm", newMonth.toString());
+      return this.fillTemplateName(newYear, newMonth);
     }
     else {
       const newYear = year;
       const newMonth = month+1;
-      return template.replace("yyyy", newYear.toString()).replace("mm", newMonth.toString());
+      return this.fillTemplateName(newYear, newMonth);
     }
   }
 
