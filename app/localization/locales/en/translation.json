@@ -8,6 +8,8 @@
   "PrintableTitle": "Records",
   "Name": "Name",
   "Product": "Product",
+  "Type": "Type",
+  "SelectType":"SelectType",
   "UnitPrice": "Unit Price",
   "EditPrice": "Edit Price",
   "CompanyName": "Company Name",

@@ -8,6 +8,8 @@
   "PrintableTitle": "應收帳款對帳單",
   "Name": "名稱",
   "Product": "產品",
+  "Type": "類型",
+  "SelectType":"選擇類型",
   "UnitPrice": "單價",
   "EditPrice": "修改單價",
   "CompanyName": "公司名稱",

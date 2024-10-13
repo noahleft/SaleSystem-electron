@@ -20,12 +20,20 @@ class ProductTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
+  getTypeString(t) {
+    if ( t == 1) {
+      return "kg";
+    }
+    return "y";
+  }
+
   genRow(idx, obj) {
     return (<tr key={idx} onClick={()=>{
       this.props.changeCandidateProdListIdx(idx);
       }} hidden={this.props.productManager.showAllProduct?false:obj.HIDE}>
     <th scope="row">{obj.ID}</th>
     <td><HighlightText name={obj.NAME} highlight={obj.DIRTY}></HighlightText></td>
+    <td><HighlightText name={this.getTypeString(obj.TYPE)} highlight={obj.DIRTY}></HighlightText></td>
     <td><Form.Check type="checkbox" aria-label="Hide" checked={obj.HIDE} disabled/></td>
     </tr>
     );
@@ -46,6 +54,7 @@ class ProductTable extends React.Component {
       <tr>
         <th scope="col" className="thID">#</th>
         <th scope="col">{t("Name")}</th>
+        <th scope="col">{t("Type")}</th>
         <th scope="col" width="80px">{t("Hide")}</th>
       </tr>
     </thead>
