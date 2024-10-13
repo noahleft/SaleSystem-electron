@@ -13,12 +13,46 @@ class FormInfo extends React.Component {
     this.handleNewRecord = this.handleNewRecord.bind(this);
   }
 
+  getNewFormName(e) {
+    if (this.props.home.config.form_title_template == "") {
+      return "";
+    }
+    const template = this.props.home.config.form_title_template;
+    const len = this.props.formManager.formList.length;
+    if (len == 0) {
+      return template;
+    }
+    const yearIdx = template.search("yyyy");
+    const monthIdx = template.search("mm");
+    if (yearIdx == -1 || monthIdx == -1) {
+      return template;
+    }
+    const lastFormName = this.props.formManager.formList[len-1].NAME;
+    const year = parseInt(lastFormName.substr(yearIdx, 4));
+    const month = parseInt(lastFormName.substr(monthIdx, 2));
+    if (isNaN(year) || isNaN(month)) {
+      return template;
+    }
+    if (month == 12) {
+      const newYear = year+1;
+      const newMonth = 1;
+      return template.replace("yyyy", newYear.toString()).replace("mm", newMonth.toString());
+    }
+    else {
+      const newYear = year;
+      const newMonth = month+1;
+      return template.replace("yyyy", newYear.toString()).replace("mm", newMonth.toString());
+    }
+  }
+
   handleNewRecord(e) {
     const len = this.props.formManager.formList.length;
+    const formName = this.getNewFormName();
+    const isEmptyFormName = formName == "";
     let dummy = {
       ID: len+1,
-      NAME: this.props.home.config.form_title_template,
-      DIRTY: false,
+      NAME: formName,
+      DIRTY: !isEmptyFormName,
       INSERT: true,
       QUANTITY: 0,
       SUM: 0,
