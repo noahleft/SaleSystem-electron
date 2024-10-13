@@ -6,6 +6,7 @@ const homeSlice = createSlice({
     config: {
       quantity_unit: "",
       company_title: "",
+      form_title_template: "",
     },
   },
   reducers: {
@@ -15,6 +16,9 @@ const homeSlice = createSlice({
     updateCompanyTitle(state, action) {
       state.config.company_title = action.payload;
     },
+    updateFormTitleTemplate(state, action) {
+      state.config.form_title_template = action.payload;
+    },
     loadConfig(state, action) {
       state.config = action.payload;
     }
@@ -22,7 +26,7 @@ const homeSlice = createSlice({
 });
 
 // Export actions
-export const { updateQuantityUnit, updateCompanyTitle, loadConfig } = homeSlice.actions;
+export const { updateQuantityUnit, updateCompanyTitle, updateFormTitleTemplate, loadConfig } = homeSlice.actions;
 
 // Export reducer
 export default homeSlice.reducer;

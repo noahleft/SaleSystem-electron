@@ -4,6 +4,7 @@ import { Table } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import EditQuantityUnit from "Components/config/configQuantityUnit";
 import EditCompanyTitle from "Components/config/configCompanyTitle";
+import EditFormTitleTemplate from "Components/config/configFormTitleTemplate";
 import "./tablesize.css";
 
 class SettingTable extends React.Component {
@@ -28,6 +29,11 @@ class SettingTable extends React.Component {
         <th scope="row">{t("CompanyName")}</th>
         <td>{this.props.home.config.company_title}</td>
         <td><EditCompanyTitle writeFunc={this.props.writeFunc}/></td>
+      </tr>
+      <tr key={3}>
+        <th scope="row">{t("FormNameTemplate")}</th>
+        <td>{this.props.home.config.form_title_template}</td>
+        <td><EditFormTitleTemplate writeFunc={this.props.writeFunc}/></td>
       </tr>
     </tbody>
     </Table>

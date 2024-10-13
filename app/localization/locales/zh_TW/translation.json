@@ -13,6 +13,7 @@
   "CompanyName": "公司名稱",
   "ProductName": "產品名稱",
   "FormName": "表單名稱",
+  "FormNameTemplate":"表單名稱樣板",
   "DeliverDate": "出貨日期",
   "Quantity": "數量",
   "Note": "備註",

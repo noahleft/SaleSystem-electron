@@ -13,6 +13,7 @@
   "CompanyName": "Company Name",
   "ProductName": "Product Name",
   "FormName": "Form Name",
+  "FormNameTemplate":"FormNameTemplate",
   "DeliverDate": "Deliver Date",
   "Quantity": "Quantity",
   "Note": "Note",

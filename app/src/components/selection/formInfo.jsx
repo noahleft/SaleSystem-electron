@@ -17,7 +17,7 @@ class FormInfo extends React.Component {
     const len = this.props.formManager.formList.length;
     let dummy = {
       ID: len+1,
-      NAME: "",
+      NAME: this.props.home.config.form_title_template,
       DIRTY: false,
       INSERT: true,
       QUANTITY: 0,
@@ -70,7 +70,8 @@ class FormInfo extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  formManager: state.formManager
+  formManager: state.formManager,
+  home: state.home
 });
 const mapDispatch = { addDummyForm, changeCandidateFormListIdx, changeCandidateFormName };
 
