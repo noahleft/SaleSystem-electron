@@ -5,7 +5,7 @@ const priceManagerSlice = createSlice({
   initialState: {
     priceList: [],
     selectedCompID: 0,
-    slecetedProdID: 0,
+    selectedProdID: 0,
     changeRequests: [],
     showAllProduct: false,
   },
