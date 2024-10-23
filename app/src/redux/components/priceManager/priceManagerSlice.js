@@ -5,6 +5,7 @@ const priceManagerSlice = createSlice({
   initialState: {
     priceList: [],
     selectedCompID: 0,
+    slecetedProdID: 0,
     changeRequests: [],
     showAllProduct: false,
   },
@@ -15,6 +16,9 @@ const priceManagerSlice = createSlice({
     },
     changeSelectedCompID(state, action) {
       state.selectedCompID = action.payload;
+    },
+    changeSelectedProdID(state, action) {
+      state.selectedProdID = action.payload;
     },
     addChangeRequest(state, action) {
       let CR = action.payload;
@@ -47,7 +51,8 @@ const priceManagerSlice = createSlice({
 });
 
 // Export actions
-export const { updatePriceList, changeSelectedCompID, addChangeRequest, changeShowAllProduct } = priceManagerSlice.actions;
+export const { updatePriceList, changeSelectedCompID, changeSelectedProdID,
+    addChangeRequest, changeShowAllProduct } = priceManagerSlice.actions;
 
 // Export reducer
 export default priceManagerSlice.reducer;

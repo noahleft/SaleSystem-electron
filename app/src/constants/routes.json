@@ -3,6 +3,7 @@
   "COMPANYLIST": "/companylist",
   "PRODUCTLIST": "/productlist",
   "PRICELIST": "/pricelist",
+  "PRODPRICELIST": "/prodpricelist",
   "FORMLIST": "/formlist",
   "RECORDLIST": "/recordlist",
   "RECORDEXPORT": "/recordexport"

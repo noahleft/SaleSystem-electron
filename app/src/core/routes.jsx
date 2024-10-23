@@ -16,6 +16,9 @@ const ProductList = loadable(() =>
 const PriceList = loadable(() =>
   import(/* webpackChunkName: "PriceListChunk" */ "Pages/pricelist/pricelist")
 );
+const ProdPriceList = loadable(() =>
+  import(/* webpackChunkName: "ProdPriceListChunk" */ "Pages/pricelist/prodpricelist")
+);
 const FormList = loadable(() =>
   import(/* webpackChunkName: "FormListChunk" */ "Pages/formlist/formlist")
 );
@@ -34,6 +37,7 @@ class Routes extends React.Component {
         <Route path={ROUTES.COMPANYLIST} component={CompanyList}></Route>
         <Route path={ROUTES.PRODUCTLIST} component={ProductList}></Route>
         <Route path={ROUTES.PRICELIST} component={PriceList}></Route>
+        <Route path={ROUTES.PRODPRICELIST} component={ProdPriceList}></Route>
         <Route path={ROUTES.FORMLIST} component={FormList}></Route>
         <Route path={ROUTES.RECORDLIST} component={RecordList}></Route>
         <Route path={ROUTES.RECORDEXPORT} component={RecordExport}></Route>
