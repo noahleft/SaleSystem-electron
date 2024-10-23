@@ -21,7 +21,8 @@ class ProdType extends React.Component {
 
   getTypeString(type) {
     if(type == 1) return "kg";
-    return "y";
+    if(this.props.home.config.quantity_unit == "") return "0";
+    return this.props.home.config.quantity_unit;
   }
 
   render() {
@@ -39,7 +40,8 @@ class ProdType extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  productManager: state.productManager
+  productManager: state.productManager,
+  home: state.home
 });
 const mapDispatch = { changeCandidateProdType };
 

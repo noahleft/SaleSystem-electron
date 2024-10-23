@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
+import EditNumProdType from "Components/config/configNumProdType";
 import EditQuantityUnit from "Components/config/configQuantityUnit";
 import EditCompanyTitle from "Components/config/configCompanyTitle";
 import EditFormTitleTemplate from "Components/config/configFormTitleTemplate";
@@ -14,23 +15,28 @@ class SettingTable extends React.Component {
     <Table bordered hover size="sm">
     <thead>
       <tr>
-        <th scope="col" className="thName">{t("Key")}</th>
+        <th scope="col" className="thText">{t("Key")}</th>
         <th scope="col" className="thText">{t("Value")}</th>
         <th scope="col">{t("EditValue")}</th>
       </tr>
     </thead>
     <tbody>
       <tr key={1}>
-        <th scope="row">{t("QuantityUnit")}</th>
+        <th scope="row">{t("NumProdType")}</th>
+        <td>{this.props.home.config.num_prod_type}</td>
+        <td><EditNumProdType writeFunc={this.props.writeFunc}/></td>
+      </tr>
+      <tr key={2}>
+        <th scope="row">{t("DefaultQuantityUnit")}</th>
         <td>{this.props.home.config.quantity_unit}</td>
         <td><EditQuantityUnit writeFunc={this.props.writeFunc}/></td>
       </tr>
-      <tr key={2}>
+      <tr key={3}>
         <th scope="row">{t("CompanyName")}</th>
         <td>{this.props.home.config.company_title}</td>
         <td><EditCompanyTitle writeFunc={this.props.writeFunc}/></td>
       </tr>
-      <tr key={3}>
+      <tr key={4}>
         <th scope="row">{t("FormNameTemplate")}</th>
         <td>{this.props.home.config.form_title_template}</td>
         <td><EditFormTitleTemplate writeFunc={this.props.writeFunc}/></td>

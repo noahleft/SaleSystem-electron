@@ -20,11 +20,10 @@ class ProductTable extends React.Component {
     window.api.contextMenu.clearRendererBindings();
   }
 
-  getTypeString(t) {
-    if ( t == 1) {
-      return "kg";
-    }
-    return "y";
+  getTypeString(type) {
+    if(type == 1) return "kg";
+    if(this.props.home.config.quantity_unit == "") return "0";
+    return this.props.home.config.quantity_unit;
   }
 
   genRow(idx, obj) {
@@ -67,7 +66,8 @@ class ProductTable extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  productManager: state.productManager
+  productManager: state.productManager,
+  home: state.home
 });
 const mapDispatch = { changeCandidateProdListIdx };
 

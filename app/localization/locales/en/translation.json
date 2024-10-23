@@ -1,5 +1,6 @@
 {
   "WelcomeTitle": "Sale system for invoice.",
+  "NumProdType":"Number of Product Type",
   "CompanyTitle": "Company View",
   "ProductTitle": "Product View",
   "PriceTitle": "Unit Price View",
@@ -92,7 +93,7 @@
   "Phone": "Phone",
   "Contact": "Contact",
   "Settings": "Settings",
-  "QuantityUnit": "Quantity Unit",
+  "DefaultQuantityUnit": "Default Quantity Unit",
   "Key": "Key",
   "Value": "Value",
   "EditValue": "Edit Value",
