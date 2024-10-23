@@ -1,6 +1,6 @@
 @media print {
     @page {
-      size: portrait;
+      size: auto;
     }
     body * {
       visibility: hidden;
@@ -9,9 +9,9 @@
       visibility: visible;
     }
     .section-to-print {
-      position: absolute;
+      position: relative;
       left: 0;
-      top: -100px;
+      top: -200px;
       width: 8.5in;
     }
   }
