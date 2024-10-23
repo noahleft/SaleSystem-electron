@@ -63,7 +63,7 @@ class ProdPriceTable extends React.Component {
     <thead>
       <tr>
         <th scope="col" className="thID">#</th>
-        <th scope="col" className="thText">{t("Company")}</th>
+        <th scope="col" className="thText">{t("CompanyName")}</th>
         <th scope="col" className="thNum">{t("UnitPrice")}</th>
         <th scope="col">{t("EditPrice")}</th>
       </tr>
