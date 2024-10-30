@@ -33,6 +33,7 @@ class FormProd extends React.Component {
   }
 
   getProductOptions(compId) {
+    const { t } = this.props;
     const prodList = this.props.productManager.productList.filter(function(obj){
       if(obj.HIDE==1) return false;
       return true;
@@ -61,15 +62,58 @@ class FormProd extends React.Component {
           return ! prodSet.has(obj.ID);
         }
       }
+      function withProdGroup(idx) {
+        return function(obj) {
+          return obj.GROUP_ID == idx;
+        }
+      }
       let inSetProductList = prodList.filter(inProdSet(prodSet));
       let restProductList =  prodList.filter(notInProdSet(prodSet));
+      let restProductGroup0 = restProductList.filter(withProdGroup(0));
+      let restProductGroup1 = restProductList.filter(withProdGroup(1));
+      let restProductGroup2 = restProductList.filter(withProdGroup(2));
+      let restProductGroup3 = restProductList.filter(withProdGroup(3));
+      let restProductGroup4 = restProductList.filter(withProdGroup(4));
+      let restProductGroup5 = restProductList.filter(withProdGroup(5));
       let content = inSetProductList.map(function(obj){
         return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
       });
-      content.push(<option key={-1} disabled>-----------</option>);
-      content.push(restProductList.map(function(obj){
-        return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
-      }));
+      if (restProductGroup1.length > 0) {
+        content.push(<option key={-1} disabled>---{t("GroupID")} 1---</option>);
+        content.push(restProductGroup1.map(function(obj){
+          return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
+        }));
+      }
+      if (restProductGroup2.length > 0) {
+        content.push(<option key={-2} disabled>---{t("GroupID")} 2---</option>);
+        content.push(restProductGroup2.map(function(obj){
+          return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
+        }));
+      }
+      if (restProductGroup3.length > 0) {
+        content.push(<option key={-3} disabled>---{t("GroupID")} 3---</option>);
+        content.push(restProductGroup3.map(function(obj){
+          return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
+        }));
+      }
+      if (restProductGroup4.length > 0) {
+        content.push(<option key={-4} disabled>---{t("GroupID")} 4---</option>);
+        content.push(restProductGroup4.map(function(obj){
+          return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
+        }));
+      }
+      if (restProductGroup5.length > 0) {
+        content.push(<option key={-5} disabled>---{t("GroupID")} 5---</option>);
+        content.push(restProductGroup5.map(function(obj){
+          return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
+        }));
+      }
+      if (restProductGroup0.length > 0) {
+        content.push(<option key={-6} disabled>-------------</option>);
+        content.push(restProductGroup0.map(function(obj){
+          return (<option key={obj.ID} value={obj.ID}>{obj.NAME}</option>)
+        }));
+      }
       return content;
     }
   }
