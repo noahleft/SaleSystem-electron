@@ -28,6 +28,20 @@ class ExportTable extends React.Component {
     return date;
   }
 
+  getUnitString(idx) {
+    if (idx == 1)
+      return this.props.home.config.quantity_unit_1;
+    if (idx == 2)
+      return this.props.home.config.quantity_unit_2;
+    if (idx == 3)
+      return this.props.home.config.quantity_unit_3;
+    if (idx == 4)
+      return this.props.home.config.quantity_unit_4;
+    if (idx == 5)
+      return this.props.home.config.quantity_unit_5;
+    return this.props.home.config.quantity_unit;
+  }
+
   render() {
     const { t } = this.props;
     let content = [];
@@ -58,10 +72,12 @@ class ExportTable extends React.Component {
     for(let i=0; i<=recordList.length-1; i++) {
       let sum = Math.round(recordList[i].UNIT_PRICE * recordList[i].QUANTITY);
       total += sum;
+      let prod = myAPI.getProduct(recordList[i].PROD_ID);
+      let unit = this.getUnitString(prod.TYPE);
       content.push(<tr key={recordList[i].ID}>
         <td className="export dateTime">{this.getDisplayDate(recordList[i].DELIVER_DATE)}</td>
-        <td className="export productName">{myAPI.getProduct(recordList[i].PROD_ID).NAME}</td>
-        <td className="export quantity">{recordList[i].QUANTITY}{this.props.home.config.quantity_unit}</td>
+        <td className="export productName">{prod.NAME}</td>
+        <td className="export quantity">{recordList[i].QUANTITY}{unit}</td>
         <td className="export price">{recordList[i].UNIT_PRICE.toFixed(1).toString()}</td>
         <td className="export price">{numberWithCommas(sum)}</td>
         <td className="export note">{recordList[i].NOTE}</td>
@@ -70,7 +86,6 @@ class ExportTable extends React.Component {
     total = Math.round(total);
     let tax = Math.round(total * 0.05);
     let posttax = tax + total;
-    let QuantityUnit = this.props.home.config.quantity_unit==""?"":"("+this.props.home.config.quantity_unit+")";
     return (
     <div>
       <div>
@@ -79,7 +94,7 @@ class ExportTable extends React.Component {
             <tr>
               <th scope="col" className="export dateTime">{t("DeliverDate")}</th>
               <th scope="col" className="export productName">{t("Item")}</th>
-              <th scope="col" className="export quantity">{t("Quantity")}{QuantityUnit}</th>
+              <th scope="col" className="export quantity">{t("Quantity")}</th>
               <th scope="col" className="export price">{t("UnitPrice")}</th>
               <th scope="col" className="export price">{t("Sum")}</th>
               <th scope="col" className="export note">{t("Note")}</th>
