@@ -48,7 +48,31 @@ class RecordTable extends React.Component {
     return date;
   }
 
+  getProductType(id) {
+    if(id==0) return "";
+    let productList = this.props.productManager.productList;
+    for(let i=0; i<productList.length; i++) {
+      if(productList[i].ID == id) return this.getUnitString(productList[i].TYPE);
+    }
+    return "";
+  }
+
+  getUnitString(idx) {
+    if (idx == 1)
+      return this.props.home.config.quantity_unit_1;
+    if (idx == 2)
+      return this.props.home.config.quantity_unit_2;
+    if (idx == 3)
+      return this.props.home.config.quantity_unit_3;
+    if (idx == 4)
+      return this.props.home.config.quantity_unit_4;
+    if (idx == 5)
+      return this.props.home.config.quantity_unit_5;
+    return this.props.home.config.quantity_unit;
+  }
+
   genRow(idx, obj, ori) {
+    let unit = this.getProductType(obj.PROD_ID);
     return (<tr key={idx} onClick={()=>{
       this.props.changeCandidateRecordListIdx(idx);
       }}>
@@ -57,14 +81,13 @@ class RecordTable extends React.Component {
     <td><HighlightText name={this.getProductName(obj.PROD_ID)} highlight={obj.PROD_ID!=ori.PROD_ID} /></td>
     <td><HighlightText name={this.getDisplayDate(obj.DELIVER_DATE)} highlight={obj.DELIVER_DATE!=ori.DELIVER_DATE} /></td>
     <td><HighlightText name={obj.UNIT_PRICE} highlight={obj.UNIT_PRICE!=ori.UNIT_PRICE} /></td>
-    <td><HighlightText name={obj.QUANTITY.toString()+this.props.home.config.quantity_unit} highlight={obj.QUANTITY!=ori.QUANTITY} /></td>
+    <td><HighlightText name={obj.QUANTITY.toString()+unit} highlight={obj.QUANTITY!=ori.QUANTITY} /></td>
     <td><HighlightText name={obj.NOTE} highlight={obj.NOTE!=ori.NOTE} /></td>
     </tr>
     );
   }
 
   render() {
-    let QuantityUnit = this.props.home.config.quantity_unit==""?"":"("+this.props.home.config.quantity_unit+")";
     const { t } = this.props;
     let content = [];
     const recordList = this.props.recordManager.recordList;
@@ -82,7 +105,7 @@ class RecordTable extends React.Component {
           <th scope="col" className="thText">{t("ProductName")}</th>
           <th scope="col" className="thName">{t("DeliverDate")}</th>
           <th scope="col" className="thNum">{t("UnitPrice")}</th>
-          <th scope="col" className="thNum">{t("Quantity")+QuantityUnit}</th>
+          <th scope="col" className="thNum">{t("Quantity")}</th>
           <th scope="col">{t("Note")}</th>
         </tr>
       </thead>
