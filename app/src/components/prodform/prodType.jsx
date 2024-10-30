@@ -20,9 +20,31 @@ class ProdType extends React.Component {
   }
 
   getTypeString(type) {
-    if(type == 1) return "kg";
-    if(this.props.home.config.quantity_unit == "") return "0";
-    return this.props.home.config.quantity_unit;
+    if(type == 0) {
+      if (this.props.home.config.quantity_unit != "")
+        return this.props.home.config.quantity_unit;
+    }
+    if(type == 1) {
+      if (this.props.home.config.quantity_unit_1 != "")
+        return this.props.home.config.quantity_unit_1;
+    }
+    if(type == 2) {
+      if (this.props.home.config.quantity_unit_2 != "")
+        return this.props.home.config.quantity_unit_2;
+    }
+    if(type == 3) {
+      if (this.props.home.config.quantity_unit_3 != "")
+        return this.props.home.config.quantity_unit_3;
+    }
+    if(type == 4) {
+      if (this.props.home.config.quantity_unit_4 != "")
+        return this.props.home.config.quantity_unit_4;
+    }
+    if(type == 5) {
+      if (this.props.home.config.quantity_unit_5 != "")
+        return this.props.home.config.quantity_unit_5;
+    }
+    return type;
   }
 
   render() {
