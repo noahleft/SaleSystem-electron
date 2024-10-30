@@ -7,6 +7,7 @@ import ProdID from "Components/prodform/prodID";
 import ProdName from "Components/prodform/prodName";
 import ProdType from "Components/prodform/prodType";
 import ProdHide from "Components/prodform/prodHide";
+import ProdGroupID from "Components/prodform/prodGroupID";
 
 class ProdInfo extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class ProdInfo extends React.Component {
       ID: len+1,
       NAME: "",
       TYPE: 0,
+      GROUP_ID: 0,
       DIRTY: false,
       INSERT: true,
       HIDE: 0,
@@ -41,7 +43,7 @@ class ProdInfo extends React.Component {
           </Row>
           <Row>
             <Col><ProdID/></Col>
-            <Col></Col>
+            <Col><ProdGroupID/></Col>
           </Row>
           <Row>
             <Col><ProdName/></Col>

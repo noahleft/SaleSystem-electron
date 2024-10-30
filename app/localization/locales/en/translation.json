@@ -11,6 +11,8 @@
   "Product": "Product",
   "Type": "Type",
   "SelectType":"SelectType",
+  "GroupID":"GroupID",
+  "SetGroupID":"SetGroupID",
   "UnitPrice": "Unit Price",
   "EditPrice": "Edit Price",
   "CompanyName": "Company Name",

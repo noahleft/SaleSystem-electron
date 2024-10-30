@@ -31,10 +31,20 @@ class ProdType extends React.Component {
     let title = idx==-1?t("SelectType"):
                 this.getTypeString(this.props.productManager.productList[idx].TYPE);
     return (
+      <Form.Group as={Row} className="mb-3" controlId="formProdType">
+      <Form.Label column sm={4}>{t("Type")}:</Form.Label>
+      <Col sm={6}>
         <DropdownButton title={title} disabled={idx==-1}>
             <Dropdown.Item key='0' onClick={()=>{this.handleTypeChange(0);}}>{this.getTypeString(0)}</Dropdown.Item>
             <Dropdown.Item key='1' onClick={()=>{this.handleTypeChange(1);}}>{this.getTypeString(1)}</Dropdown.Item>
+            <Dropdown.Item key='2' onClick={()=>{this.handleTypeChange(2);}}>{this.getTypeString(2)}</Dropdown.Item>
+            <Dropdown.Item key='3' onClick={()=>{this.handleTypeChange(3);}}>{this.getTypeString(3)}</Dropdown.Item>
+            <Dropdown.Item key='4' onClick={()=>{this.handleTypeChange(4);}}>{this.getTypeString(4)}</Dropdown.Item>
+            <Dropdown.Item key='5' onClick={()=>{this.handleTypeChange(5);}}>{this.getTypeString(5)}</Dropdown.Item>
         </DropdownButton>
+      </Col>
+    </Form.Group>
+        
     );
   }
 }

@@ -22,6 +22,7 @@ class ProdSave extends React.Component {
         id: obj.ID,
         name: obj.NAME,
         type: obj.TYPE,
+        group_id: obj.GROUP_ID,
         hide: obj.HIDE,
       };
       return rObj;

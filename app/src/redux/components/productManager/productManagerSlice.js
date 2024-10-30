@@ -38,6 +38,13 @@ const productManagerSlice = createSlice({
       state.productList[idx].DIRTY = true;
       state.requireSaving = true;
     },
+    changeCandidateProdGroupID(state, action) {
+      const idx = action.payload.idx;
+      const val = action.payload.value;
+      state.productList[idx].GROUP_ID = val;
+      state.productList[idx].DIRTY = true;
+      state.requireSaving = true;
+    },
     changeCandidateProdHide(state, action) {
       const idx = action.payload.idx;
       const val = action.payload.value;
@@ -53,8 +60,8 @@ const productManagerSlice = createSlice({
 
 // Export actions
 export const { updateProductList, addDummyProduct, changeCandidateProdListIdx,
-  changeCandidateProdName, changeCandidateProdType, changeCandidateProdHide,
-  changeShowAllProduct } = productManagerSlice.actions;
+  changeCandidateProdName, changeCandidateProdType, changeCandidateProdGroupID, 
+  changeCandidateProdHide, changeShowAllProduct } = productManagerSlice.actions;
 
 // Export reducer
 export default productManagerSlice.reducer;
